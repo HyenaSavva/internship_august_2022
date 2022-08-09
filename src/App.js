@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import HomePage from "./pages/homepage/HomePage";
+import HomePage from "./pages/homePage/HomePage";
 function App() {
   return (
     <div className="App">
