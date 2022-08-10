@@ -25,7 +25,15 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
+    <style jsx global>{`
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: font-family: 'Inter', sans-serif;
+    }
+    `}</style>
     </ThemeProvider>
+    
   );
 }
 
