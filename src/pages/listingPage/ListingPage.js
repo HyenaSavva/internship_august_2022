@@ -8,9 +8,7 @@ import ListingPageStyles from "./ListingPageStyles";
 export const ListingPage = ({ title }) => {
   return (
     <>
-      <div
-        className="custom-div"
-      >
+      <div className="listing-page">
         <PhotoGalery />
 
         <Details>

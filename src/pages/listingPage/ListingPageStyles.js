@@ -10,7 +10,6 @@ export const Details = styled.div`
     align-self: end;
   }
 `;
-
 export const shareBtn = {
   width: 92,
   color: "primary",
@@ -23,9 +22,8 @@ export const shareBtn = {
 };
 
 
-
 export default css`
-  .custom-div {
+  .listing-page {
     max-width: calc(100% - 780px);
     margin: auto;
   }

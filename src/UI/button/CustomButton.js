@@ -7,9 +7,7 @@ import { btnStyles } from './CustomButtonStyles';
 
 
 export const CustomButton = ({variant, startIcon, sx, children})=>{
-    console.log("zzz", btnStyles);
-
-    console.log("props", startIcon, variant, children);
+   
 
    
 
