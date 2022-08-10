@@ -3,28 +3,17 @@
     font-family: Helvetica, sans-serif;
 }
 
-nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px;
-    width: 100%;
-    gap: 30px;
-    height: 92px;
-    left: 0px;
-    top: 0px;
-}
-
 .header--left {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header--searchbar {
-    width: 500px;
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: center;
     padding: 0px;
 }
 

@@ -31,7 +31,7 @@ const SearchBar = ({ placeholder }) => {
 				placeholder="Search"
 				InputProps={{
 					endAdornment: (
-						<InputAdornment>
+						<InputAdornment position="end">
 							<SearchIcon />
 						</InputAdornment>
 					),

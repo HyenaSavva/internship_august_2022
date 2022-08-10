@@ -6,14 +6,16 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
+import "./homepage.css";
+
 function HomePage() {
 	return (
 		<div>
-			<Container maxWidth="lg">
+			<Container maxWidth="lg" className="header--container">
 				<Header />
 			</Container>
 			<hr />
-			<Container className="" maxWidth="lg">
+			<Container className="content--container">
 				<Grid container spacing={2}>
 					<Grid item xs={12} sm={6} md={3}>
 						<Card

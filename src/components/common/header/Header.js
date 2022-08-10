@@ -14,8 +14,6 @@ const Header = () => {
 		<NavBar>
 			<section className="header--left">
 				<img src={logo} width="103px" height="31.38px"></img>
-				{/* <Dropdown />
-				<SearchBar placeholder="Search" /> */}
 				<div className="form-group">
 					<div className="header--searchbar">
 						<Dropdown />
