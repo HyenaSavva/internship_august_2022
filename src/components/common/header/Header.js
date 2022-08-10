@@ -6,12 +6,12 @@ import PersonIcon from "@mui/icons-material/Person";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import logo from "../../../assets/images/logo-assist-tagline.png";
 
-import "./header.css";
 import { NavBar } from "./style";
+import HeaderStyles from "./HeaderStyles";
 
 const Header = () => {
 	return (
-		<NavBar>
+		<nav className="navbar">
 			<section className="header--left">
 				<img src={logo} width="103px" height="31.38px"></img>
 				<div className="form-group">
@@ -31,7 +31,8 @@ const Header = () => {
 					<p> My Profile </p>
 				</div>
 			</section>
-		</NavBar>
+			<style jsx>{HeaderStyles}</style>
+		</nav>
 	);
 };
 

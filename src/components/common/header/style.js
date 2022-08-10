@@ -1,6 +1,8 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 export const NavBar = styled.div`
+	border-bottom: 1px solid black;
+	margin-bottom: 10px;
 	position: fixed;
 	top: 0;
 	display: flex;
