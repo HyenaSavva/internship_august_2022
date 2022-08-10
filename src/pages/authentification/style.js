@@ -83,4 +83,5 @@ export const Por = styled.p`
 color: #6C6C6C;
 font-weight: 600;
 margin: 0 8px;
+font-size: 12px;
 `

@@ -2,8 +2,10 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import {ThemeProvider, CssBaseline} from '@mui/material';
 
 import { ListingPage } from 'pages/listingPage/ListingPage';
-import HomePage from "./pages/homePage/HomePage";
+import HomePage from "./pages/homepage/HomePage";
+import Login from 'pages/authentification/Login';
 
+import { GlobalStyle } from 'pages/authentification/style';
 import { appTheme } from 'themes/themes';
 
 const _JSXStyle = require('styled-jsx/style').default;

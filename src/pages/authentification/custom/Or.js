@@ -1,6 +1,6 @@
 import { Line, Div, Por } from "../style";
 
-const Or = ({ width }) => {
+const Or = () => {
   return (
     <Div>
       <Line />
