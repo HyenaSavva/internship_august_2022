@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+    font-family: Helvetica, sans-serif;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    width: 100%;
+    gap: 30px;
+    height: 92px;
+    left: 0px;
+    top: 0px;
+}
+
+.header--left {
+    display: flex;
+}
+
+.header--searchbar {
+    width: 500px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+}
+
+.header--right {
+    display: flex;
+    align-items: center;
+    color: #4D5464;
+    gap: 30px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+}
+.header--icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

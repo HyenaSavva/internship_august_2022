@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #23252C;
+}
+
+.container {
+    margin: auto;
+    width: 75%;
+    border-radius: 10px;
+    background: #1A1B21;
+    color: #FFF;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+footer {
+    background: #161619;
+}
+
+.content--title {
+    font-size: 16px;
+    color: #F5F5F5;
+}
+.content--text {
+    font-size: 10.25px;
+    color: #DCDCDC;
+}
+
+.name--container {
+    text-align: center;
+}
+.name--name {
+    font-size: 25px;
+}
+.name--job {
+    font-size: 12.58px;
+    color: #F3BF99;
+}
+.name--email {
+    font-size: 10.24px;
+}
+
+.buttons {
+    display: flex;
+    margin: auto;
+    width: 75%;
+    gap: 5px;
+}
+.button {
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    padding: 7px;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.button--email {
+    background: #FFF;
+    color: #374151;
+}
+.button--linkedin {
+    background: #5093E2;
+    color: #FFF;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+}
+
+.footer > a {
+    text-decoration: none;
+}
+
+.social--icon--first {
+    color: #918E9B;
+}
+
+.social--icon {
+    padding-left: 20px;
+    color: #918E9B;
+}
