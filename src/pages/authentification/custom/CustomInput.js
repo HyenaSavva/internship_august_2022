@@ -1,7 +1,7 @@
 import InputLabel from "@mui/material/InputLabel";
 import InputBase from "@mui/material/InputBase";
 
-import { LabelStyle, InputStyle } from "./CustomStyle";
+import { LabelStyle, InputStyle } from "./CustomStyles";
 
 const CustomInput = ({ label, id, placeholder, type}) => {
 
