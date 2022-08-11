@@ -5,7 +5,6 @@ import { ListingPage } from 'pages/listingPage/ListingPage';
 import HomePage from "./pages/homepage/HomePage";
 import Login from 'pages/authentification/Login';
 
-import { GlobalStyle } from 'pages/authentification/style';
 import { appTheme } from 'themes/themes';
 
 const _JSXStyle = require('styled-jsx/style').default;
@@ -18,7 +17,6 @@ function App() {
     <ThemeProvider theme={appTheme}>
     <CssBaseline enableColorScheme />
     <div className="App">
-      <GlobalStyle />
       <BrowserRouter>
         <Routes>
           <Route path='/login' element={<Login />} />
@@ -33,7 +31,7 @@ function App() {
     body {
       margin: 0;
       padding: 0;
-      font-family: font-family: 'Inter', sans-serif;
+      font-family: 'Inter', sans-serif;
     }
     `}</style>
     </ThemeProvider>

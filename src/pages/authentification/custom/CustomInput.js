@@ -1,13 +1,22 @@
-import { LabelStyle, InputStyle } from "./CustomStyle";
 import InputLabel from "@mui/material/InputLabel";
-import InputBase from '@mui/material/InputBase';
+import InputBase from "@mui/material/InputBase";
 
+import { LabelStyle, InputStyle } from "./CustomStyle";
 
-const CustomInput = ({ label, id, placeholder }) => {
+const CustomInput = ({ label, id, placeholder, type}) => {
+
   return (
     <>
-      <InputLabel sx={LabelStyle}>{label}</InputLabel>
-      <InputBase sx={InputStyle} label={label} placeholder={placeholder} />
+      <InputLabel htmlFor={id} sx={LabelStyle} id={id}>
+        {label}
+      </InputLabel>
+      <InputBase
+        sx={InputStyle}
+        id={id}
+        label={label}
+        placeholder={placeholder}
+        type={type}
+      />
     </>
   );
 };

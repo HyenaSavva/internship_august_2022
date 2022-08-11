@@ -1,26 +1,43 @@
-// import css from "styled-jsx";
-
-// export default css``;
-
 export const LabelStyle = {
-    fontStyle: "normal",
-    fontWeight: "500",
-    fontSize: "14px",
-    lineHeight: "22px",
-    color: "#4D5464",
-    margin: "0",
+  fontFamily: "Inter",
+  fontStyle: "normal",
+  fontWeight: "500",
+  fontSize: "14px",
+  lineHeight: "22px",
+  color: "#4D5464",
+  margin: "0",
 };
 
 export const InputStyle = {
-    height: "42px",
-    border: "1px solid #D0D5DD",
-    borderRadius: 8,
-    marginBottom: "1rem",
-    padding: "0 12px",
+  fontFamily: "Inter",
+  border: "1px solid #D0D5DD",
+  borderRadius: "8px",
+  margin: "4px 0 8px 0",
+  ".MuiInputBase-input": {
+    padding: "10px 12px",
+  },
+  ".MuiButtonBase-root": {
+    margin: '0px',
+  }
 };
 
 export const CustomButtonStyle = {
-      boxShadow: "none",
-      height: "44px",
-      borderRadius: "8px",
-  }
+  padding: "0",
+  margin: "16px 0",
+  height: "44px",
+  textTransform: "none",
+  color: "primary",
+  fontSize: "14px",
+  fontWeight: "600",
+};
+
+export const GoogleButtonStyle = {
+  padding: "0",
+  height: "44px",
+  fontFamily: "Inter",
+  border: "1px solid #0241AE",
+  textTransform: "none",
+  fontSize: "14px",
+  fontWeight: "600",
+  marginTop: "16px",
+};
