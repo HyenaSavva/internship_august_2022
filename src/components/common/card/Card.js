@@ -7,30 +7,35 @@ import { CardActionArea } from "@mui/material";
 
 import apartament from "../../../assets/images/photo2.jpeg";
 
-import { Title, Location, Price } from "./style";
+import CardStyle from "./CardStyle";
 
-export default function Card({ title, location, price }) {
+import FavoriteBtn from "./favoriteButton/FavoriteBtn";
+
+export default function Card({ last, title, location, price, image }) {
 	return (
-		<CardElement sx={{ maxWidth: 345, borderRadius: "12px" }}>
-			<CardActionArea>
-				<CardMedia
-					component="img"
-					height="140"
-					image={apartament}
-					alt="green iguana"
-				/>
-				<CardContent>
-					<Typography gutterBottom variant="h5" component="div">
-						<Title>{title}</Title>
-					</Typography>
-					<Typography variant="body2" color="text.secondary">
-						<Location>{location}</Location>
-					</Typography>
-					<Typography variant="h6">
-						<Price>{price}</Price>
-					</Typography>
-				</CardContent>
-			</CardActionArea>
+		<CardElement
+			sx={{ maxWidth: "262.5px", height: "252px", borderRadius: "12px" }}
+		>
+			{!last && (
+				<CardActionArea>
+					<FavoriteBtn />
+					<CardMedia component="img" height="162" image={image} alt="green iguana" />
+
+					<CardContent>
+						<Typography gutterBottom variant="h5" component="div">
+							<div className="title">{title}</div>
+						</Typography>
+						<Typography variant="body2" color="text.secondary">
+							<div className="location">{location}</div>
+						</Typography>
+						<Typography variant="h6">
+							<div className="price">{price}</div>
+						</Typography>
+					</CardContent>
+				</CardActionArea>
+			)}
+			{last && <CardActionArea></CardActionArea>}
+			<style jsx>{CardStyle}</style>
 		</CardElement>
 	);
 }

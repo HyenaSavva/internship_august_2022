@@ -1,18 +1,13 @@
 import { appTheme } from "themes/themes";
 import css from "styled-jsx/css";
 
-export const shareBtn = {
-	width: 92,
-	color: "primary",
-	fontSize: "14px",
-	fontWeight: "600",
-
-	"&:hover": {
-		backgroundColor: "#fff",
+export const noBorder = {
+	"& .MuiOutlinedInput-notchedOutline": {
+		border: "none",
 	},
 };
 
-export default css`
+export default css.global`
 	* {
 		box-sizing: border-box;
 	}
@@ -20,6 +15,7 @@ export default css`
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin-left: auto;
 	}
 	.header--searchbar {
 		display: flex;
@@ -38,6 +34,7 @@ export default css`
 		font-weight: 600;
 		font-size: 14px;
 		line-height: 22px;
+		margin-right: auto;
 	}
 	.header--icon {
 		display: flex;
@@ -45,20 +42,21 @@ export default css`
 		gap: 10px;
 	}
 	.navbar {
-		border-bottom: 1px solid black;
-		margin-bottom: 10px;
+		overflow: hidden;
 		position: fixed;
+		width: 100%;
+		height: 92px;
 		top: 0;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
 		align-items: center;
 		text-align: center;
+		z-index: 100;
 		padding: 0px;
-		width: 100%;
 		gap: 30px;
-		height: 92px;
 		left: 0px;
+		border-bottom: 1px solid #d0d5dd;
 		background: #fff;
 	}
 `;

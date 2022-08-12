@@ -6,28 +6,13 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 
-import styled from "styled-components";
-
-const CustomSearch = styled(TextField)(() => ({
-	"&": {
-		fontSize: "1.1rem",
-		border: "1px solid black",
-		borderRadius: "5px",
-	},
-	"& .MuiInputBase-root": {
-		width: "533px",
-		height: "48px",
-		padding: "8px 8px 8px 0",
-		justifyContent: "center",
-		border: "1px solid #D0D5DD",
-		borderRadius: "0px 12px 12px 0px",
-	},
-}));
+import SearchBarStyles from "./SearchBarStyles";
+import { customSearch } from "./SearchBarStyles";
 
 const SearchBar = ({ placeholder }) => {
 	return (
 		<Box sx={{ display: "flex", alignItems: "center" }}>
-			<CustomSearch
+			<TextField
 				placeholder="Search"
 				InputProps={{
 					endAdornment: (
@@ -36,7 +21,9 @@ const SearchBar = ({ placeholder }) => {
 						</InputAdornment>
 					),
 				}}
+				sx={customSearch}
 			/>
+			<style jsx>{SearchBarStyles}</style>
 		</Box>
 	);
 };
