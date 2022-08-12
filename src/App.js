@@ -3,7 +3,8 @@ import {ThemeProvider, CssBaseline} from '@mui/material';
 
 import { ListingPage } from 'pages/listingPage/ListingPage';
 import HomePage from "./pages/homepage/HomePage";
-import CreateAccount from 'pages/authentification/CreateAccount';
+import CreateAccount from 'pages/authentification/CreateAccount/CreateAccount';
+import Login from 'pages/authentification/Login/Login';
 
 import { appTheme } from 'themes/themes';
 
@@ -19,6 +20,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path='/login' element={<Login/>} />
           <Route path='/create-account' element={<CreateAccount />} />
           <Route path='/' element={<HomePage />} />
           <Route path='/listing-page' element={<ListingPage/>}/>

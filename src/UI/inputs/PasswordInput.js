@@ -1,40 +1,54 @@
+import { useState } from "react";
+
 import InputLabel from "@mui/material/InputLabel";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 
-import { useState } from "react";
-import { LabelStyle, InputStyle } from "./PasswordInputStyle";
+import {
+  BottomLabelStyle,
+  TopLabelStyle,
+  InputStyle,
+  IconStyle,
+} from "./PasswordInputStyle";
 
-const PasswordInput = ({ label, id, placeholder }) => {
-  const [value, setValue] = useState({ type: "password", isShown: false });
+const PasswordInput = ({
+  topLabel,
+  bottomLabel,
+  id,
+  placeholder,
+  error,
+  setEnteredPassword,
+}) => {
+  const [isShown, setIsShown] = useState(false);
 
-  const handleClickShowPassword = () => {
-    if (value.type === "password") {
-      setValue({ type: "text", isShown: !value.isShown });
-    } else {
-      setValue({ type: "password", isShown: !value.isShown });
-    }
-  };
+  const visibilityHandler = () => setIsShown((prev) => !prev);
 
   return (
     <>
-      <InputLabel htmlFor={id} sx={LabelStyle} id={id}>
-        {label}
+      <InputLabel htmlFor={id} sx={TopLabelStyle} id={id}>
+        {topLabel}
       </InputLabel>
       <InputBase
+        onChange={(event) => {
+          setEnteredPassword(event.target.value);
+        }}
+        error={error}
         sx={InputStyle}
-        id={id}
-        label={label}
+        id="password"
         placeholder={placeholder}
-        type={value.type}
+        type={isShown ? "text" : "password"}
+        inputProps={{ maxLength: 30 }}
         endAdornment={
-          <IconButton onClick={handleClickShowPassword}>
-            {value.isShown ? <VisibilityOff /> : <Visibility />}
+          <IconButton onClick={visibilityHandler} sx={IconStyle}>
+            {isShown ? <VisibilityOff /> : <Visibility />}
           </IconButton>
         }
       />
+      <InputLabel htmlFor={id} sx={BottomLabelStyle} id={id} error={error}>
+        {bottomLabel}
+      </InputLabel>
     </>
   );
 };

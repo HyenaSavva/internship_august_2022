@@ -1,4 +1,5 @@
-export const LabelStyle = {
+export const TopLabelStyle = {
+  overflow: 'none',
     fontFamily: "Inter",
     fontStyle: "normal",
     fontWeight: "500",
@@ -10,13 +11,28 @@ export const LabelStyle = {
   
   export const InputStyle = {
     fontFamily: "Inter",
-    border: "1px solid #D0D5DD", // #0356e
+    border: "1px solid #D0D5DD",
     borderRadius: "8px",
-    margin: "4px 0 8px 0",
+    margin: "4px 0",
     ".MuiInputBase-input": {
       padding: "10px 12px",
     },
     ".MuiButtonBase-root": {
       margin: '0px',
+      // borderLeft: '1px solid black',
     }
   };
+
+  export const BottomLabelStyle = {
+    fontFamily: "Inter",
+    fontStyle: "normal",
+    fontWeight: "400",
+    fontSize: "12px",
+    lineHeight: "20px",
+    color: "#596274",
+    margin: "0 0 0 0",
+  }
+
+  export const IconStyle = {
+    // borderLeft: '1px solid black',
+  }

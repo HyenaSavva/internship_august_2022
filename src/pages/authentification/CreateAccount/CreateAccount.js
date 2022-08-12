@@ -1,0 +1,75 @@
+import { Link } from "react-router-dom";
+
+import CustomInput from "../custom/CustomInput";
+import PasswordInput from "../../../UI/inputs/PasswordInput";
+import { CustomButton } from "UI/button/CustomButton";
+import { GoogleButton } from "../custom/GoogleButton";
+import logo from "../../../assets/logo-assist-tagline.svg";
+import { CustomButtonStyle } from "../custom/CustomStyles";
+import CreateAccountStyle from "./CreateAccountStyle";
+import { useState } from "react";
+
+const CreateAccount = () => {
+  const [enteredEmail, setEnteredEmail] = useState("");
+  const [enteredPassword, setEnteredPassword] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(enteredEmail);
+    console.log(enteredPassword);
+    // if (!email || !name || !message || !email.includes('@') || name.trim() === '' || message.trim() === '') {
+    //   res.status(422).json({message: 'Something went wrong!'})
+    //   return
+    // }
+  };
+
+  return (
+    <main>
+      <section className="logBlock">
+        <form className="log" onSubmit={submitHandler}>
+          <img src={logo} alt="desc" />
+          <h1>Create account</h1>
+          <p>Sign up for free and become member.</p>
+          <GoogleButton>Sign up with Google</GoogleButton>
+          <div className="orBlock">
+            <div className="line"></div>
+            <p>OR</p>
+            <div className="line" />
+          </div>
+          <CustomInput
+            setEnteredEmail={setEnteredEmail}
+            label="Email"
+            id="Email"
+            placeholder="Email"
+            type="email"
+          />
+          <PasswordInput
+            setEnteredPassword={setEnteredPassword}
+            bottomLabel="At least 8 characters and one number."
+            id="Password"
+            placeholder="Password"
+            topLabel="Password"
+            type="password"
+          />
+          <CustomButton
+            sx={CustomButtonStyle}
+            variant="contained"
+            component={""}
+          >
+            Sign up
+          </CustomButton>
+          <p className="switch">
+            Already have an accout ?
+            <Link to={"/login"} style={{ textDecoration: "none" }}>
+              <span className="login">Log in</span>
+            </Link>
+          </p>
+        </form>
+      </section>
+      <div className="imageBlock" />
+      <style jsx>{CreateAccountStyle}</style>
+    </main>
+  );
+};
+
+export default CreateAccount;

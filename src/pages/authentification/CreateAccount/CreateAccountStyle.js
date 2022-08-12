@@ -1,13 +1,37 @@
 import css from "styled-jsx/css";
-import img from "../../assets/Frame3.png";
+import img from "../../../assets/Frame3.png";
 
 export default css`
-  .Img {
+  main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    font-family: "Inter", sans-serif;
+  }
+
+  .logBlock {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .log {
+    width: 22vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .log img {
     width: 100px;
     height: 30px;
     margin-bottom: 42px;
   }
-  .H1 {
+
+  .log h1 {
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
@@ -16,26 +40,13 @@ export default css`
     margin: 0 0 4px 0;
   }
 
-  .P {
+  .log p {
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
     line-height: 22px;
     color: #98a2b3;
-    margin: 0;
-  }
-
-  .Por {
-    color: #6c6c6c;
-    font-weight: 600;
-    margin: 0 8px;
-    font-size: 12px;
-  }
-
-  .Line {
-    border-top: 1px solid #d0d0d0;
-    display: flex;
-    flex-grow: 1;
+    margin: 0 0 16px 0;
   }
 
   .orBlock {
@@ -45,33 +56,22 @@ export default css`
     margin: 16px 0;
   }
 
-  .Log {
-    width: 22vw;
-    height: 50vh;
+  .line {
+    border-top: 1px solid #d0d0d0;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+    flex-grow: 1;
   }
-  .LogBlock {
+
+  .orBlock p {
+    color: #6c6c6c;
+    font-weight: 600;
+    margin: 0 8px;
+    font-size: 12px;
+  }
+
+  .imageBlock {
     width: 50vw;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  .Main {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    font-family: "Inter", sans-serif;
-  }
-
-  .ImageBlock {
-    width: 50vw;
-    height: 100vh;
-
     background-image: url(${img});
     background-repeat: no-repeat;
     background-size: cover;
@@ -83,8 +83,8 @@ export default css`
     justify-content: center;
   }
 
-  .login { 
+  .login {
     cursor: pointer;
-    color: #0356E8;
+    color: #0356e8;
   }
 `;

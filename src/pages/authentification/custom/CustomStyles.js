@@ -17,27 +17,28 @@ export const InputStyle = {
     padding: "10px 12px",
   },
   ".MuiButtonBase-root": {
-    margin: '0px',
-  }
+    margin: "0px",
+  },
 };
 
 export const CustomButtonStyle = {
   padding: "0",
-  margin: "16px 0",
-  height: "44px",
+  minHeight: "44px",
   textTransform: "none",
   color: "primary",
   fontSize: "14px",
   fontWeight: "600",
+  margin: "40px 0 24px 0",
+  borderRadius: "8px",
 };
 
 export const GoogleButtonStyle = {
+  borderRadius: "8px",
   padding: "0",
-  height: "44px",
+  minHeight: "44px",
   fontFamily: "Inter",
   border: "1px solid #0241AE",
   textTransform: "none",
   fontSize: "14px",
   fontWeight: "600",
-  marginTop: "16px",
 };
