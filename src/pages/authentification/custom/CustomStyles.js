@@ -28,7 +28,7 @@ export const CustomButtonStyle = {
   color: "primary",
   fontSize: "14px",
   fontWeight: "600",
-  margin: "40px 0 24px 0",
+  margin: "40px 0 0 0",
   borderRadius: "8px",
 };
 
@@ -36,6 +36,7 @@ export const GoogleButtonStyle = {
   borderRadius: "8px",
   padding: "0",
   minHeight: "44px",
+  width: "100%",
   fontFamily: "Inter",
   border: "1px solid #0241AE",
   textTransform: "none",

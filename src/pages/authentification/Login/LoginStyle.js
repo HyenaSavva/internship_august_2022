@@ -49,24 +49,8 @@ export default css`
     margin: 0 0 16px 0;
   }
 
-  .orBlock {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 16px 0;
-  }
-
-  .line {
-    border-top: 1px solid #d0d0d0;
-    display: flex;
-    flex-grow: 1;
-  }
-
-  .orBlock p {
-    color: #6c6c6c;
-    font-weight: 600;
-    margin: 0 8px;
-    font-size: 12px;
+  .googleBtn {
+    margin: 8px 0 0 0;
   }
 
   .imageBlock {
