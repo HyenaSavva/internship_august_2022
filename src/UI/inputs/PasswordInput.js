@@ -9,8 +9,8 @@ import Visibility from "@mui/icons-material/Visibility";
 import {
   BottomLabelStyle,
   TopLabelStyle,
+  InputStyleError,
   InputStyle,
-  IconStyle,
 } from "./PasswordInputStyle";
 
 const PasswordInput = ({
@@ -34,20 +34,25 @@ const PasswordInput = ({
         onChange={(event) => {
           setEnteredPassword(event.target.value);
         }}
-        error={error}
-        sx={InputStyle}
+        error={error.status}
+        sx={error.status ? InputStyleError : InputStyle}
         id="password"
         placeholder={placeholder}
         type={isShown ? "text" : "password"}
         inputProps={{ maxLength: 30 }}
         endAdornment={
-          <IconButton onClick={visibilityHandler} sx={IconStyle}>
+          <IconButton onClick={visibilityHandler}>
             {isShown ? <VisibilityOff /> : <Visibility />}
           </IconButton>
         }
       />
-      <InputLabel htmlFor={id} sx={BottomLabelStyle} id={id} error={error}>
-        {bottomLabel}
+      <InputLabel
+        htmlFor={id}
+        sx={BottomLabelStyle}
+        id={id}
+        error={error.status}
+      >
+        {error.status ? error.message : bottomLabel}
       </InputLabel>
     </>
   );

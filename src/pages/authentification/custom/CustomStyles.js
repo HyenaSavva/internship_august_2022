@@ -42,3 +42,16 @@ export const GoogleButtonStyle = {
   fontSize: "14px",
   fontWeight: "600",
 };
+
+export const InputStyleError = {
+  fontFamily: "Inter",
+  border: "1px solid #d32f2f;",
+  borderRadius: "8px",
+  margin: "4px 0 8px 0",
+  ".MuiInputBase-input": {
+    padding: "10px 12px",
+  },
+  ".MuiButtonBase-root": {
+    margin: "0px",
+  },
+};

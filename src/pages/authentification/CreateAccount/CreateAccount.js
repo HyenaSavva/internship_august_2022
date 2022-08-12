@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 import CustomInput from "../custom/CustomInput";
 import PasswordInput from "../../../UI/inputs/PasswordInput";
@@ -7,20 +8,26 @@ import { GoogleButton } from "../custom/GoogleButton";
 import logo from "../../../assets/logo-assist-tagline.svg";
 import { CustomButtonStyle } from "../custom/CustomStyles";
 import CreateAccountStyle from "./CreateAccountStyle";
-import { useState } from "react";
 
 const CreateAccount = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
+  const [error, setError] = useState({ status: false, message: "No errors" });
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(enteredEmail);
-    console.log(enteredPassword);
-    // if (!email || !name || !message || !email.includes('@') || name.trim() === '' || message.trim() === '') {
-    //   res.status(422).json({message: 'Something went wrong!'})
-    //   return
-    // }
+    if (
+      !enteredEmail ||
+      !enteredPassword ||
+      enteredPassword.trim() === "" ||
+      enteredPassword.trim().length < 9 ||
+      !/\d/.test(enteredPassword)
+    ) {
+      setError({
+        status: true,
+        message: `Something went wrong with email or password.`,
+      });
+    }
   };
 
   return (
@@ -37,6 +44,7 @@ const CreateAccount = () => {
             <div className="line" />
           </div>
           <CustomInput
+            error={error}
             setEnteredEmail={setEnteredEmail}
             label="Email"
             id="Email"
@@ -44,6 +52,7 @@ const CreateAccount = () => {
             type="email"
           />
           <PasswordInput
+            error={error}
             setEnteredPassword={setEnteredPassword}
             bottomLabel="At least 8 characters and one number."
             id="Password"

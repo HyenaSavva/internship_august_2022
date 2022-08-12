@@ -19,7 +19,6 @@ export const TopLabelStyle = {
     },
     ".MuiButtonBase-root": {
       margin: '0px',
-      // borderLeft: '1px solid black',
     }
   };
 
@@ -33,6 +32,15 @@ export const TopLabelStyle = {
     margin: "0 0 0 0",
   }
 
-  export const IconStyle = {
-    // borderLeft: '1px solid black',
+  export const InputStyleError = {
+    fontFamily: "Inter",
+    border: "1px solid #d32f2f;",
+    borderRadius: "8px",
+    margin: "4px 0",
+    ".MuiInputBase-input": {
+      padding: "10px 12px",
+    },
+    ".MuiButtonBase-root": {
+      margin: '0px',
+    }
   }
