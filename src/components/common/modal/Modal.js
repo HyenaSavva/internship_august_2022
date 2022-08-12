@@ -9,7 +9,7 @@ import { itemData } from "mockData/photoGalleryData";
 
 import Modalstyle, { modalImageListStyles } from "./ModalStyle";
 
-const setSrc = (image, size, rows = 1, cols = 1) => {
+const getSrcSet = (image, size, rows = 1, cols = 1) => {
   return {
     src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
     srcSet: `${image}?w=${size * cols}&h=${
@@ -57,7 +57,7 @@ export const Modal = ({ open }) => {
               rows={1}
             >
               <img
-                {...setSrc(item.img, item.rows, item.cols)}
+                {...getSrcSet(item.img, item.rows, item.cols)}
                 alt={item.title}
                 loading="lazy"
               />

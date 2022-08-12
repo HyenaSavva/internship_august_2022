@@ -10,7 +10,7 @@ import { Modal } from "components/common/modal/Modal";
 import { imageListStyles, showBtn } from "./PhotoGalleryStyle";
 import PhotoGalleryStyle from "./PhotoGalleryStyle";
 
-const setSrc = (image, size, rows = 1, cols = 1) => {
+const getSrcSet = (image, size, rows = 1, cols = 1) => {
   return {
     src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
     srcSet: `${image}?w=${size * cols}&h=${
@@ -35,7 +35,7 @@ export default function PhotoGalery() {
             rows={item.rows || 1}
           >
             <img
-              {...setSrc(item.img, item.rows, item.cols)}
+              {...getSrcSet(item.img, item.rows, item.cols)}
               alt={item.title}
               loading="lazy"
             />
