@@ -49,4 +49,7 @@ export default css`
 		line-height: 22px;
 		color: #1c1c1e;
 	}
+	.red {
+		background-color: red;
+	}
 `;

@@ -21,6 +21,10 @@ export const favBtn = {
 	},
 };
 
+export const activeBtn = {
+	color: "#EF2028",
+};
+
 export default css`
 	.container {
 		position: relative;

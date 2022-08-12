@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,6 +11,7 @@ import { Grid } from "@mui/material";
 
 import Card from "components/common/card/Card";
 
+import CarouselStyles from "./CarouselStyles";
 import { customArrowLeft, customArrowRight } from "./CarouselStyles";
 
 const Carousel = ({ category, data }) => {
@@ -58,13 +60,15 @@ const Carousel = ({ category, data }) => {
 				{data.map((card, index) => {
 					return (
 						<Grid key={index} item xs={12} sm={6} md={3}>
-							<Card
-								last={false}
-								title={card.title}
-								location={card.location}
-								price={card.price}
-								image={card.image}
-							/>
+							<Link to="/listing-page" style={{ textDecoration: "none" }}>
+								<Card
+									last={false}
+									title={card.title}
+									location={card.location}
+									price={card.price}
+									image={card.image}
+								/>
+							</Link>
 						</Grid>
 					);
 				})}
