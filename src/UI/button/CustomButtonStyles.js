@@ -1,7 +1,6 @@
 export const btnStyles = {
-    textTransform:'none',
-    color:'primary',
-    fontSize:'14px',
-    fontWeight:'600',
-
-}
+  textTransform: "none",
+  fontSize: "14px",
+  fontWeight: "600",
+  lineHeight: "22px",
+};
