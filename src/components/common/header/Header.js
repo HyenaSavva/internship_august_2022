@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
 import Dropdown from "../../../UI/dropdown/Dropdown";
 import SearchBar from "../../../UI/searchBar/SearchBar";
 
@@ -10,23 +10,12 @@ import SecurityIcon from "@mui/icons-material/Security";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 
 import logo from "../../../assets/images/logo-assist-tagline.png";
 import HeaderStyles from "./HeaderStyles";
-import { noBorder, selectCategories, selectProfile } from "./HeaderStyles";
+import { selectCategories, selectProfile } from "./HeaderStyles";
 
 const Header = () => {
-	const [age, setAge] = useState("");
-
-	const handleChange = (event) => {
-		setAge(event.target.value);
-	};
-
 	const profile = [
 		{ label: "Profile", icon: <PersonIcon /> },
 		{ label: "Notifications", icon: <NotificationsNoneIcon /> },
@@ -45,7 +34,7 @@ const Header = () => {
 	return (
 		<nav className="navbar">
 			<section className="header--left">
-				<img src={logo} width="103px" height="31.38px"></img>
+				<img src={logo} width="103px" height="31.38px" alt=""></img>
 				<div className="form-group">
 					<div className="header--searchbar">
 						<Dropdown sx={selectCategories} items={categories} />

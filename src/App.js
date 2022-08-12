@@ -5,9 +5,9 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { ListingPage } from "pages/listingPage/ListingPage";
 import HomePage from "./pages/homePage/HomePage";
 import FavoritesPage from "pages/favoritesPage/FavoritesPage";
-import Login from "pages/authentification/Login";
+import Login from "pages/authentification/Login/Login";
+import CreateAccount from "pages/authentification/CreateAccount/CreateAccount";
 
-import { GlobalStyle } from "pages/authentification/style";
 import { appTheme } from "themes/themes";
 
 const _JSXStyle = require("styled-jsx/style").default;
@@ -23,15 +23,16 @@ function App() {
 	function toggleTheme() {
 		setDarkTheme((prevDarkTheme) => !prevDarkTheme);
 	}
+
 	return (
 		<ThemeContext.Provider value={darkTheme}>
 			<ThemeProvider theme={appTheme}>
 				<CssBaseline enableColorScheme />
 				<div className="App">
-					<GlobalStyle />
 					<BrowserRouter>
 						<Routes>
 							<Route path="/login" element={<Login />} />
+							<Route path="/create-account" element={<CreateAccount />} />
 							<Route path="/" element={<HomePage />} />
 							<Route path="/favorites" element={<FavoritesPage />} />
 							<Route path="/listing-page" element={<ListingPage />} />

@@ -11,7 +11,6 @@ import { Grid } from "@mui/material";
 
 import Card from "components/common/card/Card";
 
-import CarouselStyles from "./CarouselStyles";
 import { customArrowLeft, customArrowRight } from "./CarouselStyles";
 
 const Carousel = ({ category, data }) => {

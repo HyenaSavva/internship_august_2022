@@ -1,4 +1,3 @@
-import { appTheme } from "themes/themes";
 import css from "styled-jsx/css";
 
 export const noBorder = {

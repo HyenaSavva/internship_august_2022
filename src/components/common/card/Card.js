@@ -5,12 +5,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
-import apartament from "../../../assets/images/photo2.jpeg";
-
 import CardStyle from "./CardStyle";
 
 import FavoriteBtn from "./favoriteButton/FavoriteBtn";
-import { style } from "@mui/system";
 
 export default function Card({ last, title, location, price, image }) {
 	const [isActive, setActive] = useState(false);
