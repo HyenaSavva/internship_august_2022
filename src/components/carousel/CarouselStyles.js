@@ -1,5 +1,3 @@
-import css from "styled-jsx/css";
-
 export const customArrowRight = {
 	background: "#fff",
 	border: "1px solid #0356E8",
@@ -21,5 +19,3 @@ export const customArrowLeft = {
 	zIndex: "200",
 	".MuiSvgIcon-root": {},
 };
-
-export default css.global``;

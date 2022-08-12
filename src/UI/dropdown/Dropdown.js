@@ -5,22 +5,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import styled from "@emotion/styled";
-
-const CustomSelect = styled(Select)(() => ({
-	"&": {
-		margin: "0px",
-		width: "178px",
-		height: "48px",
-		padding: "8px",
-		border: "1px solid #D0D5DD",
-		justifyContent: "center",
-		borderRadius: "12px 0px 0px 12px",
-	},
-	"& .MuiFormControl-root": {
-		margin: "0",
-	},
-}));
+import { customSelect } from "./DropdownStyles";
 
 export default function Dropdown() {
 	const [age, setAge] = React.useState("");
@@ -32,7 +17,8 @@ export default function Dropdown() {
 	return (
 		<div>
 			<FormControl sx={{ m: 1, minWidth: 120 }}>
-				<CustomSelect
+				<Select
+					sx={customSelect}
 					value={age}
 					onChange={handleChange}
 					displayEmpty
@@ -43,7 +29,7 @@ export default function Dropdown() {
 					<MenuItem value={"Small Houses"}>Small Houses</MenuItem>
 					<MenuItem value={"Offices"}>Offices</MenuItem>
 					<MenuItem value={"Apartments"}>Apartments</MenuItem>
-				</CustomSelect>
+				</Select>
 			</FormControl>
 		</div>
 	);

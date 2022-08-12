@@ -3,7 +3,6 @@ import React from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-import { green, pink } from "@mui/material/colors";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import FolderIcon from "@mui/icons-material/Folder";
@@ -19,18 +18,6 @@ const FavoriteBtn = () => {
 			<Avatar sx={favBtn}>
 				<FavoriteBorderIcon />
 			</Avatar>
-			{/* <FavoriteBorderIcon
-				sx={{
-					position: "absolute",
-					left: "8.33%",
-					right: "8.33%",
-					top: "11.21%",
-					bottom: "11.04%",
-					color: "#fff",
-					zIndex: "100",
-					cursor: "pointer",
-				}}
-			/> */}
 			<style jsx>{FavBtnStyles}</style>
 		</div>
 	);

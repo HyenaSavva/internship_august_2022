@@ -34,11 +34,6 @@ function HomePage() {
 	const sortedDate = [...CardsData].sort(
 		(objA, objB) => Number(new Date(objB.date)) - Number(new Date(objA.date))
 	);
-	// const jsonDate = new Date(objB.date);
-	// console.log(jsonDate.getDay());
-	// console.log(typeof JSON.parse(jsonDate));
-	console.log(CardsData);
-	console.log(sortedDate);
 
 	return (
 		<div className="main">

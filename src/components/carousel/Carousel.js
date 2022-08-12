@@ -10,7 +10,6 @@ import { Grid } from "@mui/material";
 
 import Card from "components/common/card/Card";
 
-import CarouselStyles from "./CarouselStyles";
 import { customArrowLeft, customArrowRight } from "./CarouselStyles";
 
 const Carousel = ({ category, data }) => {
@@ -71,22 +70,8 @@ const Carousel = ({ category, data }) => {
 				})}
 				<Card last={true} />
 			</Slider>
-			<style jsx>{CarouselStyles}</style>
 		</div>
 	);
 };
 
 export default Carousel;
-
-{
-	/* 
-		Cum fac functionalitatea pentru ultimul card din Slider?
-
-		1. Adaug la final un card gol
-		- doar ca acel card o sa ia ceva imagine/ titlu/ locatie/ pret, lucruri pe care nu trebuie sa le afisez
-		- ce am eu de afisat este doar un buton sau o poza cu See Everything peste card
-		- cand apas cardul sa ma duca, prin router link, catre pagina cu toate cardurile din acea categorie
-
-		2. Pot sa customizez cardu
-	*/
-}
