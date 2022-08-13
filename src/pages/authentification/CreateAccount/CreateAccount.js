@@ -12,7 +12,10 @@ import CreateAccountStyle from "./CreateAccountStyle";
 const CreateAccount = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
-  const [error, setError] = useState({ status: false, message: "No errors" });
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+
+  const errorHandler = () => {};
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -23,10 +26,8 @@ const CreateAccount = () => {
       enteredPassword.trim().length < 9 ||
       !/\d/.test(enteredPassword)
     ) {
-      setError({
-        status: true,
-        message: `Something went wrong with email or password.`,
-      });
+      setErrorEmail("Error Email");
+      setErrorPassword("Error Password");
     }
   };
 
@@ -44,29 +45,32 @@ const CreateAccount = () => {
             <div className="line" />
           </div>
           <CustomInput
-            error={error}
+            error={errorEmail}
+            setErrorEmail={setErrorEmail}
             setEnteredEmail={setEnteredEmail}
-            label="Email"
-            id="Email"
+            topLabel="Email"
+            bottomLabel=""
             placeholder="Email"
             type="email"
           />
           <PasswordInput
-            error={error}
+            error={errorPassword}
+            setErrorPassword={setErrorPassword}
             setEnteredPassword={setEnteredPassword}
             bottomLabel="At least 8 characters and one number."
-            id="Password"
             placeholder="Password"
             topLabel="Password"
             type="password"
           />
-          <CustomButton
-            sx={CustomButtonStyle}
-            variant="contained"
-            component={""}
-          >
-            Sign up
-          </CustomButton>
+          <div className="signUp">
+            <CustomButton
+              sx={CustomButtonStyle}
+              variant="contained"
+              component={""}
+            >
+              Sign up
+            </CustomButton>
+          </div>
           <p className="switch">
             Already have an accout ?
             <Link to={"/login"} style={{ textDecoration: "none" }}>

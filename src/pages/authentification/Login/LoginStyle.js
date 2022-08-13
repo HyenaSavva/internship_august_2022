@@ -44,9 +44,8 @@ export default css`
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
-    line-height: 22px;
     color: #98a2b3;
-    margin: 0 0 16px 0;
+    margin: 0 0 20px 0;
   }
 
   .googleBtn {

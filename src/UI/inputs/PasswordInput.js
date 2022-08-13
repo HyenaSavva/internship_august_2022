@@ -16,10 +16,10 @@ import {
 const PasswordInput = ({
   topLabel,
   bottomLabel,
-  id,
   placeholder,
   error,
   setEnteredPassword,
+  setErrorPassword,
 }) => {
   const [isShown, setIsShown] = useState(false);
 
@@ -27,7 +27,7 @@ const PasswordInput = ({
 
   return (
     <>
-      <InputLabel htmlFor={id} sx={TopLabelStyle} id={id}>
+      <InputLabel sx={TopLabelStyle}>
         {topLabel}
       </InputLabel>
       <InputBase
@@ -36,7 +36,6 @@ const PasswordInput = ({
         }}
         error={error.status}
         sx={error.status ? InputStyleError : InputStyle}
-        id="password"
         placeholder={placeholder}
         type={isShown ? "text" : "password"}
         inputProps={{ maxLength: 30 }}
@@ -47,9 +46,7 @@ const PasswordInput = ({
         }
       />
       <InputLabel
-        htmlFor={id}
         sx={BottomLabelStyle}
-        id={id}
         error={error.status}
       >
         {error.status ? error.message : bottomLabel}

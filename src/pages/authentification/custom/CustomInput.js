@@ -1,29 +1,35 @@
 import InputLabel from "@mui/material/InputLabel";
 import InputBase from "@mui/material/InputBase";
 
-import { LabelStyle, InputStyle, InputStyleError } from "./CustomStyles";
+import {
+  LabelStyle,
+  BottomLabelStyle,
+  InputStyle,
+  InputStyleError,
+} from "./CustomStyles";
 
 const CustomInput = ({
-  label,
-  id,
+  topLabel,
+  bottomLabel,
   placeholder,
   type,
   setEnteredEmail,
+  setErrorEmail,
   error,
 }) => {
   return (
     <>
-      <InputLabel htmlFor={id} sx={LabelStyle} id={id}>
-        {label}
-      </InputLabel>
+      <InputLabel sx={LabelStyle}>{topLabel}</InputLabel>
       <InputBase
         onChange={(event) => setEnteredEmail(event.target.value)}
         sx={error.status ? InputStyleError : InputStyle}
-        id={id}
-        label={label}
+        label={topLabel}
         placeholder={placeholder}
         type={type}
       />
+      <InputLabel sx={BottomLabelStyle} error={error.status}>
+        {error.status ? error.message : bottomLabel}
+      </InputLabel>
     </>
   );
 };

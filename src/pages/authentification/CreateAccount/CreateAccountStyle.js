@@ -28,7 +28,7 @@ export default css`
   .log img {
     width: 100px;
     height: 30px;
-    margin-bottom: 42px;
+    margin-bottom: 32px;
   }
 
   .log h1 {
@@ -69,6 +69,10 @@ export default css`
     font-size: 12px;
   }
 
+  .signUp {
+    margin: 40px 0 24px 0;
+  }
+
   .imageBlock {
     width: 50vw;
     height: 100vh;
@@ -81,7 +85,7 @@ export default css`
     align-items: center;
     display: flex;
     justify-content: center;
-    margin-top: 24px;
+    margin: 0;
   }
 
   .login {

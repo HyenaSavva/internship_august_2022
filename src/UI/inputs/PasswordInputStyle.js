@@ -10,6 +10,7 @@ export const TopLabelStyle = {
 };
 
 export const InputStyle = {
+  width: "100%",
   fontFamily: "Inter",
   border: "1px solid #D0D5DD",
   borderRadius: "8px",

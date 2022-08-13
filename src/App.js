@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 
 import { ListingPage } from "pages/listingPage/ListingPage";
-import HomePage from "./pages/homePage/HomePage";
+import HomePage from "./pages/homepage/HomePage";
 import CreateAccount from "pages/authentification/CreateAccount/CreateAccount";
 import Login from "pages/authentification/Login/Login";
 
