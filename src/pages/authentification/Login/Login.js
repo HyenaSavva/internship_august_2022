@@ -47,7 +47,7 @@ const Login = () => {
               <input type="checkbox" id="checkbox" />
               <label>Remember me</label>
             </div>
-            <Link to={"/create-account"} style={{ textDecoration: "none" }}>
+            <Link to={"/forgot-password"} style={{ textDecoration: "none" }}>
               <span className="login">Forgot Password ?</span>
             </Link>
           </div>

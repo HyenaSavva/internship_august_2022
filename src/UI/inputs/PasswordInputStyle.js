@@ -31,12 +31,14 @@ export const BottomLabelStyle = {
   fontStyle: "normal",
   fontWeight: "400",
   fontSize: "12px",
+  minHeight: "20px",
   lineHeight: "20px",
   color: "#596274",
   margin: "0 0 0 0",
 };
 
 export const InputStyleError = {
+  width: "100%",
   fontFamily: "Inter",
   border: "1px solid #d32f2f;",
   borderRadius: "8px",
