@@ -18,8 +18,7 @@ const PasswordInput = ({
   bottomLabel,
   placeholder,
   error,
-  setEnteredPassword,
-  setErrorPassword,
+  setPassword,
 }) => {
   const [isShown, setIsShown] = useState(false);
 
@@ -27,15 +26,11 @@ const PasswordInput = ({
 
   return (
     <>
-      <InputLabel sx={TopLabelStyle}>
-        {topLabel}
-      </InputLabel>
+      <InputLabel sx={TopLabelStyle}>{topLabel}</InputLabel>
       <InputBase
-        onChange={(event) => {
-          setEnteredPassword(event.target.value);
-        }}
-        error={error.status}
-        sx={error.status ? InputStyleError : InputStyle}
+        onChange={setPassword}
+        error={error.passwordError}
+        sx={error.passwordError ? InputStyleError : InputStyle}
         placeholder={placeholder}
         type={isShown ? "text" : "password"}
         inputProps={{ maxLength: 30 }}
@@ -45,11 +40,8 @@ const PasswordInput = ({
           </IconButton>
         }
       />
-      <InputLabel
-        sx={BottomLabelStyle}
-        error={error.status}
-      >
-        {error.status ? error.message : bottomLabel}
+      <InputLabel sx={BottomLabelStyle} error={error.passwordError}>
+        {error.passwordError ? error.message : bottomLabel}
       </InputLabel>
     </>
   );

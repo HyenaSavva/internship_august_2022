@@ -19,6 +19,9 @@ export const InputStyle = {
   border: "1px solid #D0D5DD",
   borderRadius: "8px",
   margin: "4px 0",
+  "&:hover": {
+    border: "1px solid #4D5464",
+  },
   ".MuiInputBase-input": {
     padding: "10px 12px",
   },

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 import CustomInput from "../custom/CustomInput";
 import PasswordInput from "../../../UI/inputs/PasswordInput";
@@ -8,27 +7,15 @@ import { GoogleButton } from "../custom/GoogleButton";
 import logo from "../../../assets/logo-assist-tagline.svg";
 import { CustomButtonStyle } from "../custom/CustomStyles";
 import CreateAccountStyle from "./CreateAccountStyle";
+import useInputValidation from "hooks/useInputValidation";
 
 const CreateAccount = () => {
-  const [enteredEmail, setEnteredEmail] = useState("");
-  const [enteredPassword, setEnteredPassword] = useState("");
-  const [errorEmail, setErrorEmail] = useState("");
-  const [errorPassword, setErrorPassword] = useState("");
-
-  const errorHandler = () => {};
+  const { email, password, setEmail, setPassword, error, setError, isValid } =
+    useInputValidation();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (
-      !enteredEmail ||
-      !enteredPassword ||
-      enteredPassword.trim() === "" ||
-      enteredPassword.trim().length < 9 ||
-      !/\d/.test(enteredPassword)
-    ) {
-      setErrorEmail("Error Email");
-      setErrorPassword("Error Password");
-    }
+    setError(isValid(email, password));
   };
 
   return (
@@ -45,18 +32,15 @@ const CreateAccount = () => {
             <div className="line" />
           </div>
           <CustomInput
-            error={errorEmail}
-            setErrorEmail={setErrorEmail}
-            setEnteredEmail={setEnteredEmail}
+            error={error}
+            setEmail={setEmail}
             topLabel="Email"
-            bottomLabel=""
             placeholder="Email"
-            type="email"
+            type=""
           />
           <PasswordInput
-            error={errorPassword}
-            setErrorPassword={setErrorPassword}
-            setEnteredPassword={setEnteredPassword}
+            error={error}
+            setPassword={setPassword}
             bottomLabel="At least 8 characters and one number."
             placeholder="Password"
             topLabel="Password"
@@ -72,7 +56,7 @@ const CreateAccount = () => {
             </CustomButton>
           </div>
           <p className="switch">
-            Already have an accout ?
+            Already have an account ?
             <Link to={"/login"} style={{ textDecoration: "none" }}>
               <span className="login">Log in</span>
             </Link>

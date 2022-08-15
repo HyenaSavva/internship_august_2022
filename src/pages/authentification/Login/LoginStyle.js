@@ -28,7 +28,7 @@ export default css`
   .log img {
     width: 100px;
     height: 30px;
-    margin-bottom: 42px;
+    margin-bottom: 32px;
   }
 
   .log h1 {
@@ -48,6 +48,28 @@ export default css`
     margin: 0 0 20px 0;
   }
 
+  .logIn {
+    margin-top: 40px;
+  }
+
+  .logInLabel {
+    margin-top: 22px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .checkbox {
+    display: flex;
+    align-items: center;
+  }
+
+  .checkbox input {
+    border-color: #596274;
+    margin-right: 6px;
+  }
+
   .googleBtn {
     margin: 8px 0 0 0;
   }
@@ -64,10 +86,11 @@ export default css`
     align-items: center;
     display: flex;
     justify-content: center;
-    margin-top: 24px;
+    margin: 24px 0 0 0;
   }
 
   .login {
+    font-weight: 600;
     cursor: pointer;
     color: #0356e8;
   }
