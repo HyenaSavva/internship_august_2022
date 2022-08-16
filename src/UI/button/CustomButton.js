@@ -9,14 +9,16 @@ export const CustomButton = ({
   children,
   onClick,
   component,
+  disabled,
 }) => {
   return (
     <Button
       variant={variant}
       startIcon={startIcon}
-      sx={{ ...sx, ...btnStyles }}
+      sx={{ ...btnStyles, ...sx }}
       onClick={onClick}
       component={component}
+      disabled={disabled}
     >
       {children}
     </Button>
