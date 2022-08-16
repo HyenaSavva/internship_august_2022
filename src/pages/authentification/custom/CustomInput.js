@@ -13,21 +13,26 @@ const CustomInput = ({
   bottomLabel,
   placeholder,
   type,
-  setEmail,
+  setEnteredValue,
   error,
+  id,
+  multiline,
+  sx,
 }) => {
+  console.log("sx", sx);
   return (
     <>
       <InputLabel sx={LabelStyle}>{topLabel}</InputLabel>
       <InputBase
-        onChange={setEmail}
-        sx={error.emailError ? InputStyleError : InputStyle}
-        label={topLabel}
+        onChange={(event) => setEnteredValue(event.target.value)}
+        sx={error.status ? InputStyleError : { ...InputStyle, ...sx }}
+        id={id}
         placeholder={placeholder}
         type={type}
+        multiline={multiline}
       />
-      <InputLabel sx={BottomLabelStyle} error={error.emailError}>
-        {error.emailError ? error.message : bottomLabel}
+      <InputLabel sx={BottomLabelStyle} error={error.valueError}>
+        {error.valueError ? error.message : bottomLabel}
       </InputLabel>
     </>
   );

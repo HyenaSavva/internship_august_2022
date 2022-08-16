@@ -2,13 +2,14 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 
 import { ListingPage } from "pages/listingPage/ListingPage";
-import HomePage from "./pages/homepage/HomePage";
+import HomePage from "./pages/homePage/HomePage";
 import CreateAccount from "pages/authentification/CreateAccount/CreateAccount";
 import Login from "pages/authentification/Login/Login";
 import ForgotPassword from "pages/authentification/ForgotPassword/ForgotPassword";
 import ResetPassword from "pages/authentification/ResetPassword/ResetPassword";
 
 import { appTheme } from "themes/themes";
+import { AddPage } from "pages/addPage/AddPage";
 
 const _JSXStyle = require("styled-jsx/style").default;
 if (typeof global !== "undefined") {
@@ -28,6 +29,7 @@ function App() {
             <Route path="/create-account" element={<CreateAccount />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/listing-page" element={<ListingPage />} />
+            <Route path="/add-new" element={<AddPage />} />
             <Route path="/*" element={<Navigate replace to="/" />} />
           </Routes>
         </BrowserRouter>

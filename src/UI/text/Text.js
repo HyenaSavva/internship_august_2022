@@ -7,7 +7,7 @@ export const Text = ({ children, variant, sx, color }) => {
     <div>
       <Typography
         variant={variant}
-        sx={{ ...sx, ...variants[variant] }}
+        sx={{ ...variants[variant], ...sx }}
         color={color}
       >
         {children}
