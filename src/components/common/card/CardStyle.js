@@ -51,4 +51,13 @@ export default css`
 	.red {
 		background-color: red;
 	}
+	.empty--card {
+		align-items: center;
+		text-align: center;
+		top: 50px;
+	}
+
+	.content-wrapper {
+		position: relative;
+	}
 `;

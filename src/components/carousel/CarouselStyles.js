@@ -17,7 +17,7 @@ export const customArrowLeft = {
 	width: "20px",
 	height: "20px",
 	borderRadius: "50%",
-	marginRight: "-30px",
+	marginRight: "0px",
 	zIndex: "200",
 	".MuiSvgIcon-root": {},
 };

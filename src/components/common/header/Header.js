@@ -1,40 +1,59 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 import Dropdown from "../../../UI/dropdown/Dropdown";
 import SearchBar from "../../../UI/searchBar/SearchBar";
+import MyProfileDropdown from "./MyProfileDropdown";
 
-import PersonIcon from "@mui/icons-material/Person";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import MessageIcon from "@mui/icons-material/Message";
-import SecurityIcon from "@mui/icons-material/Security";
-import LogoutIcon from "@mui/icons-material/Logout";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import logo from "../../../assets/images/logo-assist-tagline.png";
 import HeaderStyles from "./HeaderStyles";
-import { selectCategories, selectProfile } from "./HeaderStyles";
+import { selectCategories } from "./HeaderStyles";
+import { profileDropdownActions } from "store/profileDropdownSlice";
 
 const Header = () => {
-	const profile = [
-		{ label: "Profile", icon: <PersonIcon /> },
-		{ label: "Notifications", icon: <NotificationsNoneIcon /> },
-		{ label: "Messages", icon: <MessageIcon /> },
-		{ label: "Login & security", icon: <SecurityIcon /> },
-		{ label: "Logout", icon: <LogoutIcon /> },
-	];
+	const dispatch = useDispatch();
+	const dropdownOpen = useSelector((state) => state.profileDropdown.isOpen);
+
+	const ref = useRef();
+
+	const toggleDropdown = () => {
+		dispatch(profileDropdownActions.toggleDropdown());
+	};
+
+	useEffect(() => {
+		const checkIfClickedOutside = (e) => {
+			if (dropdownOpen && ref.current && !ref.current.contains(e.target)) {
+				toggleDropdown();
+			}
+		};
+		document.addEventListener("click", checkIfClickedOutside);
+		return () => {
+			document.removeEventListener("click", checkIfClickedOutside);
+		};
+	}, [dropdownOpen]);
+
 	const categories = [
-		"Category",
-		"Big Houses",
-		"Small Houses",
-		"Offices",
-		"Apartments",
+		{ label: "Category" },
+		{ label: "Big Houses" },
+		{ label: "Small Houses" },
+		{ label: "Offices" },
+		{ label: "Apartments" },
+		{ label: "Category" },
 	];
 
 	return (
 		<nav className="navbar">
 			<section className="header--left">
-				<img src={logo} width="103px" height="31.38px" alt=""></img>
+				<NavLink to="/">
+					<img src={logo} width="103px" height="31.38px" alt=""></img>
+				</NavLink>
 				<div className="form-group">
 					<div className="header--searchbar">
 						<Dropdown sx={selectCategories} items={categories} />
@@ -49,28 +68,20 @@ const Header = () => {
 						<p> Favourites </p>
 					</NavLink>
 				</div>
-				<div>
-					<Dropdown sx={selectProfile} items={profile} />
-					{/* <Box sx={{ minWidth: 120 }}>
-						<FormControl fullWidth>
-							<InputLabel id="demo-simple-select-label">My Profile</InputLabel>
-							<Select
-								labelId="demo-simple-select-label"
-								id="demo-simple-select"
-								value={age}
-								label="Age"
-								onChange={handleChange}
-								sx={noBorder}
-							>
-								<MenuItem value={10}>Ten</MenuItem>
-								<MenuItem value={20}>Twenty</MenuItem>
-								<MenuItem value={30}>Thirty</MenuItem>
-							</Select>
-						</FormControl>
-					</Box> */}
-					{/* <PersonIcon />
-					<p> My Profile </p>
-					<KeyboardArrowDownIcon /> */}
+				<div className="profile" ref={ref}>
+					<div>
+						<ul>
+							<li onClick={toggleDropdown} className="flex profile-icon">
+								<PersonOutlineIcon sx={{ marginRight: "7px" }} />
+								My account
+								{!dropdownOpen && <KeyboardArrowDownIcon />}
+								{dropdownOpen && <KeyboardArrowUpIcon />}
+							</li>
+						</ul>
+					</div>
+					<div className="dropdown-profile">
+						{dropdownOpen && <MyProfileDropdown />}
+					</div>
 				</div>
 			</section>
 			<style jsx global>

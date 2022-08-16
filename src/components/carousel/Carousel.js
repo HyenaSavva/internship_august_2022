@@ -61,17 +61,22 @@ const Carousel = ({ category, data }) => {
 						<Grid key={index} item xs={12} sm={6} md={3}>
 							<Link to="/listing-page" style={{ textDecoration: "none" }}>
 								<Card
+									id={card.id}
+									isFavorite={card.isFavorite}
 									last={false}
 									title={card.title}
 									location={card.location}
 									price={card.price}
+									description={card.description}
 									image={card.image}
 								/>
 							</Link>
 						</Grid>
 					);
 				})}
-				<Card last={true} />
+				<Link to="/category" style={{ textDecoration: "none" }}>
+					<Card last={true} />
+				</Link>
 			</Slider>
 		</div>
 	);

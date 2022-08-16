@@ -7,6 +7,7 @@ export default function Dropdown({ sx, items }) {
 	return (
 		<div>
 			<FormControl sx={{ m: 1, minWidth: 120 }}>
+				{/* <InputLabel id="demo-simple-select-label">My Profile</InputLabel> */}
 				<Select sx={sx} displayEmpty inputProps={{ "aria-label": "Without label" }}>
 					{items.map((item, index) => {
 						return (
@@ -15,13 +16,7 @@ export default function Dropdown({ sx, items }) {
 								{item.label}
 							</MenuItem>
 						);
-						// console.log(item);
 					})}
-					{/* <MenuItem value="">Category</MenuItem>
-					<MenuItem value={"Big Houses"}>Big Houses</MenuItem>
-					<MenuItem value={"Small Houses"}>Small Houses</MenuItem>
-					<MenuItem value={"Offices"}>Offices</MenuItem>
-					<MenuItem value={"Apartments"}>Apartments</MenuItem> */}
 				</Select>
 			</FormControl>
 		</div>
