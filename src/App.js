@@ -2,9 +2,11 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 
 import { ListingPage } from "pages/listingPage/ListingPage";
-import HomePage from "./pages/homePage/HomePage";
+import HomePage from "./pages/homepage/HomePage";
 import CreateAccount from "pages/authentification/CreateAccount/CreateAccount";
 import Login from "pages/authentification/Login/Login";
+import ForgotPassword from "pages/authentification/ForgotPassword/ForgotPassword";
+import ResetPassword from "pages/authentification/ResetPassword/ResetPassword";
 
 import { appTheme } from "themes/themes";
 
@@ -20,6 +22,8 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <Routes>
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/login" element={<Login />} />
             <Route path="/create-account" element={<CreateAccount />} />
             <Route path="/" element={<HomePage />} />

@@ -44,33 +44,34 @@ export default css`
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
-    line-height: 22px;
     color: #98a2b3;
-    margin: 0 0 16px 0;
+    margin: 0 0 20px 0;
   }
 
-  .orBlock {
+  .logIn {
+    margin-top: 40px;
+  }
+
+  .logInLabel {
+    margin-top: 22px;
+    font-size: 14px;
+    font-weight: 500;
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .checkbox {
+    display: flex;
     align-items: center;
-    margin: 16px 0;
   }
 
-  .line {
-    border-top: 1px solid #d0d0d0;
-    display: flex;
-    flex-grow: 1;
+  .checkbox input {
+    border-color: #596274;
+    margin-right: 6px;
   }
 
-  .orBlock p {
-    color: #6c6c6c;
-    font-weight: 600;
-    margin: 0 8px;
-    font-size: 12px;
-  }
-
-  .signUp {
-    margin: 40px 0 24px 0;
+  .googleBtn {
+    margin: 8px 0 0 0;
   }
 
   .imageBlock {
@@ -85,10 +86,11 @@ export default css`
     align-items: center;
     display: flex;
     justify-content: center;
-    margin: 0;
+    margin: 24px 0 0 0;
   }
 
   .login {
+    font-weight: 600;
     cursor: pointer;
     color: #0356e8;
   }
