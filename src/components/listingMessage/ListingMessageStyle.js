@@ -42,12 +42,12 @@ export const messageTitle = {
 export const textareaStyle = {
   color: "#1C1C1E",
   borderRadius: "8px",
-  // [appTheme.breakpoints.only("mobile")]: {},
-  // [appTheme.breakpoints.only("tablet")]: {},
-  // [appTheme.breakpoints.only("laptop")]: {},
-  // [appTheme.breakpoints.only("desktop")]: {
-  //   width: "750px",
-  // },
+  [appTheme.breakpoints.only("mobile")]: {},
+  [appTheme.breakpoints.only("tablet")]: {},
+  [appTheme.breakpoints.only("laptop")]: {},
+  [appTheme.breakpoints.only("desktop")]: {
+    width: "750px",
+  },
 };
 
 export const textareaErrorStyle = {
