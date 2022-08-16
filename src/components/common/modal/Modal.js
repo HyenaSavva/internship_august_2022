@@ -18,8 +18,6 @@ export const Modal = ({ open }) => {
     }
   });
 
-  console.log(allImages);
-
   const handleClose = () => open(false);
 
   return (
