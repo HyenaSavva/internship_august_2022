@@ -1,22 +1,38 @@
 import css from "styled-jsx/css";
+import { appTheme } from "themes/themes";
 
 export default css`
-  .photo-galery {
+  .photo-gallery {
     position: relative;
   }
 
-  /* small */
-  @media screen and (max-width: 480px) {
+  /* mobile */
+  @media screen and (max-width: 639px) {
+    .photo-gallery {
+      margin-top: 24px;
+    }
   }
 
-  /* medium */
+  /* tablet */
 
-  @media (min-width: 481px) and (max-width: 1024px) {
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .photo-gallery {
+      margin-top: 48px;
+    }
   }
 
-  /* large */
-  @media (min-width: 1025px) {
-    .photo-galery {
+  /* laptop */
+
+  @media (min-width: 1024px) and (max-width: 1199px) {
+    .photo-gallery {
+      margin-top: 68px;
+    }
+  }
+
+  /* desktop */
+
+  @media (min-width: 1200px) {
+    .photo-gallery {
       margin-top: 68px;
     }
   }
@@ -25,20 +41,50 @@ export default css`
 export const showBtn = {
   position: "absolute",
   backgroundColor: "#fff",
-  width: "auto",
-  height: "36px",
-  top: { xs: "2%", xl: "88%" },
-  right: { xs: "2%", xl: "2%" },
   border: "solid 1px #1976d2",
   "&:hover": {
     backgroundColor: "#fff",
   },
+
+  [appTheme.breakpoints.only("mobile")]: {
+    top: "92%",
+    right: "1%",
+  },
+
+  [appTheme.breakpoints.only("tablet")]: {
+    top: "95%",
+    right: "1%",
+  },
+
+  [appTheme.breakpoints.only("laptop")]: {
+    top: "88%",
+    right: "0%",
+  },
+
+  [appTheme.breakpoints.only("desktop")]: {
+    height: "36px",
+    width: "auto",
+    top: "93%",
+    right: "1%",
+  },
 };
 
 export const imageListStyles = {
-  width: "100%",
   borderRadius: "12px",
   margin: "auto",
   position: "relative",
-  height: "48%",
+  [appTheme.breakpoints.only("mobile")]: {
+    width: "100vw",
+    paading: "0px",
+  },
+  [appTheme.breakpoints.only("tablet")]: {
+    width: "100%",
+  },
+  [appTheme.breakpoints.only("laptop")]: {
+    width: "100%",
+  },
+  [appTheme.breakpoints.only("desktop")]: {
+    width: "100%",
+    height: "48%",
+  },
 };

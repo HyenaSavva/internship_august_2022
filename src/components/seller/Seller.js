@@ -1,7 +1,7 @@
 import Avatar from "@mui/material/Avatar";
 
 import { Text } from "UI/text/Text";
-import avatar from "assets/avatar.png";
+import avatar from "assets/images/avatar.png";
 
 import SellerStyle, { sellerName, sellerAvatar } from "./SellerStyle";
 import { appTheme } from "themes/themes";

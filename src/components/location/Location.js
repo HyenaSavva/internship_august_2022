@@ -1,4 +1,4 @@
-import location from "assets/location.png";
+import location from "assets/images/location.png";
 
 import { Text } from "UI/text/Text";
 

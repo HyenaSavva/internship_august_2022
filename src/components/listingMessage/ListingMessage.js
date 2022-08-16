@@ -1,3 +1,4 @@
+import { useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 
 import { Text } from "UI/text/Text";
@@ -23,7 +24,6 @@ export const ListingMessage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (messageIsValid) {
       messageReset();
     }
@@ -37,14 +37,23 @@ export const ListingMessage = () => {
       <TextareaAutosize
         minRows={8}
         aria-label="maximum height"
-        placeholder="Placeholder"
+        placeholder="Enter your message"
         style={messageHasError ? textareaErrorStyle : textareaStyle}
         value={message}
         onChange={messageChangeHandler}
         onBlur={messageBlurHanlder}
       />
 
-      <CustomButton variant="outlined" sx={sendBtn}>
+      {messageHasError && (
+        <Text variant="body2">This field must not be empty!</Text>
+      )}
+
+      <CustomButton
+        variant="outlined"
+        sx={sendBtn}
+        component=""
+        disabled={!messageIsValid}
+      >
         Send
       </CustomButton>
 
