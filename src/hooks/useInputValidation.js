@@ -18,7 +18,9 @@ const useInputValidation = () => {
   };
 
   const isValid = (email, password) => {
-    if (!email) {
+    const validRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!email || !email.includes("@") || !email.match(validRegex)) {
       return {
         emailError: true,
         passwordError: false,

@@ -31,7 +31,7 @@ const Login = () => {
             topLabel="Email"
             id="Email"
             placeholder="Email"
-            type="email"
+            type=""
           />
           <PasswordInput
             error={error}
