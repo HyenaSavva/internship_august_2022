@@ -16,13 +16,17 @@ export default css`
 	.content--container {
 		width: 70%;
 	}
-	.container {
-		position: relative;
-	}
 	.main {
 		margin-top: 120px;
 	}
-	.main h1 {
-		margin-bottom: 26px;
+	.flex {
+		display: flex;
+	}
+	.tabs {
+		justify-content: space-between;
+		align-items: center;
+	}
+	.tabs--right {
+		justify-content: space-between;
 	}
 `;

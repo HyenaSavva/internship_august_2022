@@ -1,62 +1,87 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
+import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 import Dropdown from "../../../UI/dropdown/Dropdown";
 import SearchBar from "../../../UI/searchBar/SearchBar";
+import MyProfileDropdown from "./MyProfileDropdown";
+
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 
 import logo from "../../../assets/images/logo-assist-tagline.png";
 import HeaderStyles from "./HeaderStyles";
-import { noBorder } from "./HeaderStyles";
+import { selectCategories } from "./HeaderStyles";
+import { profileDropdownActions } from "store/profileDropdownSlice";
 
 const Header = () => {
-  const [age, setAge] = useState("");
+  const dispatch = useDispatch();
+  const dropdownOpen = useSelector((state) => state.profileDropdown.isOpen);
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const ref = useRef();
+
+  const toggleDropdown = () => {
+    dispatch(profileDropdownActions.toggleDropdown());
   };
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      if (dropdownOpen && ref.current && !ref.current.contains(e.target)) {
+        toggleDropdown();
+      }
+    };
+    document.addEventListener("click", checkIfClickedOutside);
+    return () => {
+      document.removeEventListener("click", checkIfClickedOutside);
+    };
+  }, [dropdownOpen]);
+
+  const categories = [
+    { label: "Category" },
+    { label: "Big Houses" },
+    { label: "Small Houses" },
+    { label: "Offices" },
+    { label: "Apartments" },
+    { label: "Category" },
+  ];
 
   return (
     <nav className="navbar">
       <section className="header--left">
-        <img src={logo} width="103px" height="31.38px" alt=""></img>
+        <NavLink to="/">
+          <img src={logo} width="103px" height="31.38px" alt=""></img>
+        </NavLink>
         <div className="form-group">
           <div className="header--searchbar">
-            <Dropdown />
+            <Dropdown sx={selectCategories} items={categories} />
             <SearchBar placeholder={"Search"} />
           </div>
         </div>
       </section>
       <section className="header--right">
-        <div className="header--icon">
-          <FavoriteBorderIcon />
-          <p> Favourites </p>
-        </div>
         <div>
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">My Profile</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={age}
-                label="Age"
-                onChange={handleChange}
-                sx={noBorder}
-              >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-          {/* <PersonIcon />
-					<p> My Profile </p>
-					<KeyboardArrowDownIcon /> */}
+          <NavLink to="/favorites" className="header--icon">
+            <FavoriteBorderIcon />
+            <p> Favourites </p>
+          </NavLink>
+        </div>
+        <div className="profile" ref={ref}>
+          <div>
+            <ul>
+              <li onClick={toggleDropdown} className="flex profile-icon">
+                <PersonOutlineIcon sx={{ marginRight: "7px" }} />
+                My account
+                {!dropdownOpen && <KeyboardArrowDownIcon />}
+                {dropdownOpen && <KeyboardArrowUpIcon />}
+              </li>
+            </ul>
+          </div>
+          <div className="dropdown-profile">
+            {dropdownOpen && <MyProfileDropdown />}
+          </div>
         </div>
       </section>
       <style jsx global>
