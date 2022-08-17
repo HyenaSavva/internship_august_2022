@@ -1,18 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
+import CardsData from "../assets/data/dummy.json";
 
 const favoriteSlice = createSlice({
 	name: "favorite",
-	initialState: { isFavorite: false, favorites: [] },
+	initialState: { isFavorite: false, listings: CardsData, favorites: [] },
 	reducers: {
 		toggle(state, action) {
 			// modific state-ul la toate cardurile
-			state.isFavorite = !state.isFavorite;
+			// state.isFavorite = !state.isFavorite;
 
-			console.log(action.payload);
+			const favListingIndex = state.listings.findIndex(
+				(listing) => listing.id === action.payload.id
+			);
+			const favListing = state.listings.find(
+				(listing) => listing.id === action.payload.id
+			);
+			state.listings[favListingIndex] = {
+				...favListing,
+				isFavorite: !favListing.isFavorite,
+			};
+
+			console.log(state.listings[favListingIndex]);
 			// creez array-ul pentru favorites
 			// action.payload sunt datele care vin din dispatch()
 			const newListing = action.payload;
-			newListing.isFavorite = true;
 			const existingListing = state.favorites.find(
 				(listing) => listing.id === newListing.id
 			);
@@ -27,6 +38,5 @@ const favoriteSlice = createSlice({
 });
 
 export const favoriteActions = favoriteSlice.actions;
-console.log(favoriteActions);
 
 export default favoriteSlice;

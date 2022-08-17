@@ -44,33 +44,17 @@ export default css`
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
-    line-height: 22px;
     color: #98a2b3;
-    margin: 0 0 16px 0;
+    margin: 0 0 20px 0;
   }
 
-  .orBlock {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 16px 0;
+  .passConfirm {
+    margin-top: 8px;
+    width: 100%;
   }
 
-  .line {
-    border-top: 1px solid #d0d0d0;
-    display: flex;
-    flex-grow: 1;
-  }
-
-  .orBlock p {
-    color: #6c6c6c;
-    font-weight: 600;
-    margin: 0 8px;
-    font-size: 12px;
-  }
-
-  .signUp {
-    margin: 40px 0 24px 0;
+  .logIn {
+    margin-top: 24px;
   }
 
   .imageBlock {
@@ -85,10 +69,11 @@ export default css`
     align-items: center;
     display: flex;
     justify-content: center;
-    margin: 0;
+    margin: 24px 0 0 0;
   }
 
   .login {
+    font-weight: 600;
     cursor: pointer;
     color: #0356e8;
   }

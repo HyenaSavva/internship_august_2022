@@ -26,4 +26,7 @@ export default css`
 	.card--link {
 		text-decoration: none;
 	}
+	.carousel-category {
+		margin-bottom: 46px;
+	}
 `;

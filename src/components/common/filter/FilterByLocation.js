@@ -1,10 +1,11 @@
-import React from "react";
-
-import { useTheme } from "@mui/material/styles";
-import OutlinedInput from "@mui/material/OutlinedInput";
+import * as React from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
+import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
+import Checkbox from "@mui/material/Checkbox";
+
+import { filterBy } from "../tabs/TabsRowStyles";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -18,26 +19,19 @@ const MenuProps = {
 };
 
 const names = [
-	"All",
-	"0 - 10.000",
-	"10.000 - 50.000",
-	"50.000 - 100.000",
-	"100.000 - 300.000",
-	"300.000 - 700.000",
-	"700.000 - 1.000.000",
+	"Oliver Hansen",
+	"Van Henry",
+	"April Tucker",
+	"Ralph Hubbard",
+	"Omar Alexander",
+	"Carlos Abbott",
+	"Miriam Wagner",
+	"Bradley Wilkerson",
+	"Virginia Andrews",
+	"Kelly Snyder",
 ];
 
-function getStyles(name, personName, theme) {
-	return {
-		fontWeight:
-			personName.indexOf(name) === -1
-				? theme.typography.fontWeightRegular
-				: theme.typography.fontWeightMedium,
-	};
-}
-
-export default function FilterBy() {
-	const theme = useTheme();
+export default function FilterByLocation() {
 	const [personName, setPersonName] = React.useState([]);
 
 	const handleChange = (event) => {
@@ -52,13 +46,17 @@ export default function FilterBy() {
 
 	return (
 		<div>
-			<FormControl sx={{ m: 1, width: 300, mt: 3 }}>
+			<FormControl sx={{ m: 0, width: 150 }}>
 				<Select
-					style={{ width: "120px" }}
+					sx={filterBy}
+					style={{ width: "150px" }}
+					labelId="demo-multiple-checkbox-label"
+					id="demo-multiple-checkbox"
+					multiple
 					displayEmpty
 					value={personName}
 					onChange={handleChange}
-					input={<OutlinedInput />}
+					InputLabelProps={{ shrink: false }}
 					renderValue={(selected) => {
 						if (selected.length === 0) {
 							return <strong>Location</strong>;
@@ -67,15 +65,11 @@ export default function FilterBy() {
 						return selected.join(", ");
 					}}
 					MenuProps={MenuProps}
-					inputProps={{ "aria-label": "Without label" }}
 				>
 					{names.map((name) => (
-						<MenuItem
-							key={name}
-							value={name}
-							style={getStyles(name, personName, theme)}
-						>
-							{name}
+						<MenuItem key={name} value={name}>
+							<Checkbox checked={personName.indexOf(name) > -1} />
+							<ListItemText primary={name} />
 						</MenuItem>
 					))}
 				</Select>

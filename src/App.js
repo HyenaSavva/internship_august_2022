@@ -6,8 +6,10 @@ import { ListingPage } from "pages/listingPage/ListingPage";
 import HomePage from "./pages/homePage/HomePage";
 import FavoritesPage from "pages/favoritesPage/FavoritesPage";
 import Login from "pages/authentification/Login/Login";
-import CreateAccount from "pages/authentification/CreateAccount/CreateAccount";
 import CategoryPage from "pages/categoryPage/CategoryPage";
+import CreateAccount from "pages/authentification/CreateAccount/CreateAccount";
+import ForgotPassword from "pages/authentification/ForgotPassword/ForgotPassword";
+import ResetPassword from "pages/authentification/ResetPassword/ResetPassword";
 
 import { appTheme } from "themes/themes";
 
@@ -23,11 +25,13 @@ function App() {
 			<div className="App">
 				<BrowserRouter>
 					<Routes>
+						<Route path="/reset-password" element={<ResetPassword />} />
+						<Route path="/forgot-password" element={<ForgotPassword />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/create-account" element={<CreateAccount />} />
-						<Route path="/" element={<HomePage />} />
 						<Route path="/category" element={<CategoryPage />} />
 						<Route path="/favorites" element={<FavoritesPage />} />
+						<Route path="/" element={<HomePage />} />
 						<Route path="/listing-page" element={<ListingPage />} />
 						<Route path="/*" element={<Navigate replace to="/" />} />
 					</Routes>

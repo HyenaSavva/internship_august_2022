@@ -20,7 +20,7 @@ const CategoryPage = () => {
 				<Header />
 			</Container>
 
-			<Container maxWidth="lg">
+			<Container sx={{ maxWidth: "lg" }}>
 				<TabsRow />
 
 				{isGridView && (

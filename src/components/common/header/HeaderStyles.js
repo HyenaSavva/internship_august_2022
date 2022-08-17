@@ -60,7 +60,6 @@ export default css.global`
 		top: 0;
 		display: flex;
 		flex-direction: row;
-		justify-content: space-around;
 		align-items: center;
 		text-align: center;
 		z-index: 100;

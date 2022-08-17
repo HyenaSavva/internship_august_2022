@@ -7,7 +7,6 @@ export default function Dropdown({ sx, items }) {
 	return (
 		<div>
 			<FormControl sx={{ m: 1, minWidth: 120 }}>
-				{/* <InputLabel id="demo-simple-select-label">My Profile</InputLabel> */}
 				<Select sx={sx} displayEmpty inputProps={{ "aria-label": "Without label" }}>
 					{items.map((item, index) => {
 						return (

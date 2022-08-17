@@ -10,9 +10,6 @@ export default css`
 
   /* small */
   @media screen and (max-width: 480px) {
-    .description {
-      width: 100%;
-    }
   }
 
   /* medium */

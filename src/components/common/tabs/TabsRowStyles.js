@@ -1,12 +1,24 @@
 import css from "styled-jsx/css";
 
+export const noBorder = {
+	"& .MuiOutlinedInput-notchedOutline": {
+		border: "none",
+	},
+};
+
+export const filterBy = {
+	"& .MuiOutlinedInput-notchedOutline": {
+		border: "none",
+	},
+};
+
 export default css`
 	.flex {
 		display: flex;
 	}
 	.tabs {
-		justify-content: space-between;
 		align-items: center;
+		justify-content: space-between;
 	}
 	.tabs--left {
 		display: flex;
@@ -15,5 +27,8 @@ export default css`
 	.tabs--right {
 		justify-content: space-between;
 		align-items: center;
+	}
+	.grid-buttons {
+		margin-left: 40px;
 	}
 `;

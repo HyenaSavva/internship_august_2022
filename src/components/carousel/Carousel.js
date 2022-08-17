@@ -11,6 +11,7 @@ import { Grid } from "@mui/material";
 
 import Card from "components/common/card/Card";
 
+import CarouselStyles from "./CarouselStyles";
 import { customArrowLeft, customArrowRight } from "./CarouselStyles";
 
 const Carousel = ({ category, data }) => {
@@ -53,7 +54,7 @@ const Carousel = ({ category, data }) => {
 		nextArrow: <NextBtn />,
 	};
 	return (
-		<div>
+		<div className="carousel-category">
 			<h2> {category} </h2>
 			<Slider {...settings}>
 				{data.map((card, index) => {
@@ -78,6 +79,7 @@ const Carousel = ({ category, data }) => {
 					<Card last={true} />
 				</Link>
 			</Slider>
+			<style jsx>{CarouselStyles}</style>
 		</div>
 	);
 };

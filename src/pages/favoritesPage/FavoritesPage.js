@@ -19,16 +19,12 @@ const FavoritesPage = () => {
 				<Header />
 			</Container>
 
-			<Container maxWidth="lg">
+			<Container sx={{ maxWidth: "lg" }}>
 				<h1 className="main">Favourites</h1>
 				<TabsRow />
 
 				{isGridView && (
-					<Grid
-						container
-						spacing={{ xs: 2, md: 3 }}
-						columns={{ xs: 4, sm: 8, md: 12 }}
-					>
+					<Grid container spacing={4} columns={{ xs: 4, sm: 8, md: 12 }}>
 						{favoriteListings.map((card, index) => {
 							console.log(card);
 							return (
@@ -49,15 +45,11 @@ const FavoritesPage = () => {
 					</Grid>
 				)}
 				{!isGridView && (
-					<Grid
-						container
-						spacing={{ xs: 2, md: 3 }}
-						columns={{ xs: 4, sm: 8, md: 12 }}
-					>
+					<Grid container spacing={3} columns={{ xs: 4, sm: 8, md: 12 }}>
 						{favoriteListings.map((card, index) => {
 							console.log(card);
 							return (
-								<Grid item xs={2} sm={3} md={12} key={index}>
+								<Grid item xs={3} sm={6} md={12} key={index}>
 									<CardRow
 										id={card.id}
 										isFavorite={card.isFavorite}

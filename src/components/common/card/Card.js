@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import CardElement from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { IconButton } from "@mui/material";
@@ -17,9 +16,16 @@ import FavoriteBtn from "./favoriteButton/FavoriteBtn";
 export default function Card(props) {
 	const dispatch = useDispatch();
 
-	let customStyles;
+	const customStyles = {
+		maxWidth: "262.5px",
+		height: "252px",
+		borderRadius: "12px",
+		boxShadow: "none",
+		border: "1px solid #E4E7EC",
+		textDecoration: "none",
+	};
 
-	const { id, isFavorite, last, title, location, price, image } = props;
+	let { id, isFavorite, last, title, location, price, image } = props;
 
 	const toggleFav = (event) => {
 		dispatch(
@@ -34,13 +40,7 @@ export default function Card(props) {
 			})
 		);
 		event.preventDefault();
-	};
-
-	customStyles = {
-		maxWidth: "262.5px",
-		height: "252px",
-		borderRadius: "12px",
-		textDecoration: "none",
+		console.log(isFavorite);
 	};
 
 	// const [isActive, setActive] = useState(false);
@@ -58,9 +58,10 @@ export default function Card(props) {
 					<CardActionArea>
 						<div className="content-wrapper">
 							<div onClick={toggleFav}>
-								<FavoriteBtn />
+								<FavoriteBtn isFavorite={isFavorite} />
 							</div>
 							<CardMedia
+								width="262.5px"
 								component="img"
 								height="162"
 								image={image}
@@ -68,15 +69,9 @@ export default function Card(props) {
 							/>
 
 							<CardContent>
-								<Typography gutterBottom variant="h5" component="div">
-									<div className="title">{title}</div>
-								</Typography>
-								<Typography variant="body2" color="text.secondary">
-									<div className="location">{location}</div>
-								</Typography>
-								<Typography variant="h6">
-									<div className="price">{price}</div>
-								</Typography>
+								<div className="title">{title}</div>
+								<div className="location">{location}</div>
+								<div className="price">{price}</div>
 							</CardContent>
 						</div>
 					</CardActionArea>

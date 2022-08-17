@@ -1,4 +1,5 @@
 import css from "styled-jsx/css";
+import { appTheme } from "themes/themes";
 
 export default css`
   .listing-message {
@@ -6,17 +7,26 @@ export default css`
     flex-direction: column;
   }
 
-  /* small */
-  @media screen and (max-width: 480px) {
+  /* mobile */
+  @media screen and (max-width: 639px) {
+    .listing-message {
+      width: 95%;
+    }
   }
 
-  /* medium */
+  /* tablet */
 
-  @media (min-width: 481px) and (max-width: 1024px) {
+  @media (min-width: 640px) and (max-width: 1023px) {
   }
 
-  /* large */
-  @media (min-width: 1025px) {
+  /* laptop */
+
+  @media (min-width: 1024px) and (max-width: 1199px) {
+  }
+
+  /* desktop */
+
+  @media (min-width: 1200px) {
     .listing-message {
       margin-top: 32px;
       width: 750px;
@@ -26,12 +36,18 @@ export default css`
 
 export const messageTitle = {
   fontWeight: "700",
-  marginBottom: { lg: "12px" },
+  marginBottom: "12px",
 };
 
 export const textareaStyle = {
-  width: "750px",
-  color: "#D0D5DD",
+  color: "#1C1C1E",
+  borderRadius: "8px",
+  [appTheme.breakpoints.only("mobile")]: {},
+  [appTheme.breakpoints.only("tablet")]: {},
+  [appTheme.breakpoints.only("laptop")]: {},
+  [appTheme.breakpoints.only("desktop")]: {
+    width: "750px",
+  },
 };
 
 export const textareaErrorStyle = {
@@ -46,7 +62,25 @@ export const sendBtn = {
   "&:hover": {
     backgroundColor: "#fff",
   },
-  marginTop: { lg: "12px" },
-  marginBottom: { lg: "68px" },
-  marginLeft: { lg: "78%" },
+
+  [appTheme.breakpoints.only("mobile")]: {
+    marginTop: "12px",
+    marginBottom: "68px",
+    marginLeft: "78%",
+  },
+  [appTheme.breakpoints.only("tablet")]: {
+    marginTop: "12px",
+    marginBottom: "68px",
+    marginLeft: "78%",
+  },
+  [appTheme.breakpoints.only("laptop")]: {
+    marginTop: "12px",
+    marginBottom: "68px",
+    marginLeft: "78%",
+  },
+  [appTheme.breakpoints.only("desktop")]: {
+    marginTop: "12px",
+    marginBottom: "68px",
+    marginLeft: "78%",
+  },
 };

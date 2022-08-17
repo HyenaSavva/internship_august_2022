@@ -54,10 +54,30 @@ export default css`
 	.empty--card {
 		align-items: center;
 		text-align: center;
-		top: 50px;
+		margin-top: 80px;
 	}
 
-	.content-wrapper {
+	.content-wrapper-grid {
 		position: relative;
+	}
+	.content-wrapper-row {
+		position: relative;
+		width: 1168px;
+	}
+	.fav-btn {
+		position: relative;
+		top: -36px;
+		right: 60px;
+	}
+	.title-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.location-fav {
+		align-items: center;
+		margin-left: 30px;
+	}
+	.location-row {
 	}
 `;
