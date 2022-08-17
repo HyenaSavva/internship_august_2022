@@ -7,6 +7,7 @@ import CreateAccount from "pages/authentification/CreateAccount/CreateAccount";
 import Login from "pages/authentification/Login/Login";
 import ForgotPassword from "pages/authentification/ForgotPassword/ForgotPassword";
 import ResetPassword from "pages/authentification/ResetPassword/ResetPassword";
+import ProfilePage from "pages/profilePage/ProfilePage"
 
 import { appTheme } from "themes/themes";
 
@@ -22,6 +23,7 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <Routes>
+            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/login" element={<Login />} />
