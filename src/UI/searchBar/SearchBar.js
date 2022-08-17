@@ -8,22 +8,22 @@ import SearchBarStyles from "./SearchBarStyles";
 import { customSearch } from "./SearchBarStyles";
 
 const SearchBar = ({ placeholder }) => {
-	return (
-		<Box sx={{ display: "flex", alignItems: "center" }}>
-			<TextField
-				placeholder="Search"
-				InputProps={{
-					endAdornment: (
-						<InputAdornment position="end">
-							<SearchIcon />
-						</InputAdornment>
-					),
-				}}
-				sx={customSearch}
-			/>
-			<style jsx>{SearchBarStyles}</style>
-		</Box>
-	);
+  return (
+    <Box sx={{ display: "flex", alignItems: "center" }}>
+      <TextField
+        placeholder="Search"
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
+        sx={customSearch}
+      />
+      <style jsx>{SearchBarStyles}</style>
+    </Box>
+  );
 };
 
 export default SearchBar;
