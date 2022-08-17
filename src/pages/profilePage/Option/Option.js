@@ -1,10 +1,9 @@
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import OptionStyle from "./OptionStyle";
-import { summary, details } from "./OptionStyle";
+import OptionStyle, { summary, details } from "./OptionStyle";
 
-const Option = ({ children, sx, name, optionName}) => {
+const Option = ({ children, sx, subTitle, optionName}) => {
   return (
     <>
       <MuiAccordion disableGutters elevation={0} square sx={sx}>
@@ -12,7 +11,7 @@ const Option = ({ children, sx, name, optionName}) => {
           <div className="summary">
             <div className="info">
               <label>{optionName}</label>
-              <p>{name}</p>
+              <p>{subTitle}</p>
             </div>
             <div className="edit">Edit</div>
           </div>

@@ -1,5 +1,16 @@
 import css from "styled-jsx/css";
 
+export const EditIcon = {
+  width: "16px",
+  height: "16px",
+  borderRadius: "32px",
+};
+
+export const AvatarIcon = {
+  width: "112px",
+  height: "112px",
+};
+
 export default css`
   .page {
     display: flex;
@@ -13,7 +24,6 @@ export default css`
 
   main {
     display: flex;
-    height: calc(100vh - 92px);
     position: relative;
     width: 100vw;
   }
@@ -45,7 +55,34 @@ export default css`
   .avatar {
     min-height: 112px;
     width: 112px;
-    background-color: #ebebeb;
+    position: relative;
+  }
+
+  .editButton {
+    background-color: #ffffff;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 32px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .editButton label {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 3;
+  }
+
+  .editButton input {
+    display: none;
   }
 
   .sideButtons {
@@ -57,37 +94,39 @@ export default css`
   }
 
   .sideButtons li {
-    padding: 13px 0;
+    margin: 26px 0;
     font-size: 14px;
     font-weight: 500;
     display: flex;
     align-items: center;
+    user-select: none;
+    cursor: pointer;
   }
 
-  .sideButtons li:hover {
-    cursor: pointer;
+  .sideButtons .active {
     color: #0356e8;
     user-select: none;
   }
 
   .sideButtons .icon {
     margin: 0 12px 0 4px;
+    display: flex;
   }
 
   // Profile Settings
 
-  .profileMenu {
-    width: 65vw;
+  .settingsMenu {
+    width: 65vw;Button
     height: 100%;
     margin: 32px 0 0 128px;
   }
 
-  .profileContainer {
+  .settings {
     width: 652px;
     height: 50%;
   }
 
-  .profileContainer p {
+  .settings p {
     margin: 0 0 12px 0;
     font-weight: 700;
     font-size: 24px;
