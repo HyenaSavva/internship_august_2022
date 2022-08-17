@@ -17,7 +17,6 @@ const favoriteSlice = createSlice({
         isFavorite: !favListing.isFavorite,
       };
 
-      console.log(state.listings[favListingIndex]);
       // creez array-ul pentru favorites
       // action.payload sunt datele care vin din dispatch()
       const newListing = action.payload;

@@ -26,7 +26,6 @@ const FavoritesPage = () => {
         {isGridView && (
           <Grid container spacing={4} columns={{ xs: 4, sm: 8, md: 12 }}>
             {favoriteListings.map((card, index) => {
-              console.log(card);
               return (
                 <Grid item xs={2} sm={3} md={3} key={index}>
                   <Card
@@ -47,7 +46,6 @@ const FavoritesPage = () => {
         {!isGridView && (
           <Grid container spacing={3} columns={{ xs: 4, sm: 8, md: 12 }}>
             {favoriteListings.map((card, index) => {
-              console.log(card);
               return (
                 <Grid item xs={3} sm={6} md={12} key={index}>
                   <CardRow

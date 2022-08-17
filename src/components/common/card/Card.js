@@ -40,7 +40,6 @@ export default function Card(props) {
       })
     );
     event.preventDefault();
-    console.log(isFavorite);
   };
 
   return (
