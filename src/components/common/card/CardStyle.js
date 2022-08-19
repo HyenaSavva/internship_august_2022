@@ -48,4 +48,33 @@ export default css`
     line-height: 22px;
     color: #1c1c1e;
   }
+  .red {
+    background-color: red;
+  }
+  .empty--card {
+    align-items: center;
+    text-align: center;
+  }
+
+  .content-wrapper-grid {
+    position: relative;
+  }
+  .content-wrapper-row {
+    position: relative;
+    width: 1168px;
+  }
+  .fav-btn {
+    position: relative;
+    top: -36px;
+    right: 60px;
+  }
+  .title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .location-fav {
+    align-items: center;
+    margin-left: 30px;
+  }
 `;

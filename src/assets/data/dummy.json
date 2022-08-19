@@ -1,68 +1,76 @@
 [
-    {
+    {   "id": "1",
+        "isFavorite": "false",
         "title":"Villa in Botosani",
         "location":"Botoșani, Romania",
-        "price":"879 lei",
+        "price":"900000 lei",
         "category": "Big Houses",
         "image": "https://media.istockphoto.com/photos/3d-rendering-beautiful-luxury-bedroom-suite-in-hotel-with-tv-picture-id1066999762?k=20&m=1066999762&s=612x612&w=0&h=BitPXyhBFZQHMfpC9ikX_DReVK6Rd28hH9pRoZW8YAs=",
         "description": "Look out over dramatic mountain and sea views at this modern architectural masterpiece on the secluded island of Korcula in Croatia. Spend your afternoons lounging poolside, working on your tan from one of the custom designed sun chairs. At night, head 3 kilometers into downtown Korcula for dinner at one of their best seafood restaurants. Copyright © Luxury Retreats. All rights reserved",
         "date": "Sun Dec 21 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "2",
+        "isFavorite": "false",
         "title":"Small house in Sydney",
         "location":"Sydney, Australia",
-        "price":"999 lei",
+        "price":"700500 lei",
         "category": "Small Houses",
         "image": "https://media.istockphoto.com/photos/interior-of-a-modern-luxury-hotel-double-bed-bedroom-picture-id1163498940?k=20&m=1163498940&s=612x612&w=0&h=tUPidNW2ny095sCR97dur7cbrCnYpcjHbevUTJyB8Jc=",
         "description": "Look out over dramatic mountain and sea views at this modern architectural masterpiece on the secluded island of Korcula in Croatia. Spend your afternoons lounging poolside, working on your tan from one of the custom designed sun chairs. At night, head 3 kilometers into downtown Korcula for dinner at one of their best seafood restaurants. Copyright © Luxury Retreats. All rights reserved",
         "date": "Sun Dec 3 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "3",
+        "isFavorite": "false",
         "title":"Villa in Botosani",
         "location":"Botoșani, Romania",
-        "price":"399 lei",
+        "price":"115000 lei",
         "category": "Offices",
         "image": "https://q-xx.bstatic.com/xdata/images/hotel/840x460/208086215.jpg?k=af5b31fd51781a293cb97b7bbb56f38e27f114f0d5ece2eca4424ea41b33da5d&o=",
         "description": "Wraparound windows on cantilevered lookouts capture incredible panoramic views of the mountains, the sea, and the island of Korcula at this modern villa in Croatia. The kids can swim laps in the rooftop pool while you catch up on some reading in the shade of the deck below. When you’re ready to hit the beach, the club at Korcula Hills is just 2 minutes from home.",
         "date": "Sun Dec 4 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "4",
+        "isFavorite": "false",
         "title":"Tiny place in Timisoara",
         "location":"Timisoara, Romania",
-        "price":"879 lei",
+        "price":"450000 lei",
         "category": "Apartments",
         "image": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJlZHJvb218ZW58MHx8MHx8&w=1000&q=80",
         "description": "Cozy interior, large panoramic showcase, fireplace and many more pleasant little things will add comfort to your vacation. The house is for 2 persons. The house has: -bedroom with double bed, lounge area with armchair, fireplace and panoramic showcase, -a front room with spacious wardrobes and a kitchenette with a fridge and a washing machine, -a washroom with a shower and a toilet. There is also a spacious outside terrace near the house for relaxing with a view of the scenic stakes.",
         "date": "Sun Dec 5 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "5",
+        "isFavorite": "false",
         "title":"Villa in Botosani",
         "location":"Botoșani, Romania",
-        "price":"879 lei",
+        "price":"61000 lei",
         "category": "Big Houses",
         "image": "https://q-xx.bstatic.com/xdata/images/hotel/840x460/138634418.jpg?k=448784775817a61d397a56813c30c1130482cf468ff7f8d7a3cdca560d3379c0&o=",
         "description": "Look out over dramatic mountain and sea views at this modern architectural masterpiece on the secluded island of Korcula in Croatia. Spend your afternoons lounging poolside, working on your tan from one of the custom designed sun chairs. At night, head 3 kilometers into downtown Korcula for dinner at one of their best seafood restaurants. Copyright © Luxury Retreats. All rights reserved",
         "date": "Sun Dec 19 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "6",
+        "isFavorite": "false",
         "title":"Small house in Sydney",
         "location":"Sydney, Australia",
-        "price":"999 lei",
+        "price":"45000 lei",
         "category": "Small Houses",
         "image": "https://www.theparkhotels.com/images/site-specific/chennai/rooms-suites-min.jpg",
         "description": "Look out over dramatic mountain and sea views at this modern architectural masterpiece on the secluded island of Korcula in Croatia. Spend your afternoons lounging poolside, working on your tan from one of the custom designed sun chairs. At night, head 3 kilometers into downtown Korcula for dinner at one of their best seafood restaurants. Copyright © Luxury Retreats. All rights reserved",
         "date": "Sun Dec 7 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "7",
+        "isFavorite": "false",
         "title":"Villa in Botosani",
         "location":"Botoșani, Romania",
-        "price":"399 lei",
+        "price":"500000 lei",
         "category": "Offices",
         "image": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
         "description": "Wraparound windows on cantilevered lookouts capture incredible panoramic views of the mountains, the sea, and the island of Korcula at this modern villa in Croatia. The kids can swim laps in the rooftop pool while you catch up on some reading in the shade of the deck below. When you’re ready to hit the beach, the club at Korcula Hills is just 2 minutes from home.",
         "date": "Sun Dec 9 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "8",
+        "isFavorite": "false",
         "title":"Tiny place in Timisoara",
         "location":"Timisoara, Romania",
         "price":"879 lei",
@@ -71,7 +79,8 @@
         "description": "Cozy interior, large panoramic showcase, fireplace and many more pleasant little things will add comfort to your vacation. The house is for 2 persons. The house has: -bedroom with double bed, lounge area with armchair, fireplace and panoramic showcase, -a front room with spacious wardrobes and a kitchenette with a fridge and a washing machine, -a washroom with a shower and a toilet. There is also a spacious outside terrace near the house for relaxing with a view of the scenic stakes.",
         "date": "Sun Dec 10 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "9",
+        "isFavorite": "false",
         "title":"Villa in Botosani",
         "location":"Botoșani, Romania",
         "price":"879 lei",
@@ -80,7 +89,8 @@
         "description": "Look out over dramatic mountain and sea views at this modern architectural masterpiece on the secluded island of Korcula in Croatia. Spend your afternoons lounging poolside, working on your tan from one of the custom designed sun chairs. At night, head 3 kilometers into downtown Korcula for dinner at one of their best seafood restaurants. Copyright © Luxury Retreats. All rights reserved",
         "date": "Sun Dec 11 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "10",
+        "isFavorite": "false",
         "title":"Small house in Sydney",
         "location":"Sydney, Australia",
         "price":"999 lei",
@@ -89,7 +99,8 @@
         "description": "Look out over dramatic mountain and sea views at this modern architectural masterpiece on the secluded island of Korcula in Croatia. Spend your afternoons lounging poolside, working on your tan from one of the custom designed sun chairs. At night, head 3 kilometers into downtown Korcula for dinner at one of their best seafood restaurants. Copyright © Luxury Retreats. All rights reserved",
         "date": "Sun Dec 12 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "11",
+        "isFavorite": "false",
         "title":"Villa in Botosani",
         "location":"Botoșani, Romania",
         "price":"399 lei",
@@ -98,7 +109,8 @@
         "description": "Wraparound windows on cantilevered lookouts capture incredible panoramic views of the mountains, the sea, and the island of Korcula at this modern villa in Croatia. The kids can swim laps in the rooftop pool while you catch up on some reading in the shade of the deck below. When you’re ready to hit the beach, the club at Korcula Hills is just 2 minutes from home.",
         "date": "Sun Dec 13 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "12",
+        "isFavorite": "false",
         "title":"Tiny place in Timisoara",
         "location":"Timisoara, Romania",
         "price":"879 lei",
@@ -107,7 +119,8 @@
         "description": "Cozy interior, large panoramic showcase, fireplace and many more pleasant little things will add comfort to your vacation. The house is for 2 persons. The house has: -bedroom with double bed, lounge area with armchair, fireplace and panoramic showcase, -a front room with spacious wardrobes and a kitchenette with a fridge and a washing machine, -a washroom with a shower and a toilet. There is also a spacious outside terrace near the house for relaxing with a view of the scenic stakes.",
         "date": "Sun Dec 14 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "13",
+        "isFavorite": "false",
         "title":"Villa in Botosani",
         "location":"Botoșani, Romania",
         "price":"879 lei",
@@ -116,7 +129,8 @@
         "description": "Look out over dramatic mountain and sea views at this modern architectural masterpiece on the secluded island of Korcula in Croatia. Spend your afternoons lounging poolside, working on your tan from one of the custom designed sun chairs. At night, head 3 kilometers into downtown Korcula for dinner at one of their best seafood restaurants. Copyright © Luxury Retreats. All rights reserved",
         "date": "Sun Dec 15 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "14",
+        "isFavorite": "false",
         "title":"Small house in Sydney",
         "location":"Sydney, Australia",
         "price":"999 lei",
@@ -125,7 +139,8 @@
         "description": "Look out over dramatic mountain and sea views at this modern architectural masterpiece on the secluded island of Korcula in Croatia. Spend your afternoons lounging poolside, working on your tan from one of the custom designed sun chairs. At night, head 3 kilometers into downtown Korcula for dinner at one of their best seafood restaurants. Copyright © Luxury Retreats. All rights reserved",
         "date": "Sun Dec 16 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "15",
+        "isFavorite": "false",
         "title":"Villa in Botosani",
         "location":"Botoșani, Romania",
         "price":"399 lei",
@@ -134,7 +149,8 @@
         "description": "Wraparound windows on cantilevered lookouts capture incredible panoramic views of the mountains, the sea, and the island of Korcula at this modern villa in Croatia. The kids can swim laps in the rooftop pool while you catch up on some reading in the shade of the deck below. When you’re ready to hit the beach, the club at Korcula Hills is just 2 minutes from home.",
         "date": "Sun Dec 17 1995 03:24:00 GMT+0200"
     },
-    {
+    {   "id": "16",
+        "isFavorite": "false",
         "title":"Tiny place in Timisoara",
         "location":"Timisoara, Romania",
         "price":"879 lei",
