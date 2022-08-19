@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import CardsData from "../assets/data/dummy.json";
 
-const favoriteSlice = createSlice({
-  name: "favorite",
-  initialState: { isFavorite: false, listings: CardsData, favorites: [] },
+const filterSlice = createSlice({
+  name: "filter",
+  initialState: { listings: CardsData, favorites: [] },
   reducers: {
     toggle(state, action) {
       const favListingIndex = state.listings.findIndex(
@@ -33,6 +33,6 @@ const favoriteSlice = createSlice({
   },
 });
 
-export const favoriteActions = favoriteSlice.actions;
+export const favoriteActions = filterSlice.actions;
 
-export default favoriteSlice;
+export default filterSlice;

@@ -16,7 +16,7 @@ export default function CardRow({
   location,
   description,
   price,
-  image,
+  images,
 }) {
   const dispatch = useDispatch();
 
@@ -39,7 +39,7 @@ export default function CardRow({
         title,
         location,
         price,
-        image,
+        images,
       })
     );
     event.preventDefault();
@@ -48,17 +48,19 @@ export default function CardRow({
   return (
     <div className="content-wrapper-row">
       <Card sx={customStyles}>
-        <CardMedia
-          component="img"
-          sx={{
-            width: "251px",
-            height: "126px",
-            borderRadius: "12px",
-            marginLeft: "10px",
-          }}
-          image={image}
-          alt="Live from space album cover"
-        />
+        <div style={{ width: "251px", height: "126px" }}>
+          <CardMedia
+            component="img"
+            sx={{
+              width: "100%",
+              height: "100%",
+              borderRadius: "12px",
+              marginLeft: "10px",
+            }}
+            image={images}
+            alt="Live from space album cover"
+          />
+        </div>
         <CardContent sx={{ width: "100%" }}>
           <div className="title-row">
             <div className="title">{title}</div>
@@ -70,7 +72,7 @@ export default function CardRow({
             </div>
           </div>
 
-          <div className="location">{location}</div>
+          <div className="location">{description}</div>
 
           <div className="price">{price}</div>
         </CardContent>
