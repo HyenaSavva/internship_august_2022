@@ -85,7 +85,20 @@ export const options = [
       <>
         <section className="inputs">
           <div id="firstInput">
-            <CustomInput error={false} topLabel="Gender" sx={{}} />
+            <CustomInput
+              error={false}
+              topLabel="Gender"
+              sx={{}}
+              listName={"data"}
+              list={
+                <>
+                  <datalist id="data">
+                    <option value="Male" />
+                    <option value="Female" />
+                  </datalist>
+                </>
+              }
+            />
           </div>
         </section>
         <CustomButton sx={button}>Save</CustomButton>

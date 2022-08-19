@@ -21,8 +21,6 @@ const ProfileOptions = () => {
             childStyle={option.childStyle}
             disabled={isOpened}
             clickHandler={clickHandler}
-            // toggle={toggle}
-            // setToggle={setToggle}
             key={index}
           />
         );

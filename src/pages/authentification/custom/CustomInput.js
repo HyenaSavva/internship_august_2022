@@ -16,6 +16,8 @@ const CustomInput = ({
   setEmail,
   error,
   sx,
+  listName,
+  list,
 }) => {
   return (
     <>
@@ -30,7 +32,9 @@ const CustomInput = ({
         label={topLabel}
         placeholder={placeholder}
         type={type}
+        inputProps={{ list: `${listName}` }}
       />
+      {list}
       <InputLabel sx={BottomLabelStyle} error={error.emailError}>
         {error.emailError ? error.message : bottomLabel}
       </InputLabel>
