@@ -69,13 +69,13 @@ const Carousel = ({ category, data }) => {
                   location={card.location}
                   price={card.price}
                   description={card.description}
-                  image={card.image}
+                  images={card.images}
                 />
               </Link>
             </Grid>
           );
         })}
-        <Link to="/category" style={{ textDecoration: "none" }}>
+        <Link to={`/category/${category}`} style={{ textDecoration: "none" }}>
           <Card last={true} />
         </Link>
       </Slider>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
@@ -19,30 +19,24 @@ const MenuProps = {
 };
 
 const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
+  "Botosani",
+  "Botoșani",
+  "Timisoara",
+  "Suceava",
+  "Sydney",
+  "Romania",
 ];
 
-export default function FilterByLocation() {
-  const [personName, setPersonName] = React.useState([]);
+export default function FilterByLocation({ filterLocation }) {
+  const [locationName, setLocationName] = useState([]);
 
   const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    setLocationName(event.target.value);
   };
+
+  useEffect(() => {
+    filterLocation(locationName);
+  }, [locationName]);
 
   return (
     <div>
@@ -54,7 +48,7 @@ export default function FilterByLocation() {
           id="demo-multiple-checkbox"
           multiple
           displayEmpty
-          value={personName}
+          value={locationName}
           onChange={handleChange}
           InputLabelProps={{ shrink: false }}
           renderValue={(selected) => {
@@ -68,7 +62,7 @@ export default function FilterByLocation() {
         >
           {names.map((name) => (
             <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
+              <Checkbox checked={locationName.indexOf(name) > -1} />
               <ListItemText primary={name} />
             </MenuItem>
           ))}

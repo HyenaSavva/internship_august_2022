@@ -13,7 +13,7 @@ import FilterByLocation from "../filter/FilterByLocation";
 import FilterByPrice from "../filter/FilterByPrice";
 import OrderBy from "../filter/OrderBy";
 
-const TabsRow = () => {
+const TabsRow = ({ filterLocation, filterPrice, orderBy }) => {
   const dispatch = useDispatch();
 
   const toggleGridView = () => {
@@ -27,12 +27,12 @@ const TabsRow = () => {
     <div className="flex tabs">
       <div className="tabs--left">
         <p style={{ width: "70px" }}>Filter by:</p>
-        <FilterByLocation />
-        <FilterByPrice />
+        <FilterByLocation filterLocation={filterLocation} />
+        <FilterByPrice filterPrice={filterPrice} />
       </div>
       <div className="tabs--right flex">
         <p style={{ width: "80px" }}>Order by:</p>
-        <OrderBy />
+        <OrderBy orderBy={orderBy} />
         <div className="grid-buttons">
           <Stack direction="row" spacing={1}>
             <IconButton onClick={toggleGridView} aria-label="gridView">

@@ -7,6 +7,7 @@ import HomePage from "./pages/homePage/HomePage";
 import FavoritesPage from "pages/favoritesPage/FavoritesPage";
 import Login from "pages/authentification/Login/Login";
 import CategoryPage from "pages/categoryPage/CategoryPage";
+import SearchPage from "pages/searchPage/SearchPage";
 import CreateAccount from "pages/authentification/CreateAccount/CreateAccount";
 import ForgotPassword from "pages/authentification/ForgotPassword/ForgotPassword";
 import ResetPassword from "pages/authentification/ResetPassword/ResetPassword";
@@ -29,8 +30,9 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/login" element={<Login />} />
             <Route path="/create-account" element={<CreateAccount />} />
-            <Route path="/category" element={<CategoryPage />} />
+            <Route path="/category/:name" element={<CategoryPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/search-page" element={<SearchPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/listing-page" element={<ListingPage />} />
             <Route path="/*" element={<Navigate replace to="/" />} />

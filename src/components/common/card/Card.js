@@ -23,9 +23,10 @@ export default function Card(props) {
     boxShadow: "none",
     border: "1px solid #E4E7EC",
     textDecoration: "none",
+    display: "flex",
   };
 
-  let { id, isFavorite, last, title, location, price, image } = props;
+  let { id, isFavorite, last, title, location, price, images } = props;
 
   const toggleFav = (event) => {
     dispatch(
@@ -36,7 +37,7 @@ export default function Card(props) {
         title,
         location,
         price,
-        image,
+        images,
       })
     );
     event.preventDefault();
@@ -55,7 +56,7 @@ export default function Card(props) {
                 width="262.5px"
                 component="img"
                 height="162"
-                image={image}
+                image={images}
                 alt="green iguana"
               />
 
