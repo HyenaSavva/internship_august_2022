@@ -7,12 +7,52 @@ import { useSelector } from "react-redux";
 import Card from "components/common/card/Card";
 import CardRow from "components/common/card/CardRow";
 
+import usePagination from "hooks/usePagination";
 import CategoryPageStyles from "./CategoryPageStyles";
+import PaginationSquared from "components/pagination/Pagination";
 
-// !! IMPLEMENTAREA E DE LA FAVORITES PAGE => TREBUIE SCHIMBATA !!
-const CategoryPage = () => {
-  const favoriteListings = useSelector((state) => state.favorite.favorites);
+import { fetchListingsData } from "services/listingsFetch";
+import { filterLocation, filterPrice, orderBy } from "services/utils";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+import { filterByCategory } from "services/utils";
+
+const CategoryPage = (props) => {
   const isGridView = useSelector((state) => state.gridView.isGridView);
+
+  let params = useParams();
+  const [listings, setListings] = useState([]);
+
+  useEffect(() => {
+    // fetchListingsData returns a promise - we use ".then" to get the data from the promise
+    fetchListingsData().then((data) => setListings(data));
+  }, []);
+
+  const CardsData = useSelector((state) => state.favorite.listings);
+  const categData = filterByCategory(params.name, CardsData);
+
+  const [cards, setCards] = useState(listings);
+
+  const { currentPageData, pageCount, handlePageChange } = usePagination(cards);
+
+  // FILTER LOCATION
+  const handleFilterLocation = (locations) => {
+    let filteredArray = filterLocation(locations, listings);
+    setCards(filteredArray);
+  };
+
+  // FILTER PRICE
+  const handleFilterPrice = (price) => {
+    let filteredArray = filterPrice(price, cards, listings);
+    setCards(filteredArray);
+  };
+
+  // ORDER BY
+  const handleOrderBy = (sortOption) => {
+    let sortedBy = orderBy(sortOption, listings);
+    setCards(sortedBy);
+  };
 
   return (
     <div className="main">
@@ -21,15 +61,15 @@ const CategoryPage = () => {
       </Container>
 
       <Container sx={{ maxWidth: "lg" }}>
-        <TabsRow />
+        <TabsRow
+          filterLocation={handleFilterLocation}
+          filterPrice={handleFilterPrice}
+          orderBy={handleOrderBy}
+        />
 
         {isGridView && (
-          <Grid
-            container
-            spacing={{ xs: 2, md: 3 }}
-            columns={{ xs: 4, sm: 8, md: 12 }}
-          >
-            {favoriteListings.map((card, index) => {
+          <Grid container spacing={4} columns={{ xs: 4, sm: 8, md: 12 }}>
+            {currentPageData.map((card, index) => {
               return (
                 <Grid item xs={2} sm={3} md={3} key={index}>
                   <Card
@@ -39,8 +79,8 @@ const CategoryPage = () => {
                     title={card.title}
                     location={card.location}
                     price={card.price}
-                    description={card.description}
-                    image={card.image}
+                    description={card.shortDescription}
+                    images={card.images}
                   />
                 </Grid>
               );
@@ -48,12 +88,8 @@ const CategoryPage = () => {
           </Grid>
         )}
         {!isGridView && (
-          <Grid
-            container
-            spacing={{ xs: 2, md: 3 }}
-            columns={{ xs: 4, sm: 8, md: 12 }}
-          >
-            {favoriteListings.map((card, index) => {
+          <Grid container spacing={3} columns={{ xs: 4, sm: 8, md: 12 }}>
+            {currentPageData.map((card, index) => {
               return (
                 <Grid item xs={2} sm={3} md={12} key={index}>
                   <CardRow
@@ -63,13 +99,19 @@ const CategoryPage = () => {
                     title={card.title}
                     location={card.location}
                     price={card.price}
-                    description={card.description}
-                    image={card.image}
+                    description={card.shortDescription}
+                    images={card.images}
                   />
                 </Grid>
               );
             })}
           </Grid>
+        )}
+        {categData.length > 0 && (
+          <PaginationSquared
+            pageCount={pageCount}
+            handlePageChange={handlePageChange}
+          />
         )}
       </Container>
       <style jsx>{CategoryPageStyles}</style>

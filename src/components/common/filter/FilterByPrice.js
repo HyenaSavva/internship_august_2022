@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
@@ -22,33 +22,27 @@ const MenuProps = {
   },
 };
 
-const prices = [
-  <FormControlLabel value="all" control={<Radio />} label="All" />,
-  <FormControlLabel value="price1" control={<Radio />} label="0-10.000" />,
-  <FormControlLabel value="price2" control={<Radio />} label="10.000-50.000" />,
-  <FormControlLabel
-    value="price3"
-    control={<Radio />}
-    label="50.000 - 100.000"
-  />,
-  <FormControlLabel
-    value="price4"
-    control={<Radio />}
-    label="100.000 - 300.000"
-  />,
-  <FormControlLabel
-    value="price5"
-    control={<Radio />}
-    label="300.000 - 700.000"
-  />,
-  <FormControlLabel
-    value="price6"
-    control={<Radio />}
-    label="700.000 - 1.000.000"
-  />,
+const entries = [
+  { value: "all", label: "All" },
+  { value: "price1", label: "0-10.000" },
+  { value: "price2", label: "10.000-50.000" },
+  { value: "price3", label: "50.000 - 100.000" },
+  { value: "price4", label: "100.000 - 300.000" },
+  { value: "price5", label: "300.000 - 700.000" },
+  { value: "price6", label: "700.000 - 1.000.000" },
 ];
 
-export default function FilterByPrice() {
+export default function FilterByPrice({ filterPrice }) {
+  const [selectedPrice, setSelectedPrice] = useState("all");
+
+  const handlePrice = (event) => {
+    setSelectedPrice(event.target.value);
+  };
+
+  useEffect(() => {
+    filterPrice(selectedPrice);
+  }, [selectedPrice]);
+
   return (
     <div>
       <FormControl sx={{ m: 0, width: 150, mt: 0 }}>
@@ -59,15 +53,19 @@ export default function FilterByPrice() {
           sx={filterBy}
           style={{ width: "120px" }}
           displayEmpty
-          value=""
+          value={""}
           input={<OutlinedInput />}
           MenuProps={MenuProps}
           inputProps={{ "aria-label": "Without label" }}
         >
-          <RadioGroup>
-            {prices.map((price, index) => (
-              <MenuItem key={index} value={price}>
-                {price}
+          <RadioGroup onChange={handlePrice}>
+            {entries.map((entry, index) => (
+              <MenuItem key={index} value={entry}>
+                <FormControlLabel
+                  value={entry.value}
+                  control={<Radio checked={selectedPrice === entry.value} />}
+                  label={entry.label}
+                />
               </MenuItem>
             ))}
           </RadioGroup>

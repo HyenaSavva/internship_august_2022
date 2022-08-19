@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
@@ -22,27 +22,33 @@ const MenuProps = {
   },
 };
 
-const prices = [
-  <FormControlLabel value="all" control={<Radio />} label="Most popular" />,
-  <FormControlLabel
-    value="price1"
-    control={<Radio />}
-    label="Price: Low to High"
-  />,
-  <FormControlLabel
-    value="price2"
-    control={<Radio />}
-    label="Price: High to Low"
-  />,
-  <FormControlLabel value="price3" control={<Radio />} label="Featured" />,
+const entries = [
+  { value: "order1", label: "Most popular" },
+  { value: "order2", label: "Price: Low to High" },
+  { value: "order3", label: "Price: High to Low" },
+  { value: "order4", label: "Featured" },
 ];
 
-export default function OrderBy() {
+export default function OrderBy({ orderBy }) {
+  const [selectedOrder, setSelectedOrder] = useState("order1");
+  const [selectedLabel, setSelectedLabel] = useState("Most popular");
+
+  const handleOrder = (event) => {
+    setSelectedOrder(event.target.value);
+    setSelectedLabel(
+      entries.find((entry) => entry.value === event.target.value).label
+    );
+  };
+
+  useEffect(() => {
+    orderBy(selectedOrder);
+  }, [selectedOrder]);
+
   return (
     <div>
       <FormControl sx={{ m: 0, width: 150, mt: 0 }}>
         <InputLabel shrink={false}>
-          <strong>Most popular</strong>
+          <strong>{selectedLabel}</strong>
         </InputLabel>
         <Select
           defaultValue=""
@@ -53,10 +59,14 @@ export default function OrderBy() {
           MenuProps={MenuProps}
           inputProps={{ "aria-label": "Without label" }}
         >
-          <RadioGroup>
-            {prices.map((price, index) => (
-              <MenuItem key={index} value={price}>
-                {price}
+          <RadioGroup onChange={handleOrder}>
+            {entries.map((entry, index) => (
+              <MenuItem key={index} value={entry}>
+                <FormControlLabel
+                  value={entry.value}
+                  control={<Radio checked={selectedOrder === entry.value} />}
+                  label={entry.label}
+                />
               </MenuItem>
             ))}
           </RadioGroup>
