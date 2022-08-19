@@ -10,6 +10,7 @@ export const CustomButton = ({
   onClick,
   component,
   disabled,
+  type,
 }) => {
   return (
     <Button
@@ -19,6 +20,7 @@ export const CustomButton = ({
       onClick={onClick}
       component={component}
       disabled={disabled}
+      type={type}
     >
       {children}
     </Button>
