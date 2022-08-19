@@ -12,8 +12,12 @@ import PaginationSquared from "components/pagination/Pagination";
 import usePagination from "hooks/usePagination";
 import { useEffect, useState } from "react";
 
+import {
+  handleFilterLocation,
+  handleFilterPrice,
+  handleOrderBy,
+} from "services/utils";
 import { fetchListingsData } from "services/listingsFetch";
-import { filterLocation, filterPrice, orderBy } from "services/utils";
 
 const FavoritesPage = () => {
   const isGridView = useSelector((state) => state.gridView.isGridView);
@@ -23,29 +27,13 @@ const FavoritesPage = () => {
 
   useEffect(() => {
     // fetchListingsData returns a promise - we use ".then" to get the data from the promise
-    fetchListingsData().then((data) => setListings(data));
+    fetchListingsData().then((data) => {
+      setListings(data);
+      setCards(data);
+    });
   }, []);
 
-  let { currentPageData, pageCount, handlePageChange } =
-    usePagination(listings);
-
-  // FILTER LOCATION
-  const handleFilterLocation = (locations) => {
-    let filteredArray = filterLocation(locations, listings);
-    setCards(filteredArray);
-  };
-
-  // FILTER PRICE
-  const handleFilterPrice = (price) => {
-    let filteredArray = filterPrice(price, cards, listings);
-    setCards(filteredArray);
-  };
-
-  // ORDER BY
-  const handleOrderBy = (sortOption) => {
-    let sortedBy = orderBy(sortOption, listings);
-    setCards(sortedBy);
-  };
+  let { currentPageData, pageCount, handlePageChange } = usePagination(cards);
 
   return (
     <div className="main">
@@ -56,10 +44,15 @@ const FavoritesPage = () => {
       <Container sx={{ maxWidth: "lg" }}>
         <h1 className="main">Favourites</h1>
         <TabsRow
-          filterLocation={handleFilterLocation}
-          filterPrice={handleFilterPrice}
-          orderBy={handleOrderBy}
+          filterLocation={(sort) =>
+            setCards(handleFilterLocation(sort, listings))
+          }
+          filterPrice={(sort) => {
+            setCards(handleFilterPrice(sort, cards, listings));
+          }}
+          orderBy={(sort) => setCards(handleOrderBy(sort, listings))}
         />
+
         {isGridView && (
           <Grid container spacing={4} columns={{ xs: 4, sm: 8, md: 12 }}>
             {currentPageData.map((card, index) => {

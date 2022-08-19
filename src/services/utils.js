@@ -74,18 +74,18 @@ export const orderBy = (sortOption, cardListings) => {
     case "order1":
       sortedBy = [...cardListings].sort((objA, objB) => {
         return parseInt(objB.price) - parseInt(objA.price);
-        // Most Popular - TREBUIE MODIFICAT in functie de nr favorite de la postare
+        //FIXME: Most Popular - TREBUIE MODIFICAT in functie de nr favorite de la postare
       });
       break;
     case "order2":
       sortedBy = [...cardListings].sort((objA, objB) => {
-        return parseInt(objB.price) - parseInt(objA.price);
+        return parseInt(objA.price) - parseInt(objB.price);
         // Price: Low to High
       });
       break;
     case "order3":
       sortedBy = [...cardListings].sort((objA, objB) => {
-        return parseInt(objA.price) - parseInt(objB.price);
+        return parseInt(objB.price) - parseInt(objA.price);
         // Price: High to Low
       });
       break;
@@ -105,4 +105,19 @@ export const filterByCategory = (category, cardData) => {
   return cardData.filter((card) => {
     return card.category === category ? card : undefined;
   });
+};
+
+// FILTER LOCATION
+export const handleFilterLocation = (locations, listings) => {
+  return filterLocation(locations, listings);
+};
+
+// FILTER PRICE
+export const handleFilterPrice = (price, cards, listings) => {
+  return filterPrice(price, cards, listings);
+};
+
+// ORDER BY
+export const handleOrderBy = (sortOption, listings) => {
+  return orderBy(sortOption, listings);
 };

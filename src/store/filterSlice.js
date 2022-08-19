@@ -17,8 +17,8 @@ const filterSlice = createSlice({
         isFavorite: !favListing.isFavorite,
       };
 
-      // creez array-ul pentru favorites
-      // action.payload sunt datele care vin din dispatch()
+      // Create array for favorites
+      // action.payload - data coming from dispatch()
       const newListing = action.payload;
       const existingListing = state.favorites.find(
         (listing) => listing.id === newListing.id

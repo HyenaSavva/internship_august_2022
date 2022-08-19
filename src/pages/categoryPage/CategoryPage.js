@@ -12,7 +12,11 @@ import CategoryPageStyles from "./CategoryPageStyles";
 import PaginationSquared from "components/pagination/Pagination";
 
 import { fetchListingsData } from "services/listingsFetch";
-import { filterLocation, filterPrice, orderBy } from "services/utils";
+import {
+  handleFilterLocation,
+  handleFilterPrice,
+  handleOrderBy,
+} from "services/utils";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -23,36 +27,20 @@ const CategoryPage = (props) => {
 
   let params = useParams();
   const [listings, setListings] = useState([]);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     // fetchListingsData returns a promise - we use ".then" to get the data from the promise
-    fetchListingsData().then((data) => setListings(data));
+    fetchListingsData().then((data) => {
+      setListings(data);
+      setCards(data);
+    });
   }, []);
 
   const CardsData = useSelector((state) => state.favorite.listings);
   const categData = filterByCategory(params.name, CardsData);
 
-  const [cards, setCards] = useState(listings);
-
   const { currentPageData, pageCount, handlePageChange } = usePagination(cards);
-
-  // FILTER LOCATION
-  const handleFilterLocation = (locations) => {
-    let filteredArray = filterLocation(locations, listings);
-    setCards(filteredArray);
-  };
-
-  // FILTER PRICE
-  const handleFilterPrice = (price) => {
-    let filteredArray = filterPrice(price, cards, listings);
-    setCards(filteredArray);
-  };
-
-  // ORDER BY
-  const handleOrderBy = (sortOption) => {
-    let sortedBy = orderBy(sortOption, listings);
-    setCards(sortedBy);
-  };
 
   return (
     <div className="main">
@@ -62,9 +50,13 @@ const CategoryPage = (props) => {
 
       <Container sx={{ maxWidth: "lg" }}>
         <TabsRow
-          filterLocation={handleFilterLocation}
-          filterPrice={handleFilterPrice}
-          orderBy={handleOrderBy}
+          filterLocation={(sort) =>
+            setCards(handleFilterLocation(sort, listings))
+          }
+          filterPrice={(sort) => {
+            setCards(handleFilterPrice(sort, cards, listings));
+          }}
+          orderBy={(sort) => setCards(handleOrderBy(sort, listings))}
         />
 
         {isGridView && (
