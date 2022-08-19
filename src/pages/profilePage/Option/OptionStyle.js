@@ -2,33 +2,52 @@ import css from "styled-jsx/css";
 import { appTheme } from "themes/themes";
 
 export default css`
-  .title {
-    margin: 0 0 12px 0;
-    font-weight: 700;
-    font-size: 24px;
-    color: #1c1c1e;
+  .edit {
+    color: #0241ae;
+    font-weight: 600;
   }
+
+  .info {
+    position: absolute;
+    right: 518px;
+    top: 23px;
+    min-width: 50%;
+    width: 120px;
+  }
+
+  .info label {
+    cursor: pointer;
+  }
+
+  .summary {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  },
 `;
 
-export const Acordion = {
-  ".MuiPaper-root": {
-    height: "90px",
+export const optionStyle = {
+  "& .MuiButtonBase-root": {
+    width: "50px",
+    marginLeft: "90%",
   },
 };
 
-export const Component = {};
+export const button = {
+  margin: "0",
+  color: "#fff",
+  backgroundColor: appTheme.palette.primary.main,
+  "&:hover": {
+    backgroundColor: "rgb(2 60 162)",
+  },
+};
 
 export const summary = {
   height: "90px",
   width: "100%",
   padding: "0",
-  ".summary": {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
   "& p": {
     margin: 0,
     height: "20px",
@@ -39,17 +58,12 @@ export const summary = {
 };
 
 export const details = {
+  "& .MuiButtonBase-root": {
+    width: "117px",
+    height: "44px",
+    margin: "0",
+  },
   padding: "0",
   marginBottom: "20px",
   fontSize: "12px",
-};
-
-export const button = {
-  width: "117px",
-  height: "44px",
-  color: "#fff",
-  backgroundColor: appTheme.palette.primary.main,
-  "&:hover": {
-    backgroundColor: "rgb(2 60 162)",
-  },
 };

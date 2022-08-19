@@ -1,23 +1,42 @@
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import OptionStyle, { summary, details } from "./OptionStyle";
+import OptionStyle, { optionStyle, summary, details } from "./OptionStyle";
+import { useState } from "react";
 
-const Option = ({ children, sx, subTitle, optionName}) => {
+const Option = ({
+  children,
+  childStyle,
+  subTitle,
+  optionName,
+  disabled,
+  clickHandler,
+}) => {
+  const [isClosed, setIsClosed] = useState(true);
+
+  const buttonHandler = (event) => {
+    clickHandler(event);
+    setIsClosed((prev) => !prev);
+  };
+
   return (
     <>
-      <MuiAccordion disableGutters elevation={0} square sx={sx}>
-        <MuiAccordionSummary sx={summary}>
+      <MuiAccordion disableGutters elevation={0} square sx={optionStyle}>
+        <MuiAccordionSummary
+          sx={summary}
+          disabled={isClosed ? disabled : false}
+          onClick={buttonHandler}
+        >
+          <div className="info">
+            <label>{optionName}</label>
+            <p>{subTitle}</p>
+          </div>
           <div className="summary">
-            <div className="info">
-              <label>{optionName}</label>
-              <p>{subTitle}</p>
-            </div>
-            <div className="edit">Edit</div>
+            <div className="edit">{isClosed ? "Edit" : "Close"}</div>
           </div>
         </MuiAccordionSummary>
-        <MuiAccordionDetails sx={details}>
-          <label>{children}</label>
+        <MuiAccordionDetails sx={{ ...details, ...childStyle }}>
+          {children}
         </MuiAccordionDetails>
       </MuiAccordion>
       <style jsx>{OptionStyle}</style>

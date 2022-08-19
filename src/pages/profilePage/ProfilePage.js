@@ -12,9 +12,14 @@ import ProfileOptions from "./ProfileOptions/ProfileOptions";
 import useSwitch from "./useSwitch";
 import LoginAndSecurity from "./LoginAndSecurity/LoginAndSecurity";
 
+import { useState } from "react";
+
 // const user = {};
 const Profile = () => {
   const { switchHandler, isActive } = useSwitch();
+  const [imagePath, setImagePath] = useState();
+  let url;
+
   return (
     <div className="page">
       <div className="navigate">
@@ -26,11 +31,23 @@ const Profile = () => {
             <div className="avatar">
               <div className="editButton">
                 <label htmlFor="file"></label>
-                <input id="file" type={"file"} />
+                <input
+                  id="file"
+                  type={"file"}
+                  onLoad={(e) => {
+                    URL.revokeObjectURL(e.target.files[0]);
+                  }}
+                  onChange={(e) => {
+                    url = URL.createObjectURL(e.target.files[0]);
+                    setImagePath(url.slice(5, url.length));
+                    console.log(url.slice(5, url.length));
+                  }}
+                />
                 <EditOutlinedIcon sx={EditIcon} />
               </div>
-              <Avatar src="" sx={AvatarIcon} />
+              <Avatar src={imagePath} sx={AvatarIcon} />
             </div>
+
             <ul className="sideButtons" onClick={switchHandler}>
               <li className={isActive.profile ? "active" : ""}>
                 <div className="icon">
@@ -65,6 +82,7 @@ const Profile = () => {
             </ul>
           </div>
         </section>
+
         <section className="settingsMenu">
           <div className="settings">
             {isActive.profile ? <ProfileOptions /> : <></>}

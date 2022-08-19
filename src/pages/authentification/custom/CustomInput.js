@@ -15,13 +15,18 @@ const CustomInput = ({
   type,
   setEmail,
   error,
+  sx,
 }) => {
   return (
     <>
       <InputLabel sx={LabelStyle}>{topLabel}</InputLabel>
       <InputBase
         onChange={setEmail}
-        sx={error.emailError ? InputStyleError : InputStyle}
+        sx={
+          error.emailError
+            ? { ...InputStyleError, ...sx }
+            : { ...InputStyle, ...sx }
+        }
         label={topLabel}
         placeholder={placeholder}
         type={type}

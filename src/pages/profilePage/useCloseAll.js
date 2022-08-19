@@ -1,16 +1,17 @@
 import { useState } from "react";
 
-const useSwitch = () => {
-  const [isActive, setIsActive] = useState({});
+const useCloseAll = () => {
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const switchHandler = (event) => {
+    console.log(event)
     if (!event.target.lastChild || !event.target.lastChild.nodeValue) {
       console.log("null value");
       return;
     } else if (event.target.lastChild.nodeValue) {
       switch (event.target.lastChild.nodeValue) {
         case "Profile":
-          setIsActive({
+          setIsDisabled({
             profile: true,
             loginAndSecurity: false,
             notifications: false,
@@ -18,7 +19,7 @@ const useSwitch = () => {
           });
           break;
         case "Login & security":
-          setIsActive({
+          setIsDisabled({
             profile: false,
             loginAndSecurity: true,
             notifications: false,
@@ -26,7 +27,7 @@ const useSwitch = () => {
           });
           break;
         case "Notifications":
-          setIsActive({
+          setIsDisabled({
             profile: false,
             loginAndSecurity: false,
             notifications: true,
@@ -34,7 +35,7 @@ const useSwitch = () => {
           });
           break;
         case "Messages":
-          setIsActive({
+          setIsDisabled({
             profile: false,
             loginAndSecurity: false,
             notifications: false,
@@ -51,7 +52,7 @@ const useSwitch = () => {
     }
   };
 
-  return { switchHandler, isActive };
+  return { switchHandler, isDisabled };
 };
 
-export default useSwitch;
+export default useCloseAll;

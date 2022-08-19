@@ -1,7 +1,7 @@
 import Option from "../Option/Option";
 import CustomInput from "../../authentification/custom/CustomInput";
 import { CustomButton } from "../../../UI/button/CustomButton";
-import css, { Component, button } from "../Option/OptionStyle";
+import css, { optionStyle, button } from "../Option/OptionStyle";
 
 const LoginAndSecurity = () => {
   return (
@@ -21,7 +21,7 @@ const LoginAndSecurity = () => {
             <CustomButton sx={button}>Save</CustomButton>
           </>
         }
-        sx={Component}
+        sx={optionStyle}
         subTitle={"James Miler"}
         optionName={"Full Name"}
       />
@@ -36,7 +36,7 @@ const LoginAndSecurity = () => {
             <CustomButton sx={button}>Save</CustomButton>
           </>
         }
-        sx={Component}
+        sx={optionStyle}
         subTitle={"Male"}
         optionName={"Gender"}
       />
@@ -51,7 +51,7 @@ const LoginAndSecurity = () => {
             <CustomButton sx={button}>Save</CustomButton>
           </>
         }
-        sx={Component}
+        sx={optionStyle}
         subTitle={"05.05.2000"}
         optionName={"Date of birth"}
       />
@@ -66,7 +66,7 @@ const LoginAndSecurity = () => {
             <CustomButton sx={button}>Save</CustomButton>
           </>
         }
-        sx={Component}
+        sx={optionStyle}
         subTitle={"james.milner@example.com "}
         optionName={"Email address"}
       />

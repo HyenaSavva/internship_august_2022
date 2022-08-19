@@ -60,6 +60,7 @@ export default css`
 
   .editButton {
     background-color: #ffffff;
+    transition: background-color 0.3s;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);
     width: 32px;
     height: 32px;
@@ -71,6 +72,10 @@ export default css`
     right: 0;
     bottom: 0;
     z-index: 1;
+  }
+
+  .editButton:hover {
+    background-color: #eaeaea;
   }
 
   .editButton label {
@@ -131,19 +136,5 @@ export default css`
     font-weight: 700;
     font-size: 24px;
     color: #1c1c1e;
-  }
-
-  .inputs {
-    display: flex;
-    width: 100%;
-  }
-
-  .inputs div {
-    width: 100%;
-    font-size: 12px;
-  }
-
-  .inputs #firstInput {
-    margin-right: 30px;
   }
 `;
