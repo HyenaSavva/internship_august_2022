@@ -19,7 +19,7 @@ export const loginUser = async (email, password) => {
         password,
       }
     )
-    .then((data) => console.log("data", data))
+    .then((data) => data)
     .catch((error) => error);
 };
 

@@ -6,7 +6,7 @@ import logo from "../../../assets/logo-assist-tagline.svg";
 import { CustomButtonStyle } from "../custom/CustomStyles";
 import ForgotPasswordStyle from "./ForgotPasswordStyle";
 import useInputValidation from "hooks/useInputValidation";
-import { resetPassword } from "../services/api";
+import { resetPassword } from "../../../services/auth";
 
 const ForgotPassword = () => {
   const { email, setEmail, error, setError, isValid } = useInputValidation();

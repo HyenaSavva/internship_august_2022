@@ -9,7 +9,7 @@ import { CustomButtonStyle } from "../custom/CustomStyles";
 import CreateAccountStyle from "./CreateAccountStyle";
 import useInputValidation from "hooks/useInputValidation";
 
-import { createUser } from "../services/api";
+import { createUser } from "../../../services/auth";
 
 const CreateAccount = () => {
   const { email, password, setEmail, setPassword, error, setError, isValid } =
