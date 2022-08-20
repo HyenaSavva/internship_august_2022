@@ -9,10 +9,10 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import HeaderStyles from "./HeaderStyles";
 import { Link } from "react-router-dom";
 
-const MyProfileDropdown = () => {
+const MyProfileDropdownLogged = () => {
   return (
     <>
-      <div className="dd_menu">
+      <div className="dd_menu dd_menu_logged_height">
         <div className="dd_left">
           <ul>
             <li className="li-title" style={{ cursor: "default" }}>
@@ -67,4 +67,4 @@ const MyProfileDropdown = () => {
   );
 };
 
-export default MyProfileDropdown;
+export default MyProfileDropdownLogged;

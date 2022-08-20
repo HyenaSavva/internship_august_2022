@@ -7,6 +7,9 @@ import HomePageStyles from "./HomePageStyles";
 import { fetchListingsData } from "services/listingsFetch";
 import { useEffect, useState } from "react";
 
+import TabsUserListings from "components/common/tabs/TabsUserListings";
+import TabsAdminListings from "components/common/tabs/TamsAdminListings";
+
 const categories = {
   BIG_HOUSES: "Big Houses",
   SMALL_HOUSES: "Small Houses",
@@ -40,6 +43,8 @@ function HomePage() {
       <div className="container">
         <Container sx={{ maxWidth: "lg" }}>
           <h1 className="main">What are you interested in?</h1>
+          <TabsUserListings />
+          {/* <TabsAdminListings /> */}
           <Carousel category={"Latest"} data={sortedDate} />
           <Carousel
             category={categories.BIG_HOUSES}

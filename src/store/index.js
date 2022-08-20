@@ -5,6 +5,7 @@ import gridViewSlice from "./gridViewSlice";
 import profileDropdownSlice from "./profileDropdownSlice";
 import filterSlice from "./filterSlice";
 import searchSlice from "./searchSlice";
+import authSlice from "./authSlice";
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     profileDropdown: profileDropdownSlice.reducer,
     filter: filterSlice.reducer,
     search: searchSlice.reducer,
+    auth: authSlice.reducer,
   },
 });
 

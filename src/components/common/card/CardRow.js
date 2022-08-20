@@ -7,6 +7,7 @@ import CardStyle from "./CardStyle";
 import FavoriteBtn from "./favoriteButton/FavoriteBtn";
 import { useDispatch } from "react-redux";
 import { favoriteActions } from "store/favoriteSlice";
+import FooterButtonsCard from "./FooterButtonsCard";
 
 export default function CardRow({
   id,
@@ -72,11 +73,12 @@ export default function CardRow({
             </div>
           </div>
 
-          <div className="location">{description}</div>
+          <div className="description">{description}</div>
 
           <div className="price">{price}</div>
         </CardContent>
       </Card>
+      <FooterButtonsCard />
       <style jsx>{CardStyle}</style>
     </div>
   );

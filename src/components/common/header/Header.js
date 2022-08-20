@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Dropdown from "../../../UI/dropdown/Dropdown";
 import SearchBar from "../../../UI/searchBar/SearchBar";
-import MyProfileDropdown from "./MyProfileDropdown";
+import MyProfileDropdownLogged from "./MyProfileDropdownLogged";
+import MyProfileDropdownUnlogged from "./MyProfileDropdownUnlogged";
 
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -16,6 +17,8 @@ import logo from "../../../assets/images/logo-assist-tagline.png";
 import HeaderStyles from "./HeaderStyles";
 import { selectCategories } from "./HeaderStyles";
 import { profileDropdownActions } from "store/profileDropdownSlice";
+
+import { fetchUser } from "services/listingsFetch";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -33,6 +36,7 @@ const Header = () => {
         toggleDropdown();
       }
     };
+    fetchUser().then((data) => console.log(data));
     document.addEventListener("click", checkIfClickedOutside);
     return () => {
       document.removeEventListener("click", checkIfClickedOutside);
@@ -80,7 +84,8 @@ const Header = () => {
             </ul>
           </div>
           <div className="dropdown-profile">
-            {dropdownOpen && <MyProfileDropdown />}
+            {dropdownOpen && <MyProfileDropdownUnlogged />}
+            {/* {dropdownOpen && <MyProfileDropdownLogged />} */}
           </div>
         </div>
       </section>

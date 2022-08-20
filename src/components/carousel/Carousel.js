@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 import { Grid } from "@mui/material";
 
@@ -55,7 +56,15 @@ const Carousel = ({ category, data }) => {
   };
   return (
     <div className="carousel-category">
-      <h2> {category} </h2>
+      <div className="flex categ-everything">
+        <h2 className="categ-title"> {category} </h2>
+        <div className="btn-everything flex">
+          <p>See everything</p>
+          <p className="arrow-icon">
+            <ArrowForwardIcon />
+          </p>
+        </div>
+      </div>
       <Slider {...settings}>
         {data.map((card, index) => {
           return (

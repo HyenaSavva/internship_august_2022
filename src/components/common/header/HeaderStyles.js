@@ -111,7 +111,13 @@ export default css.global`
     border-radius: 15px;
     width: 100%;
     max-width: 252px;
+  }
+
+  .dd_menu_logged_height {
     height: 264px;
+  }
+  .dd_menu_unlogged_height {
+    height: 220px;
   }
 
   .navbar .dd_menu .dd_left {

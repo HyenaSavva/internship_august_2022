@@ -38,6 +38,20 @@ export default css`
     line-height: 20px;
     color: #667085;
   }
+  .description {
+    width: 799px;
+    height: 60px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+
+    display: flex;
+    align-items: center;
+
+    color: #667085;
+  }
   .price {
     width: 238.5px;
     height: 22px;
@@ -76,5 +90,15 @@ export default css`
   .location-fav {
     align-items: center;
     margin-left: 30px;
+  }
+
+  .flex {
+    display: flex;
+  }
+
+  .buttons {
+    align-items: right;
+    gap: 10px;
+    border-top: 1px solid #e4e7ec;
   }
 `;

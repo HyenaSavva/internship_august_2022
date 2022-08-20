@@ -12,6 +12,12 @@ export const filterBy = {
   },
 };
 
+export const hoverIcon = {
+  "&:hover": {
+    color: "#0356e8",
+  },
+};
+
 export default css`
   .flex {
     display: flex;
@@ -30,5 +36,26 @@ export default css`
   }
   .grid-buttons {
     margin-left: 40px;
+  }
+
+  .tabs--user {
+    gap: 28px;
+    color: #98a2b3;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e4e7ec;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    align-items: center;
+    text-align: center;
+    width: 1140px;
+    height: 48px;
+    left: 390px;
+    top: 196px;
+  }
+  .tab:hover {
+    color: #0241ae;
+    cursor: pointer;
+    border-bottom: 2px solid #0241ae;
   }
 `;
