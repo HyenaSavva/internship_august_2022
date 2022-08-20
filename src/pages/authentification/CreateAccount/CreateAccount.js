@@ -9,13 +9,19 @@ import { CustomButtonStyle } from "../custom/CustomStyles";
 import CreateAccountStyle from "./CreateAccountStyle";
 import useInputValidation from "hooks/useInputValidation";
 
+import { createUser } from "../../../services/auth";
+
 const CreateAccount = () => {
   const { email, password, setEmail, setPassword, error, setError, isValid } =
     useInputValidation();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setError(isValid(email, password));
+    const hasError = isValid(email, password);
+    setError(hasError);
+    if (!hasError.emailError && !hasError.passwordError) {
+      createUser(email, password).then((data) => console.log(data));
+    }
   };
 
   return (
