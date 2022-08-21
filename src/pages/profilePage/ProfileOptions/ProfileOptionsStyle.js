@@ -1,26 +1,4 @@
-import CustomInput from "../../authentification/custom/CustomInput";
-import { CustomButton } from "../../../UI/button/CustomButton";
-import { button } from "../Option/OptionStyle";
 import css from "styled-jsx/css";
-
-const user = {
-  Id: "1234567890",
-  FullName: "James Milner",
-  Email: "example@example.com",
-  Password: "1234567890",
-  Gender: "male", // enum type with male/female
-  Phone: "1234567890",
-  Role: "user", // enum type with admin and user
-  NotificationPreferences: [], //serialized json
-  Date_Of_Birth: "20.01.2001",
-  Address: "address@gmail.com",
-  Photo: "url for image",
-  UserActivities: "have no idea",
-  Token: "token JWS adkadaofaofafj",
-  CreatedAt: "16.08.2022",
-  UpdatedAt: "16.08.2022",
-  IsActive: true,
-};
 
 export default css`
   .title {
@@ -45,125 +23,18 @@ export default css`
   }
 `;
 
-export const options = [
-  {
-    optionName: "Full Name",
-    subTitle: user.FullName,
-    disabled: false,
-    children: (
-      <>
-        <section className="inputs">
-          <div id="firstInput">
-            <CustomInput error={false} topLabel="First Name" />
-          </div>
-          <div id="secondInput">
-            <CustomInput error={false} topLabel="Last Name" />
-          </div>
-        </section>
-        <CustomButton sx={button}>Save</CustomButton>
-      </>
-    ),
-    childStyle: {
-      ".inputs": {
-        display: "flex",
-        width: "100%",
-      },
-      ".inputs div": {
-        width: "100%",
-        fontSize: "12px",
-      },
-      ".inputs #firstInput": {
-        marginRight: "30px",
-      },
-    },
+export const childStyle = {
+  ".inputs": {
+    display: "flex",
+    width: "100%",
   },
-  {
-    optionName: "Gender",
-    subTitle: user.Gender,
-    disabled: false,
-    children: (
-      <>
-        <section className="inputs">
-          <div id="firstInput">
-            <CustomInput
-              error={false}
-              topLabel="Gender"
-              sx={{}}
-              listName={"data"}
-              list={
-                <>
-                  <datalist id="data">
-                    <option value="Male" />
-                    <option value="Female" />
-                  </datalist>
-                </>
-              }
-            />
-          </div>
-        </section>
-        <CustomButton sx={button}>Save</CustomButton>
-      </>
-    ),
-    childStyle: {},
+  ".inputs #firstInput": {
+    marginRight: "30px",
   },
-  {
-    optionName: "Date of birth",
-    subTitle: user.Date_Of_Birth,
-    disabled: false,
-    children: (
-      <>
-        <section className="inputs">
-          <div id="firstInput">
-            <CustomInput error={false} topLabel="First Name" />
-          </div>
-        </section>
-        <CustomButton sx={button}>Save</CustomButton>
-      </>
-    ),
+};
+
+export const firstInput = {
+  "#firstInput": {
+    width: "50%",
   },
-  {
-    optionName: "Email address",
-    subTitle: user.Email,
-    disabled: false,
-    children: (
-      <>
-        <section className="inputs">
-          <div id="firstInput">
-            <CustomInput error={false} topLabel="First Name" />
-          </div>
-        </section>
-        <CustomButton sx={button}>Save</CustomButton>
-      </>
-    ),
-  },
-  {
-    optionName: "Phone number",
-    subTitle: user.Phone,
-    disabled: false,
-    children: (
-      <>
-        <section className="inputs">
-          <div id="firstInput">
-            <CustomInput error={false} topLabel="First Name" />
-          </div>
-        </section>
-        <CustomButton sx={button}>Save</CustomButton>
-      </>
-    ),
-  },
-  {
-    optionName: "Address",
-    subTitle: user.Address,
-    disabled: false,
-    children: (
-      <>
-        <section className="inputs">
-          <div id="firstInput">
-            <CustomInput error={false} topLabel="First Name" />
-          </div>
-        </section>
-        <CustomButton sx={button}>Save</CustomButton>
-      </>
-    ),
-  },
-];
+};

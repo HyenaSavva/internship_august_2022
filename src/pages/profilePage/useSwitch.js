@@ -1,7 +1,12 @@
 import { useState } from "react";
 
 const useSwitch = () => {
-  const [isActive, setIsActive] = useState({});
+  const [isActive, setIsActive] = useState({
+    profile: true,
+    loginAndSecurity: false,
+    notifications: false,
+    messages: false,
+  });
 
   const switchHandler = (event) => {
     if (!event.target.lastChild || !event.target.lastChild.nodeValue) {

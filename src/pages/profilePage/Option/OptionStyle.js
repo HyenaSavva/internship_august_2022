@@ -54,6 +54,7 @@ export const summary = {
     fontSize: "14px",
     color: "#667085",
     fontWeight: "400",
+    width: "125%",
   },
 };
 

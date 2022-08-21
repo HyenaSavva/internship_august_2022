@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SecurityIcon from "@mui/icons-material/Security";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
@@ -12,13 +14,9 @@ import ProfileOptions from "./ProfileOptions/ProfileOptions";
 import useSwitch from "./useSwitch";
 import LoginAndSecurity from "./LoginAndSecurity/LoginAndSecurity";
 
-import { useState } from "react";
-
-// const user = {};
 const Profile = () => {
-  const { switchHandler, isActive } = useSwitch();
+  const { isActive, switchHandler } = useSwitch();
   const [imagePath, setImagePath] = useState();
-  let url;
 
   return (
     <div className="page">
@@ -34,13 +32,12 @@ const Profile = () => {
                 <input
                   id="file"
                   type={"file"}
-                  onLoad={(e) => {
-                    URL.revokeObjectURL(e.target.files[0]);
-                  }}
                   onChange={(e) => {
-                    url = URL.createObjectURL(e.target.files[0]);
-                    setImagePath(url.slice(5, url.length));
-                    console.log(url.slice(5, url.length));
+                    const reader = new FileReader();
+                    reader.readAsDataURL(e.target.files[0]);
+                    reader.onload = () => {
+                      setImagePath(reader.result);
+                    };
                   }}
                 />
                 <EditOutlinedIcon sx={EditIcon} />
