@@ -76,7 +76,7 @@ export const CustomImageList = ({ sx, images, isModal, from }) => {
                   key={`${item.img}-${index}`}
                   cols={item.cols || 2}
                   rows={item.rows || 1}
-                  style={{ height: index === 0 ? "auto" : "200px" }}
+                  style={{ height: index === 0 ? "430px" : "200px" }}
                 >
                   <img src={`${item.img}`} alt={item.title} loading="lazy" />
                 </ImageListItem>

@@ -17,13 +17,14 @@ export default css.global`
     flex-direction: column;
   }
 
-  .preview-page__description {
-    word-wrap: break-word;
-  }
-
   .preview-page__middle-details {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+  }
+
+  .preview-page__description {
+    word-wrap: break-word;
   }
 
   .preview-page__footer {
@@ -79,17 +80,15 @@ export default css.global`
     }
 
     .preview-page__middle-details {
-      width: 59%;
+      margin: 16px auto;
     }
 
-    .preview-page__description {
-      margin-left: 390px;
-      margin-right: 120px;
+    .preview-page__seller {
+      margin-right: 0px;
     }
 
     .preview-page__location {
       margin-top: 40px;
-      margin-left: 390px;
     }
   }
 `;
