@@ -9,6 +9,7 @@ import { Seller } from "components/seller/Seller";
 import { Location } from "components/location/Location";
 import { ListingMessage } from "components/listingMessage/ListingMessage";
 import { ShareButton } from "UI/button/ShareButton";
+import { itemData } from "mockData/photoGalleryData";
 
 import ListingPageStyle, {
   shareBtn,
@@ -17,12 +18,13 @@ import ListingPageStyle, {
   purchaseBtn,
   favoriteBtn,
 } from "./ListingPageStyle";
+import { primaryBtn } from "UI/button/CustomButtonStyle";
 
 export const ListingPage = () => {
   return (
     <>
       <div className="listing-page">
-        <PhotoGalery />
+        <PhotoGalery from="listing-page" images={itemData} />
 
         <div className="listing-page__top-details">
           <div className="listing-page__title-price">
@@ -45,7 +47,10 @@ export const ListingPage = () => {
             <Seller className="listing-page__seller" />
 
             <div className="listing-page__btns">
-              <CustomButton variant="contained" sx={purchaseBtn}>
+              <CustomButton
+                variant="contained"
+                sx={{ ...primaryBtn, ...purchaseBtn }}
+              >
                 Purchase
               </CustomButton>
 

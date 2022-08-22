@@ -16,7 +16,13 @@ export default css`
 	.content--container {
 		width: 70%;
 	}
+	.container {
+		position: relative;
+	}
 	.main {
 		margin-top: 120px;
+	}
+	.main h1 {
+		margin-bottom: 26px;
 	}
 `;

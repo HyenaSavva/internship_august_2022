@@ -1,38 +1,65 @@
 import { useState } from "react";
-import { Alert, Collapse, IconButton } from "@mui/material";
+import {
+  Dialog,
+  IconButton,
+  DialogActions,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-import AddPhotoStyle from "./AddPhotoStyle";
+import AddPhotoStyle, { closeBtn, dialog } from "./AddPhotoStyle";
 
-export const AddPohoto = ({ file, visible, error }) => {
+export const AddPohoto = ({ file, removePhoto, error, removeError }) => {
   const [open, setOpen] = useState(true);
 
   return (
     <>
       {error ? (
-        <Collapse sx={{ width: "100%", zIndex: "100" }} spacing={2} in={open}>
-          <Alert
-            severity="error"
-            action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={() => {
-                  visible(false);
-                  setOpen(false);
-                }}
-              >
-                <CloseIcon fontSize="inherit" />
-              </IconButton>
-            }
-          >
-            {error}
-          </Alert>
-        </Collapse>
+        <Dialog
+          sx={dialog}
+          open={open}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogActions>
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => {
+                setOpen(false);
+                removePhoto();
+                removeError();
+              }}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          </DialogActions>
+
+          <DialogTitle id="alert-dialog-title">Error</DialogTitle>
+
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              {error}
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
       ) : (
-        <div>
+        <div className="add-photo__image">
           <img alt="photo" src={file} className="add-photo" />
+          <IconButton
+            aria-label="close"
+            color="inherit"
+            size="small"
+            sx={closeBtn}
+            onClick={() => {
+              removePhoto();
+            }}
+          >
+            <CloseIcon fontSize="inherit" />
+          </IconButton>
         </div>
       )}
 

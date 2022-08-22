@@ -17,7 +17,6 @@ export const AddContactInfo = ({ locationValue, ...rest }) => {
           <TextInput
             label="Location"
             name="location"
-            placeholder=""
             type="text"
             wrapper="add-contact-info__location"
             value={locationValue}
@@ -27,8 +26,7 @@ export const AddContactInfo = ({ locationValue, ...rest }) => {
 
           <TextInput
             label="Phone number"
-            name="phoneNumber"
-            placeholder=""
+            name="phone"
             type="text"
             wrapper="add-contact-info__phone"
             value={rest.phoneValue}

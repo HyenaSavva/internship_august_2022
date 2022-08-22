@@ -1,15 +1,20 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import React from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 
 import { ListingPage } from "pages/listingPage/ListingPage";
 import HomePage from "./pages/homePage/HomePage";
-import CreateAccount from "pages/authentification/CreateAccount/CreateAccount";
+import FavoritesPage from "pages/favoritesPage/FavoritesPage";
 import Login from "pages/authentification/Login/Login";
+import CategoryPage from "pages/categoryPage/CategoryPage";
+import SearchPage from "pages/searchPage/SearchPage";
+import CreateAccount from "pages/authentification/CreateAccount/CreateAccount";
 import ForgotPassword from "pages/authentification/ForgotPassword/ForgotPassword";
 import ResetPassword from "pages/authentification/ResetPassword/ResetPassword";
-
-import { appTheme } from "themes/themes";
 import { AddPage } from "pages/addPage/AddPage";
+import { PreviewPage } from "pages/previewPage/PreviewPage";
+import { appTheme } from "themes/themes";
+import { EditPage } from "pages/editPage/EditPage";
 
 const _JSXStyle = require("styled-jsx/style").default;
 if (typeof global !== "undefined") {
@@ -27,9 +32,14 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/login" element={<Login />} />
             <Route path="/create-account" element={<CreateAccount />} />
+            <Route path="/category/:name" element={<CategoryPage />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/search-page" element={<SearchPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/listing-page" element={<ListingPage />} />
             <Route path="/add-new" element={<AddPage />} />
+            <Route path="/preview" element={<PreviewPage />} />
+            <Route path="/edit" element={<EditPage />} />
             <Route path="/*" element={<Navigate replace to="/" />} />
           </Routes>
         </BrowserRouter>

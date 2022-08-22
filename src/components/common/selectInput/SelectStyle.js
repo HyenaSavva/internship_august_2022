@@ -2,13 +2,27 @@ import css from "styled-jsx/css";
 
 export default css`
   .select {
-    border-radius: 8px;
-    border: 1px solid #d0d5dd;
+    display: block;
     color: #d0d5dd;
+    padding: 0.6em 1.4em 0.5em 0.8em;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
   }
 
-  .select__option {
-    color: #1c1c1e !important;
+  .select::selection {
+    color: #000;
+  }
+
+  .select:active {
+    color: #000;
+  }
+
+  .select option:checked {
+    color: #000;
   }
 
   .select-error {

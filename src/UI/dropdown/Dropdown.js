@@ -3,30 +3,23 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import { customSelect } from "./DropdownStyles";
-
-export default function Dropdown() {
-  const [age, setAge] = React.useState("");
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
+export default function Dropdown({ sx, items }) {
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
         <Select
-          sx={customSelect}
-          value={age}
-          onChange={handleChange}
+          sx={sx}
           displayEmpty
           inputProps={{ "aria-label": "Without label" }}
         >
-          <MenuItem value="">Category</MenuItem>
-          <MenuItem value={"Big Houses"}>Big Houses</MenuItem>
-          <MenuItem value={"Small Houses"}>Small Houses</MenuItem>
-          <MenuItem value={"Offices"}>Offices</MenuItem>
-          <MenuItem value={"Apartments"}>Apartments</MenuItem>
+          {items.map((item, index) => {
+            return (
+              <MenuItem key={index}>
+                {item.icon}
+                {item.label}
+              </MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
     </div>

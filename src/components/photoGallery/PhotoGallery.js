@@ -1,7 +1,6 @@
 import { useState } from "react";
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded";
 
-import { itemData } from "mockData/photoGalleryData";
 import { CustomButton } from "UI/button/CustomButton";
 import { Modal } from "components/common/modal/Modal";
 import { CustomImageList } from "components/imageList/CustomImageList";
@@ -10,8 +9,9 @@ import PhotoGalleryStyle, {
   imageListStyles,
   showBtn,
 } from "./PhotoGalleryStyle";
+import { defaultBtn } from "UI/button/CustomButtonStyle";
 
-export default function PhotoGalery() {
+export default function PhotoGalery({ from, images }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -20,17 +20,25 @@ export default function PhotoGalery() {
 
   return (
     <div className="photo-gallery">
-      <CustomImageList sx={{ ...imageListStyles }} images={itemData} />
+      {images && (
+        <CustomImageList
+          sx={{ ...imageListStyles }}
+          images={images}
+          from={from}
+        />
+      )}
 
-      <CustomButton
-        variant="outlined"
-        startIcon={<AppsRoundedIcon />}
-        sx={showBtn}
-        onClick={handleClick}
-        isModal={false}
-      >
-        Show all photos
-      </CustomButton>
+      {from === "listing-page" ? (
+        <CustomButton
+          variant="outlined"
+          startIcon={<AppsRoundedIcon />}
+          sx={{ ...defaultBtn, ...showBtn }}
+          onClick={handleClick}
+          isModal={false}
+        >
+          Show all photos
+        </CustomButton>
+      ) : null}
 
       {isOpen && (
         <Modal

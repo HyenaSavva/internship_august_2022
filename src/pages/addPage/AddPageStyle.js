@@ -88,7 +88,6 @@ export default css`
 
 export const addTitle = {
   fontWeight: "700",
-
   [appTheme.breakpoints.only("mobile")]: {},
   [appTheme.breakpoints.only("tablet")]: {},
   [appTheme.breakpoints.only("laptop")]: {},

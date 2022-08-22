@@ -21,6 +21,7 @@ export const Textarea = ({ label, name, value, error, onChange }) => {
       <textarea
         className={error ? "textarea textarea-error" : "textarea"}
         name={name}
+        value={value}
         onChange={onChange}
       />
 

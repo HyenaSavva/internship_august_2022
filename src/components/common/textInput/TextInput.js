@@ -10,9 +10,7 @@ export const TextInput = ({
   onChange,
   error,
   inputstyle,
-  touched,
 }) => {
-  // console.log("touched-input text", touched);
   return (
     <>
       <div className={`text-input__wrapper ${wrapper}`}>

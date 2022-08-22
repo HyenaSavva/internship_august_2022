@@ -1,7 +1,7 @@
 import { Textarea } from "components/common/textarea/Textarea";
 import { Text } from "UI/text/Text";
 
-import AddDescriptionStyle, { helperText } from "./AddDescriptionStyle";
+import AddDescriptionStyle from "./AddDescriptionStyle";
 
 export const AddDescription = ({ onChange, value, error }) => {
   return (
