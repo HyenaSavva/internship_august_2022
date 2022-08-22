@@ -18,6 +18,8 @@ const TabsRow = ({ filterLocation, filterPrice, orderBy }) => {
   const isGridView = useSelector((state) => state.gridView.isGridView);
   const dispatch = useDispatch();
 
+  const { user } = useSelector((state) => state.user);
+
   const toggleGridView = () => {
     dispatch(gridViewActions.toggleGridView());
   };
@@ -35,24 +37,26 @@ const TabsRow = ({ filterLocation, filterPrice, orderBy }) => {
       <div className="tabs--right flex">
         <p style={{ width: "80px" }}>Order by:</p>
         <OrderBy orderBy={orderBy} />
-        <div className="grid-buttons">
-          <Stack direction="row" spacing={1}>
-            <IconButton
-              onClick={toggleGridView}
-              aria-label="gridView"
-              sx={hoverIcon}
-            >
-              <GridViewIcon sx={isGridView ? { color: "#0356e8" } : {}} />
-            </IconButton>
-            <IconButton
-              onClick={toggleRowView}
-              aria-label="rowView"
-              sx={hoverIcon}
-            >
-              <TableRowsIcon sx={!isGridView ? { color: "#0356e8" } : {}} />
-            </IconButton>
-          </Stack>
-        </div>
+        {user.Role !== "Admin" && (
+          <div className="grid-buttons">
+            <Stack direction="row" spacing={1}>
+              <IconButton
+                onClick={toggleGridView}
+                aria-label="gridView"
+                sx={hoverIcon}
+              >
+                <GridViewIcon sx={isGridView ? { color: "#0356e8" } : {}} />
+              </IconButton>
+              <IconButton
+                onClick={toggleRowView}
+                aria-label="rowView"
+                sx={hoverIcon}
+              >
+                <TableRowsIcon sx={!isGridView ? { color: "#0356e8" } : {}} />
+              </IconButton>
+            </Stack>
+          </div>
+        )}
       </div>
       <style jsx>{TabsRowStyles}</style>
     </div>

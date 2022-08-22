@@ -9,13 +9,13 @@ import InputAdornment from "@mui/material/InputAdornment";
 import SearchBarStyles from "./SearchBarStyles";
 import { customSearch } from "./SearchBarStyles";
 
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { searchActions } from "store/searchSlice";
 import { fetchListingsData } from "services/listingsFetch";
 
 const SearchBar = ({ placeholder }) => {
   const [listings, setListings] = useState([]);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     // fetchListingsData returns a promise - we use ".then" to get the data from the promise
@@ -25,19 +25,14 @@ const SearchBar = ({ placeholder }) => {
   }, []);
 
   let navigate = useNavigate();
-
   const dispatch = useDispatch();
 
-  const CardsData = useSelector((state) => state.favorite.listings);
-
-  const [query, setQuery] = useState("");
-
-  const keys = ["title", "location", "description"];
+  const keys = ["title", "location", "shortDescription"];
 
   const search = () => {
     dispatch(
       searchActions.search({
-        data: CardsData,
+        data: listings,
         keys,
         query,
       })

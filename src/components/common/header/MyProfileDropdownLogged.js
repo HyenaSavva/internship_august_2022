@@ -7,9 +7,15 @@ import SecurityIcon from "@mui/icons-material/Security";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 import HeaderStyles from "./HeaderStyles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MyProfileDropdownLogged = () => {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    navigate("/login");
+  };
+
   return (
     <>
       <div className="dd_menu dd_menu_logged_height">
@@ -52,12 +58,10 @@ const MyProfileDropdownLogged = () => {
             </li>
             <hr />
             <li>
-              <Link to="/" style={{ textDecoration: "none" }}>
-                <div className="li-dropdown">
-                  <LogoutIcon sx={{ color: "#596274" }} />
-                  <div className="li-text">Logout</div>
-                </div>
-              </Link>
+              <div className="li-dropdown" onClick={logout}>
+                <LogoutIcon sx={{ color: "#596274" }} />
+                <div className="li-text">Logout</div>
+              </div>
             </li>
           </ul>
         </div>

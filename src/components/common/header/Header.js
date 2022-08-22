@@ -10,7 +10,7 @@ import MyProfileDropdownUnlogged from "./MyProfileDropdownUnlogged";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
+import Avatar from "@mui/material/Avatar";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import logo from "../../../assets/images/logo-assist-tagline.png";
@@ -23,6 +23,8 @@ import { fetchUser } from "services/listingsFetch";
 const Header = () => {
   const dispatch = useDispatch();
   const dropdownOpen = useSelector((state) => state.profileDropdown.isOpen);
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.user);
 
   const ref = useRef();
 
@@ -36,7 +38,6 @@ const Header = () => {
         toggleDropdown();
       }
     };
-    fetchUser().then((data) => console.log(data));
     document.addEventListener("click", checkIfClickedOutside);
     return () => {
       document.removeEventListener("click", checkIfClickedOutside);
@@ -67,7 +68,10 @@ const Header = () => {
       </section>
       <section className="header--right">
         <div>
-          <NavLink to="/favorites" className="header--icon">
+          <NavLink
+            to={isLoggedIn ? "/favorites" : "/login"}
+            className="header--icon"
+          >
             <FavoriteBorderIcon />
             <p> Favourites </p>
           </NavLink>
@@ -76,16 +80,27 @@ const Header = () => {
           <div>
             <ul>
               <li onClick={toggleDropdown} className="flex profile-icon">
-                <PersonOutlineIcon sx={{ marginRight: "7px" }} />
-                My account
+                {!isLoggedIn && (
+                  <div className="flex profile-name">
+                    <PersonOutlineIcon sx={{ marginRight: "7px" }} />
+                    My account
+                  </div>
+                )}
+                {isLoggedIn && (
+                  <div className="flex profile-name">
+                    <Avatar sx={{ marginRight: "7px" }} />
+                    {/* //FIXME: take the name of the user */}
+                    {user.Email.slice(0, 5)}
+                  </div>
+                )}
                 {!dropdownOpen && <KeyboardArrowDownIcon />}
                 {dropdownOpen && <KeyboardArrowUpIcon />}
               </li>
             </ul>
           </div>
           <div className="dropdown-profile">
-            {dropdownOpen && <MyProfileDropdownUnlogged />}
-            {/* {dropdownOpen && <MyProfileDropdownLogged />} */}
+            {!isLoggedIn && dropdownOpen && <MyProfileDropdownUnlogged />}
+            {isLoggedIn && dropdownOpen && <MyProfileDropdownLogged />}
           </div>
         </div>
       </section>

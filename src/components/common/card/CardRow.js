@@ -1,13 +1,12 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 
 import CardStyle from "./CardStyle";
 import FavoriteBtn from "./favoriteButton/FavoriteBtn";
-import { useDispatch } from "react-redux";
-import { favoriteActions } from "store/favoriteSlice";
-import FooterButtonsCard from "./FooterButtonsCard";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CardRow({
   id,
@@ -19,7 +18,16 @@ export default function CardRow({
   price,
   images,
 }) {
-  const dispatch = useDispatch();
+  const [favorite, setFavorite] = useState(isFavorite);
+
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
+
+  const unlogged = (event) => {
+    navigate("/login");
+    event.preventDefault();
+  };
 
   const customStyles = {
     display: "flex",
@@ -32,53 +40,51 @@ export default function CardRow({
   };
 
   const toggleFav = (event) => {
-    dispatch(
-      favoriteActions.toggle({
-        id,
-        isFavorite,
-        last,
-        title,
-        location,
-        price,
-        images,
-      })
-    );
+    setFavorite(!favorite);
     event.preventDefault();
   };
 
   return (
     <div className="content-wrapper-row">
-      <Card sx={customStyles}>
-        <div style={{ width: "251px", height: "126px" }}>
-          <CardMedia
-            component="img"
-            sx={{
-              width: "100%",
-              height: "100%",
-              borderRadius: "12px",
-              marginLeft: "10px",
-            }}
-            image={images}
-            alt="Live from space album cover"
-          />
-        </div>
-        <CardContent sx={{ width: "100%" }}>
-          <div className="title-row">
-            <div className="title">{title}</div>
-            <div className="location-fav">
-              <div className="location location-row">{location}</div>
-              <div className="fav-btn" onClick={toggleFav}>
-                <FavoriteBtn isFavorite={isFavorite} />
+      <Link to="/listing-page" style={{ textDecoration: "none" }}>
+        <Card sx={customStyles}>
+          <div style={{ width: "251px", height: "126px" }}>
+            <CardMedia
+              component="img"
+              sx={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "12px",
+                marginLeft: "10px",
+              }}
+              src={`${images[0]}, ${images[1]}`}
+              alt="Live from space album cover"
+            />
+          </div>
+          <CardContent sx={{ width: "100%" }}>
+            <div className="title-row">
+              <div className="title">{title}</div>
+              <div className="location-fav">
+                <div className="location location-row">{location}</div>
+                <div
+                  className="fav-btn"
+                  onClick={isLoggedIn ? toggleFav : unlogged}
+                >
+                  <FavoriteBtn isFavorite={favorite} />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="description">{description}</div>
+            <div className="description">
+              {description && description.length > 200
+                ? description.substring(0, 300) + `....(Click to show more)`
+                : description}
+            </div>
 
-          <div className="price">{price}</div>
-        </CardContent>
-      </Card>
-      <FooterButtonsCard />
+            <div className="price">{price}</div>
+          </CardContent>
+        </Card>
+      </Link>
       <style jsx>{CardStyle}</style>
     </div>
   );

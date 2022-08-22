@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import CardsData from "../assets/data/dummy.json";
 
 const searchSlice = createSlice({
   name: "search",
-  initialState: { searchData: CardsData, searchInput: "" },
+  initialState: { searchData: [], searchInput: "" },
   reducers: {
     search(state, action) {
       const resultData = action.payload.data.filter((card) =>

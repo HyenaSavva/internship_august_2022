@@ -6,6 +6,7 @@ import profileDropdownSlice from "./profileDropdownSlice";
 import filterSlice from "./filterSlice";
 import searchSlice from "./searchSlice";
 import authSlice from "./authSlice";
+import userSlice from "./userSlice";
 
 const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
     filter: filterSlice.reducer,
     search: searchSlice.reducer,
     auth: authSlice.reducer,
+    user: userSlice.reducer,
   },
 });
 

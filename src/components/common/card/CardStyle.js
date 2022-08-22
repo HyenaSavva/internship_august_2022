@@ -73,6 +73,9 @@ export default css`
   .content-wrapper-grid {
     position: relative;
   }
+  .card-row-content {
+    gap: 30px;
+  }
   .content-wrapper-row {
     position: relative;
     width: 1168px;
@@ -96,9 +99,17 @@ export default css`
     display: flex;
   }
 
-  .buttons {
-    align-items: right;
-    gap: 10px;
+  .footer {
+    font-size: 14px;
     border-top: 1px solid #e4e7ec;
+  }
+
+  .right {
+  }
+  .buttons {
+    gap: 10px;
+    margin-top: 1.5%;
+    margin-left: 80%;
+    margin-right: 0px;
   }
 `;

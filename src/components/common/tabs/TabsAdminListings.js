@@ -2,10 +2,10 @@ import React from "react";
 
 import TabsRowStyles from "./TabsRowStyles";
 
-const TabsUserListings = ({
+const TabsAdminListings = ({
   tabAllListings,
   handleAllListings,
-  handleMyListings,
+  handlePendingListings,
 }) => {
   return (
     <div className="flex tabs--user">
@@ -17,13 +17,13 @@ const TabsUserListings = ({
       </div>
       <div
         className={!tabAllListings ? "tab tab-active" : "tab"}
-        onClick={handleMyListings}
+        onClick={handlePendingListings}
       >
-        My listings
+        Pending approval
       </div>
       <style jsx>{TabsRowStyles}</style>
     </div>
   );
 };
 
-export default TabsUserListings;
+export default TabsAdminListings;

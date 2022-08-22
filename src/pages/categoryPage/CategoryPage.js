@@ -28,6 +28,7 @@ const CategoryPage = (props) => {
   let params = useParams();
   const [listings, setListings] = useState([]);
   const [cards, setCards] = useState([]);
+  const [prevCards, setPrevCards] = useState([]);
 
   useEffect(() => {
     // fetchListingsData returns a promise - we use ".then" to get the data from the promise
@@ -36,9 +37,19 @@ const CategoryPage = (props) => {
       setCards(data);
     });
   }, []);
-
-  const CardsData = useSelector((state) => state.favorite.listings);
-  const categData = filterByCategory(params.name, CardsData);
+  /**
+   * Cum lucreaza filtrul?
+   * 1. Daca nu am selectat nimic, imi revine la array-ul principal, care este:
+   *  - cel de categorie pentru Category page
+   *  - cel de favorite pentru Favorites page
+   *  - cel de searchData pentru Search page
+   *
+   * 2. Dupa ce selectez un filtru, si vreau sa selectez si urmatorul vreau:
+   *  - sa mi se faca filtrarea pe array-ul deja filtrat, nu sa mi se distorsioneze datele si sa o ia de la capat
+   * Cum fac asta?
+   * - la apelul functiei de filtrare, trimit array-ul actual, nu cel initial
+   */
+  const categData = filterByCategory(params.name, listings);
 
   const { currentPageData, pageCount, handlePageChange } = usePagination(cards);
 
@@ -50,13 +61,15 @@ const CategoryPage = (props) => {
 
       <Container sx={{ maxWidth: "lg" }}>
         <TabsRow
-          filterLocation={(sort) =>
-            setCards(handleFilterLocation(sort, listings))
-          }
-          filterPrice={(sort) => {
-            setCards(handleFilterPrice(sort, cards, listings));
+          filterLocation={(sort) => {
+            setPrevCards(cards);
+            setCards(handleFilterLocation(sort, listings, prevCards));
           }}
-          orderBy={(sort) => setCards(handleOrderBy(sort, listings))}
+          filterPrice={(sort) => {
+            setPrevCards(cards);
+            setCards(handleFilterPrice(sort, cards, prevCards));
+          }}
+          orderBy={(sort) => setCards(handleOrderBy(sort, cards))}
         />
 
         {isGridView && (
@@ -99,7 +112,7 @@ const CategoryPage = (props) => {
             })}
           </Grid>
         )}
-        {categData.length > 0 && (
+        {cards.length > 0 && (
           <PaginationSquared
             pageCount={pageCount}
             handlePageChange={handlePageChange}

@@ -53,9 +53,18 @@ export default css`
     left: 390px;
     top: 196px;
   }
+  .tab-active {
+    color: #0241ae;
+    cursor: pointer;
+    border-bottom: 2px solid #0241ae;
+    padding-top: 12px;
+    padding-bottom: 10px;
+  }
   .tab:hover {
     color: #0241ae;
     cursor: pointer;
     border-bottom: 2px solid #0241ae;
+    padding-top: 12px;
+    padding-bottom: 10px;
   }
 `;

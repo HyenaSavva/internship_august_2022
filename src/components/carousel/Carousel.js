@@ -50,19 +50,71 @@ const Carousel = ({ category, data }) => {
     infinite: false,
     speed: 400,
     slidesToShow: 4,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     prevArrow: <PreviousBtn />,
     nextArrow: <NextBtn />,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          infinite: false,
+          dots: false,
+          mobileFirst: true,
+        },
+      },
+      {
+        breakpoint: 1023,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          infinite: false,
+          dots: false,
+          mobileFirst: true,
+        },
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          mobileFirst: true,
+        },
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          mobileFirst: true,
+        },
+      },
+    ],
   };
+
   return (
     <div className="carousel-category">
       <div className="flex categ-everything">
         <h2 className="categ-title"> {category} </h2>
-        <div className="btn-everything flex">
-          <p>See everything</p>
-          <p className="arrow-icon">
-            <ArrowForwardIcon />
-          </p>
+        <div className="btn-everything">
+          <Link
+            to={`/category/${category}`}
+            style={{ textDecoration: "none", color: "0241ae" }}
+          >
+            <div className="flex">
+              <p
+                style={{
+                  color: "0241ae",
+                }}
+              >
+                See everything
+              </p>
+              <p className="arrow-icon">
+                <ArrowForwardIcon />
+              </p>
+            </div>
+          </Link>
         </div>
       </div>
       <Slider {...settings}>

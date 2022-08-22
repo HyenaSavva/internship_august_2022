@@ -146,6 +146,12 @@ export default css.global`
   .profile {
     position: relative;
   }
+  .profile-name {
+    align-items: center;
+  }
+  .profile-icon {
+    align-items: center;
+  }
   .profile-icon:hover {
     color: #0356e8;
   }
@@ -182,4 +188,20 @@ export default css.global`
   .border-top {
     border-top: 1px solid grey;
   }
+
+  /* mobile */
+  /* @media screen and (max-width: 639px) {
+  } */
+
+  /* tablet */
+  /* @media (min-width: 640px) and (max-width: 1023px) {
+  } */
+
+  /* laptop */
+  /* @media (min-width: 1024px) and (max-width: 1199px) {
+  } */
+
+  /* desktop */
+  /* @media (min-width: 1200px) {
+  } */
 `;
