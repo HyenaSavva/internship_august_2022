@@ -9,7 +9,6 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { IconButton } from "@mui/material";
 
 import CardStyle from "./CardStyle";
-import { addToFavorites } from "services/listingsFetch";
 
 import FavoriteBtn from "./favoriteButton/FavoriteBtn";
 import { useNavigate } from "react-router-dom";

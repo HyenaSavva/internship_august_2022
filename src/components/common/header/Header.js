@@ -18,8 +18,6 @@ import HeaderStyles from "./HeaderStyles";
 import { selectCategories } from "./HeaderStyles";
 import { profileDropdownActions } from "store/profileDropdownSlice";
 
-import { fetchUser } from "services/listingsFetch";
-
 const Header = () => {
   const dispatch = useDispatch();
   const dropdownOpen = useSelector((state) => state.profileDropdown.isOpen);

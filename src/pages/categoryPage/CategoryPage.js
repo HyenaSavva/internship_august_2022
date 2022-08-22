@@ -37,18 +37,7 @@ const CategoryPage = (props) => {
       setCards(data);
     });
   }, []);
-  /**
-   * Cum lucreaza filtrul?
-   * 1. Daca nu am selectat nimic, imi revine la array-ul principal, care este:
-   *  - cel de categorie pentru Category page
-   *  - cel de favorite pentru Favorites page
-   *  - cel de searchData pentru Search page
-   *
-   * 2. Dupa ce selectez un filtru, si vreau sa selectez si urmatorul vreau:
-   *  - sa mi se faca filtrarea pe array-ul deja filtrat, nu sa mi se distorsioneze datele si sa o ia de la capat
-   * Cum fac asta?
-   * - la apelul functiei de filtrare, trimit array-ul actual, nu cel initial
-   */
+
   const categData = filterByCategory(params.name, listings);
 
   const { currentPageData, pageCount, handlePageChange } = usePagination(cards);
