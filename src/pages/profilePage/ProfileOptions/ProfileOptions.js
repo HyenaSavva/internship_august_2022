@@ -1,168 +1,70 @@
 import { useState } from "react";
 
 import Option from "../Option/Option";
-import ProfileOptionsStyle, {
-  childStyle,
-  firstInput,
-} from "./ProfileOptionsStyle";
-import CustomInput from "../../authentification/custom/CustomInput";
-import useOptionsValidation from "hooks/useOptionsValidation";
+import ProfileOptionsStyle from "./ProfileOptionsStyle";
+import FullName from "./FullName/FullName";
+import Gender from "./Gender/Gender";
+import DateOfBirth from "./DateOfBirth/DateOfBirth";
+import EmailAddress from "./EmailAddress/EmailAddress";
+import PhoneNumber from "./PhoneNumber/PhoneNumber";
+import Address from "./Address/Address";
 
-const ProfileOptions = () => {
+const ProfileOptions = ({ allData }) => {
   const [isOpened, setIsOpened] = useState(false);
-  const clickHandler = (event) => {
+  const clickHandler = (e) => {
     setIsOpened((last) => !last);
   };
-
-  const props = useOptionsValidation({
-    optionName: [
-      "Full Name",
-      "Gender",
-      "Date of birth",
-      "Email address",
-      "Phone number",
-      "Address",
-    ],
-  });
 
   return (
     <>
       <div className="title">Profile</div>
       <Option
         optionName={"Full Name"}
-        subTitle={props[0].name + " " + props[0].lastName}
+        subTitle={allData.fullName}
         disabled={isOpened}
         clickHandler={clickHandler}
-        inputHandler={props[0].handler}
-        children={
-          <>
-            <section className="inputs">
-              <div id="firstInput">
-                <CustomInput
-                  error={props[0].error}
-                  topLabel="First Name"
-                  setEmail={props[0].setEnteredName}
-                />
-              </div>
-              <div id="secondInput">
-                <CustomInput
-                  error={props[0].error}
-                  topLabel="Last Name"
-                  setEmail={props[0].setEnteredLastName}
-                />
-              </div>
-            </section>
-          </>
-        }
-        childStyle={childStyle}
+        children={<FullName />}
       />
       <Option
         optionName={"Gender"}
-        subTitle={props[1].gender}
+        subTitle={allData.gender}
         disabled={isOpened}
         clickHandler={clickHandler}
-        inputHandler={props[1].handler}
-        children={
-          <>
-            <div id="firstInput">
-              <CustomInput
-                error={props[1].error}
-                topLabel="Gender"
-                setEmail={props[1].setEnteredGender}
-                listName={"data"}
-                list={
-                  <>
-                    <datalist id="data">
-                      <option value="male" />
-                      <option value="female" />
-                    </datalist>
-                  </>
-                }
-              />
-            </div>
-          </>
-        }
-        childStyle={firstInput}
+        children={<Gender />}
       />
       <Option
         optionName={"Date of birth"}
-        subTitle={props[2].dateOfBirth}
+        subTitle={allData.dateOfBirth}
         disabled={isOpened}
         clickHandler={clickHandler}
-        inputHandler={props[2].handler}
-        children={
-          <>
-            <div id="firstInput">
-              <CustomInput
-                error={props[2].error}
-                topLabel="Date"
-                setEmail={props[2].setEnteredDate}
-                type={"date"}
-              />
-            </div>
-          </>
-        }
-        childStyle={firstInput}
+        inputHandler={""}
+        children={<DateOfBirth />}
       />
       <Option
         optionName={"Email address"}
-        subTitle={props[3].email}
+        subTitle={allData.mail}
         disabled={isOpened}
         clickHandler={clickHandler}
-        inputHandler={props[3].handler}
-        children={
-          <>
-            <div id="firstInput">
-              <CustomInput
-                error={props[3].error}
-                topLabel="Email"
-                setEmail={props[3].setEnteredEmail}
-              />
-            </div>
-          </>
-        }
-        childStyle={firstInput}
+        inputHandler={""}
+        children={<EmailAddress />}
       />
+
       <Option
         optionName={"Phone number"}
-        subTitle={props[4].phone}
+        subTitle={allData.phone}
         disabled={isOpened}
         clickHandler={clickHandler}
-        inputHandler={props[4].handler}
-        children={
-          <>
-            <div id="firstInput">
-              <CustomInput
-                error={props[4].error}
-                topLabel="Phone"
-                setEmail={props[4].setEnteredPhone}
-                type={"tel"}
-              />
-            </div>
-          </>
-        }
-        childStyle={firstInput}
+        inputHandler={""}
+        children={<PhoneNumber />}
       />
+
       <Option
         optionName={"Address"}
-        subTitle={props[5].address}
+        subTitle={allData.address}
         disabled={isOpened}
         clickHandler={clickHandler}
-        inputHandler={props[5].handler}
-        children={
-          <>
-            <section className="inputs">
-              <div id="firstInput">
-                <CustomInput
-                  error={props[5].error}
-                  topLabel="Address"
-                  setEmail={props[5].setEnteredAddress}
-                />
-              </div>
-            </section>
-          </>
-        }
-        childStyle={firstInput}
+        inputHandler={""}
+        children={<Address />}
       />
       <style jsx>{ProfileOptionsStyle}</style>
     </>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SecurityIcon from "@mui/icons-material/Security";
@@ -13,10 +13,22 @@ import ProfilePageStyle, { EditIcon, AvatarIcon } from "./ProfilePageStyle";
 import ProfileOptions from "./ProfileOptions/ProfileOptions";
 import useSwitch from "./useSwitch";
 import LoginAndSecurity from "./LoginAndSecurity/LoginAndSecurity";
+import { getUserProfile } from "services/userProfile";
 
 const Profile = () => {
   const { isActive, switchHandler } = useSwitch();
   const [imagePath, setImagePath] = useState();
+  const [allData, setAllData] = useState({
+    
+  });
+
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await getUserProfile();
+      setAllData(user.response.data);
+    };
+    getUser();
+  }, []);
 
   return (
     <div className="page">
@@ -82,7 +94,7 @@ const Profile = () => {
 
         <section className="settingsMenu">
           <div className="settings">
-            {isActive.profile ? <ProfileOptions /> : <></>}
+            {isActive.profile ? <ProfileOptions allData={allData} /> : <></>}
             {isActive.loginAndSecurity ? <LoginAndSecurity /> : <></>}
             {isActive.notifications ? <p>Notifications</p> : <></>}
             {isActive.messages ? <p>Messages</p> : <></>}

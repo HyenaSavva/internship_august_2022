@@ -1,20 +1,25 @@
 import { useState } from "react";
 
-// import { getUserProfile } from "services/userProfile";
-
-const useOptionsValidation = ({ optionName }) => {
-  // const getUser = async () => {
-  //   const data = await getUserProfile();
-  // };
-  // getUser();
-
-  const [name, setName] = useState("Name");
-  const [lastName, setLastName] = useState("Last");
-  const [gender, setGender] = useState("gender");
-  const [dateOfBirth, setDateOfBirth] = useState("date");
-  const [email, setEmail] = useState("email@email.com");
-  const [phone, setPhone] = useState("+1234567890");
-  const [address, setAddress] = useState("str. Address");
+const useOptionsValidation = ({ optionName, allData }) => {
+  let gender1 = null;
+  const fullName = allData?.response
+    ? allData.response.data.fullName.split(" ")
+    : "";
+  const [name, setName] = useState(fullName[0] ? fullName[0] : "");
+  const [lastName, setLastName] = useState(fullName[1] ? fullName[1] : "");
+  const [gender, setGender] = useState(gender1);
+  const [dateOfBirth, setDateOfBirth] = useState(
+    allData?.response ? allData.response.data.dateOfBirth : ""
+  );
+  const [email, setEmail] = useState(
+    allData?.response ? allData.response.data.mail : ""
+  );
+  const [phone, setPhone] = useState(
+    allData?.response ? allData.response.data.phone : ""
+  );
+  const [address, setAddress] = useState(
+    allData?.response ? allData.response.data.address : ""
+  );
 
   const setEnteredName = (event) => {
     setName(event.target.value);
@@ -24,6 +29,7 @@ const useOptionsValidation = ({ optionName }) => {
   };
   const setEnteredGender = (event) => {
     setGender(event.target.value);
+    debugger;
   };
   const setEnteredDate = (event) => {
     setDateOfBirth(event.target.value);

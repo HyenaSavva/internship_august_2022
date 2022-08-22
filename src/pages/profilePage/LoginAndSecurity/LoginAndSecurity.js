@@ -1,74 +1,50 @@
 import Option from "../Option/Option";
 import CustomInput from "../../authentification/custom/CustomInput";
-import { CustomButton } from "../../../UI/button/CustomButton";
-import css, { optionStyle, button } from "../Option/OptionStyle";
+import css from "../LoginAndSecurity/LoginAndSecurityStyle";
+
+import useOptionsValidation from "hooks/useOptionsValidation";
 
 const LoginAndSecurity = () => {
+  const props = useOptionsValidation({
+    optionName: [
+      "Full Name",
+      "Gender",
+      "Date of birth",
+      "Email address",
+      "Phone number",
+      "Address",
+    ],
+  });
   return (
     <>
       <div className="title">Login & Security</div>
       <Option
+        optionName={"Full Name"}
+        subTitle={props[0].name + " " + props[0].lastName}
+        // disabled={isOpened}
+        // clickHandler={clickHandler}
+        inputHandler={props[0].handler}
         children={
           <>
             <section className="inputs">
               <div id="firstInput">
-                <CustomInput error={false} topLabel="First Name" />
+                <CustomInput
+                  error={props[0].error}
+                  topLabel="First Name"
+                  setEmail={props[0].setEnteredName}
+                />
               </div>
               <div id="secondInput">
-                <CustomInput error={false} topLabel="Last Name" />
+                <CustomInput
+                  error={props[0].error}
+                  topLabel="Last Name"
+                  setEmail={props[0].setEnteredLastName}
+                />
               </div>
             </section>
-            <CustomButton sx={button}>Save</CustomButton>
           </>
         }
-        sx={optionStyle}
-        subTitle={"James Miler"}
-        optionName={"Full Name"}
-      />
-      <Option
-        children={
-          <>
-            <section className="inputs">
-              <div id="firstInput">
-                <CustomInput error={false} topLabel="Gender" />
-              </div>
-            </section>
-            <CustomButton sx={button}>Save</CustomButton>
-          </>
-        }
-        sx={optionStyle}
-        subTitle={"Male"}
-        optionName={"Gender"}
-      />
-      <Option
-        children={
-          <>
-            <section className="inputs">
-              <div id="firstInput">
-                <CustomInput error={false} topLabel="First Name" />
-              </div>
-            </section>
-            <CustomButton sx={button}>Save</CustomButton>
-          </>
-        }
-        sx={optionStyle}
-        subTitle={"05.05.2000"}
-        optionName={"Date of birth"}
-      />
-      <Option
-        children={
-          <>
-            <section className="inputs">
-              <div id="firstInput">
-                <CustomInput error={false} topLabel="First Name" />
-              </div>
-            </section>
-            <CustomButton sx={button}>Save</CustomButton>
-          </>
-        }
-        sx={optionStyle}
-        subTitle={"james.milner@example.com "}
-        optionName={"Email address"}
+        // childStyle={childStyle}
       />
       <style jsx>{css}</style>
     </>
