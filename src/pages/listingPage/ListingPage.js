@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import IconButton from "@mui/material/IconButton";
 
@@ -19,21 +20,40 @@ import ListingPageStyle, {
   favoriteBtn,
 } from "./ListingPageStyle";
 import { primaryBtn } from "UI/button/CustomButtonStyle";
+import { useParams } from "react-router-dom";
+import { getListinById } from "helper/Constants";
 
 export const ListingPage = () => {
+  const params = useParams();
+
+  const [listingInfo, setListingInfo] = useState({});
+
+  useEffect(() => {
+    if (params.id) {
+      const fetchData = async () => {
+        const response = await getListinById(params.id);
+        if (response) {
+          setListingInfo(response.data);
+        }
+      };
+
+      fetchData();
+    }
+  }, []);
+
   return (
     <>
       <div className="listing-page">
-        <PhotoGalery from="listing-page" images={itemData} />
+        <PhotoGalery from="listing-page" images={listingInfo.images} />
 
         <div className="listing-page__top-details">
           <div className="listing-page__title-price">
             <Text variant="h5" sx={propertyTitle}>
-              Dreamy Treehouse Above Park City
+              {listingInfo.title}
             </Text>
 
             <Text variant="h5" sx={propertyPrice}>
-              712,123 lei
+              {listingInfo.price} lei
             </Text>
           </div>
 
@@ -41,7 +61,9 @@ export const ListingPage = () => {
         </div>
 
         <div className="listing-page__middle-details">
-          <Description descriptionStyles="listing-page__description" />
+          <Description descriptionStyles="listing-page__description">
+            {listingInfo.description}
+          </Description>
 
           <div className="listing-page__seller-btns">
             <Seller className="listing-page__seller" />
@@ -62,7 +84,7 @@ export const ListingPage = () => {
         </div>
 
         <div className="listing-page__bottom-details">
-          <Location />
+          <Location>{listingInfo.location}</Location>
 
           <ListingMessage />
         </div>

@@ -60,7 +60,10 @@ const Carousel = ({ category, data }) => {
         {data.map((card, index) => {
           return (
             <Grid key={index} item xs={12} sm={6} md={3}>
-              <Link to="/listing-page" style={{ textDecoration: "none" }}>
+              <Link
+                to={`/listing-page/${card.id}`}
+                style={{ textDecoration: "none" }}
+              >
                 <Card
                   id={card.id}
                   isFavorite={card.isFavorite}

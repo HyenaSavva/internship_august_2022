@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  IconButton,
+} from "@mui/material";
 
 import PhotoGalery from "components/photoGallery/PhotoGallery";
 import { PreviewFooter } from "components/previewFooter/PreviewFooter";
@@ -17,14 +25,6 @@ import {
   shareBtn,
 } from "pages/listingPage/ListingPageStyle";
 import PreviewPageStyle from "./PreviewPageStyle";
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  IconButton,
-} from "@mui/material";
 import { dialog } from "components/addPhoto/AddPhotoStyle";
 
 export const PreviewPage = () => {

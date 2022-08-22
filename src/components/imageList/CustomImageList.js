@@ -88,7 +88,8 @@ export const CustomImageList = ({ sx, images, isModal, from }) => {
                   rows={item.rows || 1}
                 >
                   <img
-                    {...getSrcSet(item.img, item.rows, item.cols)}
+                    // {...getSrcSet(item.img, item.rows, item.cols)}
+                    src={item.img}
                     alt={item.title}
                     loading="lazy"
                   />

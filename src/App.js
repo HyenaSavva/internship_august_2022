@@ -36,7 +36,7 @@ function App() {
             <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="/search-page" element={<SearchPage />} />
             <Route path="/" element={<HomePage />} />
-            <Route path="/listing-page" element={<ListingPage />} />
+            <Route path="/listing-page/:id" element={<ListingPage />} />
             <Route path="/add-new" element={<AddPage />} />
             <Route path="/preview" element={<PreviewPage />} />
             <Route path="/edit" element={<EditPage />} />
