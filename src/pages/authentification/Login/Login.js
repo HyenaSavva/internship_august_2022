@@ -8,14 +8,20 @@ import logo from "../../../assets/logo-assist-tagline.svg";
 import { CustomButtonStyle } from "../custom/CustomStyles";
 import LoginStyle from "./LoginStyle";
 import useInputValidation from "hooks/useInputValidation";
+import { loginUser } from "../../../services/auth";
 
 const Login = () => {
   const { email, password, setEmail, setPassword, error, setError, isValid } =
     useInputValidation();
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setError(isValid(email, password));
+    const hasError = isValid(email, password);
+    setError(hasError);
+    if (!hasError.emailError && !hasError.passwordError) {
+      const data = await loginUser(email, password);
+      localStorage.setItem("token", data.data);
+    }
   };
 
   return (
