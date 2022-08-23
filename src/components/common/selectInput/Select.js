@@ -21,7 +21,7 @@ export const Select = ({ label, name, value, onChange, error }) => {
 
           <option value="3">Offices</option>
 
-          <option value="4">Apartmanets</option>
+          <option value="4">Apartments</option>
         </select>
 
         {error ? <div className="error">{error}</div> : null}

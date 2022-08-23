@@ -32,20 +32,6 @@ export default css`
     color: #dd1018;
   }
 
-  /* mobile */
-  @media screen and (max-width: 639px) {
-  }
-
-  /* tablet */
-
-  @media (min-width: 640px) and (max-width: 1023px) {
-  }
-
-  /* laptop */
-
-  @media (min-width: 1024px) and (max-width: 1199px) {
-  }
-
   /* desktop */
 
   @media (min-width: 1200px) {
@@ -88,9 +74,6 @@ export default css`
 
 export const addTitle = {
   fontWeight: "700",
-  [appTheme.breakpoints.only("mobile")]: {},
-  [appTheme.breakpoints.only("tablet")]: {},
-  [appTheme.breakpoints.only("laptop")]: {},
   [appTheme.breakpoints.only("desktop")]: {
     fontSize: "32px",
     lineHeight: "40px",
@@ -99,9 +82,6 @@ export const addTitle = {
 };
 
 export const previewBtn = {
-  [appTheme.breakpoints.only("mobile")]: {},
-  [appTheme.breakpoints.only("tablet")]: {},
-  [appTheme.breakpoints.only("laptop")]: {},
   [appTheme.breakpoints.only("desktop")]: {
     width: "165px",
     height: "44px",
@@ -117,9 +97,6 @@ export const publishBtn = {
     backgroundColor: appTheme.palette.primary.main,
     color: "#fff",
   },
-  [appTheme.breakpoints.only("mobile")]: {},
-  [appTheme.breakpoints.only("tablet")]: {},
-  [appTheme.breakpoints.only("laptop")]: {},
   [appTheme.breakpoints.only("desktop")]: {
     width: "165px",
     height: "44px",
