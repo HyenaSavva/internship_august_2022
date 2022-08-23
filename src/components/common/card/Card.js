@@ -1,5 +1,5 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import CardElement from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -9,12 +9,22 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { IconButton } from "@mui/material";
 
 import CardStyle from "./CardStyle";
-import { favoriteActions } from "store/favoriteSlice";
 
 import FavoriteBtn from "./favoriteButton/FavoriteBtn";
+import { useNavigate } from "react-router-dom";
 
 export default function Card(props) {
-  const dispatch = useDispatch();
+  let { isFavorite, last, title, location, price, images } = props;
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
+
+  const unlogged = (event) => {
+    navigate("/login");
+    event.preventDefault();
+  };
+
+  const [favorite, setFavorite] = useState(isFavorite);
 
   const customStyles = {
     maxWidth: "262.5px",
@@ -26,20 +36,8 @@ export default function Card(props) {
     display: "flex",
   };
 
-  let { id, isFavorite, last, title, location, price, images } = props;
-
   const toggleFav = (event) => {
-    dispatch(
-      favoriteActions.toggle({
-        id,
-        isFavorite,
-        last,
-        title,
-        location,
-        price,
-        images,
-      })
-    );
+    setFavorite(!favorite);
     event.preventDefault();
   };
 
@@ -49,14 +47,14 @@ export default function Card(props) {
         {!last && (
           <CardActionArea>
             <div className="content-wrapper">
-              <div onClick={toggleFav}>
-                <FavoriteBtn isFavorite={isFavorite} />
+              <div onClick={isLoggedIn ? toggleFav : unlogged}>
+                <FavoriteBtn isFavorite={favorite} />
               </div>
               <CardMedia
                 width="262.5px"
                 component="img"
                 height="162"
-                image={images}
+                src={`${images[1]}`}
                 alt="green iguana"
               />
 

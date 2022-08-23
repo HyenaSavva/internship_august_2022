@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 import { Grid } from "@mui/material";
 
@@ -49,13 +50,73 @@ const Carousel = ({ category, data }) => {
     infinite: false,
     speed: 400,
     slidesToShow: 4,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     prevArrow: <PreviousBtn />,
     nextArrow: <NextBtn />,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          infinite: false,
+          dots: false,
+          mobileFirst: true,
+        },
+      },
+      {
+        breakpoint: 1023,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          infinite: false,
+          dots: false,
+          mobileFirst: true,
+        },
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          mobileFirst: true,
+        },
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          mobileFirst: true,
+        },
+      },
+    ],
   };
+
   return (
     <div className="carousel-category">
-      <h2> {category} </h2>
+      <div className="flex categ-everything">
+        <h2 className="categ-title"> {category} </h2>
+        <div className="btn-everything">
+          <Link
+            to={`/category/${category}`}
+            style={{ textDecoration: "none", color: "0241ae" }}
+          >
+            <div className="flex">
+              <p
+                style={{
+                  color: "0241ae",
+                }}
+              >
+                See everything
+              </p>
+              <p className="arrow-icon">
+                <ArrowForwardIcon />
+              </p>
+            </div>
+          </Link>
+        </div>
+      </div>
       <Slider {...settings}>
         {data.map((card, index) => {
           return (

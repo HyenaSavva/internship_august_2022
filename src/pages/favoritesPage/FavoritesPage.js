@@ -17,19 +17,34 @@ import {
   handleFilterPrice,
   handleOrderBy,
 } from "services/utils";
-import { fetchListingsData } from "services/listingsFetch";
+import { fetchFavoritesData, singleListingData } from "services/listingsFetch";
+import CardRowUser from "components/common/card/CardRowUser";
 
 const FavoritesPage = () => {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
   const isGridView = useSelector((state) => state.gridView.isGridView);
   const [listings, setListings] = useState([]);
+  const [fetchData, setFetchData] = useState([]);
+  const [cardData, setCardData] = useState({});
 
   const [cards, setCards] = useState(listings);
 
   useEffect(() => {
+    let result = [];
     // fetchListingsData returns a promise - we use ".then" to get the data from the promise
-    fetchListingsData().then((data) => {
-      setListings(data);
-      setCards(data);
+    fetchFavoritesData().then((data) => {
+      setFetchData(data);
+      data.map((item) => {
+        const singleItem = async () => {
+          const card = await singleListingData(item.listingId);
+          setCardData(card);
+          result.push(card);
+          return card;
+        };
+        singleItem();
+        return cardData;
+      });
     });
   }, []);
 
@@ -78,22 +93,36 @@ const FavoritesPage = () => {
             {currentPageData.map((card, index) => {
               return (
                 <Grid item xs={3} sm={6} md={12} key={index}>
-                  <CardRow
-                    id={card.id}
-                    isFavorite={card.isFavorite}
-                    last={false}
-                    title={card.title}
-                    location={card.location}
-                    price={card.price}
-                    description={card.shortDescription}
-                    images={card.images}
-                  />
+                  {!isLoggedIn && (
+                    <CardRow
+                      id={card.id}
+                      isFavorite={card.isFavorite}
+                      last={false}
+                      title={card.title}
+                      location={card.location}
+                      price={card.price}
+                      description={card.shortDescription}
+                      images={card.images}
+                    />
+                  )}
+                  {isLoggedIn && (
+                    <CardRowUser
+                      id={card.id}
+                      isFavorite={card.isFavorite}
+                      last={false}
+                      title={card.title}
+                      location={card.location}
+                      price={card.price}
+                      description={card.shortDescription}
+                      images={card.images}
+                    />
+                  )}
                 </Grid>
               );
             })}
           </Grid>
         )}
-        {listings.length > 0 && (
+        {cards.length > 0 && (
           <PaginationSquared
             pageCount={pageCount}
             handlePageChange={handlePageChange}
