@@ -24,6 +24,7 @@ import {
   sizeImageValidation,
   typeImageValidation,
 } from "helper/Constants";
+import { SuccessModal } from "components/common/modal/successModal";
 
 import AddPageStyle, { addTitle } from "./AddPageStyle";
 import { defaultBtn, primaryBtn } from "UI/button/CustomButtonStyle";
@@ -37,6 +38,7 @@ export const AddPage = () => {
 
   const [requestError, setRequestError] = useState("");
   const [open, setOpen] = useState(true);
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -72,11 +74,11 @@ export const AddPage = () => {
           images: imagesToSend,
         });
         if (response) {
-          navigate("/");
         }
       } catch (error) {
         setRequestError(error.message);
       }
+      setOpenSuccessModal(true);
       formik.resetForm();
     },
   });
@@ -113,130 +115,136 @@ export const AddPage = () => {
           </DialogContent>
         </Dialog>
       ) : (
-        <div className="add-page">
-          <Text variant="h5" sx={addTitle}>
-            Add new
-          </Text>
+        <>
+          {openSuccessModal ? (
+            <SuccessModal closeModal={() => setOpenSuccessModal(false)} />
+          ) : (
+            <div className="add-page">
+              <Text variant="h5" sx={addTitle}>
+                Add new
+              </Text>
 
-          <form onSubmit={formik.handleSubmit}>
-            <AddDetails
-              titleValue={formik.values.title}
-              titleError={formik.errors.title}
-              priceValue={formik.values.price}
-              priceError={formik.errors.price}
-              categoryValue={formik.values.category}
-              categoryError={formik.errors.category}
-              onChange={formik.handleChange}
-            />
+              <form onSubmit={formik.handleSubmit}>
+                <AddDetails
+                  titleValue={formik.values.title}
+                  titleError={formik.errors.title}
+                  priceValue={formik.values.price}
+                  priceError={formik.errors.price}
+                  categoryValue={formik.values.category}
+                  categoryError={formik.errors.category}
+                  onChange={formik.handleChange}
+                />
 
-            <div className="add-page__media">
-              <div className="add-page__media__title-subtitle">
-                <Text variant="h6">Photos & videos</Text>
+                <div className="add-page__media">
+                  <div className="add-page__media__title-subtitle">
+                    <Text variant="h6">Photos & videos</Text>
 
-                <Text variant="body2">
-                  Lörem ipsum trede relig, oktig. Tism rallylydnad.
-                </Text>
-              </div>
+                    <Text variant="body2">
+                      Lörem ipsum trede relig, oktig. Tism rallylydnad.
+                    </Text>
+                  </div>
 
-              <div className="add-page__media__buttons-wrapper">
-                <div className={"add-page__media__buttons"}>
-                  {formik.values.images.map((image, i) => {
-                    return (
-                      <div key={i}>
-                        {image ? (
-                          <AddPohoto
-                            file={image}
-                            removePhoto={() => {
-                              formik.setFieldValue(`images[${i}]`, null);
-                            }}
-                            error={photoErrorMessage[i]}
-                            removeError={() => {
-                              let arr = [...photoErrorMessage];
-                              arr[i] = "";
-                              setPhotoErrorMessage(arr);
-                            }}
-                          />
-                        ) : (
-                          <UploadButton
-                            type="file"
-                            name="photo"
-                            onChange={(e) => {
-                              const file = e.target.files[0];
-                              if (!typeImageValidation(file.type)) {
-                                let arr = [...photoErrorMessage];
-                                arr[i] = "Unsupported Format";
-                                setPhotoErrorMessage(arr);
-                              }
-                              if (sizeImageValidation(file.size)) {
-                                let arr = [...photoErrorMessage];
-                                arr[i] =
-                                  "File size is greater than maximum limit";
-                                setPhotoErrorMessage(arr);
-                              }
-                              if (photoErrorMessage[i].length === 0) {
-                                const reader = new FileReader();
-                                reader.readAsDataURL(file);
-                                reader.onload = () => {
-                                  formik.setFieldValue(
-                                    `images[${i}]`,
-                                    reader.result
-                                  );
-                                };
-                              }
-                            }}
-                          />
-                        )}
-                      </div>
-                    );
-                  })}
+                  <div className="add-page__media__buttons-wrapper">
+                    <div className={"add-page__media__buttons"}>
+                      {formik.values.images.map((image, i) => {
+                        return (
+                          <div key={i}>
+                            {image ? (
+                              <AddPohoto
+                                file={image}
+                                removePhoto={() => {
+                                  formik.setFieldValue(`images[${i}]`, null);
+                                }}
+                                error={photoErrorMessage[i]}
+                                removeError={() => {
+                                  let arr = [...photoErrorMessage];
+                                  arr[i] = "";
+                                  setPhotoErrorMessage(arr);
+                                }}
+                              />
+                            ) : (
+                              <UploadButton
+                                type="file"
+                                name="photo"
+                                onChange={(e) => {
+                                  const file = e.target.files[0];
+                                  if (!typeImageValidation(file.type)) {
+                                    let arr = [...photoErrorMessage];
+                                    arr[i] = "Unsupported Format";
+                                    setPhotoErrorMessage(arr);
+                                  }
+                                  if (sizeImageValidation(file.size)) {
+                                    let arr = [...photoErrorMessage];
+                                    arr[i] =
+                                      "File size is greater than maximum limit";
+                                    setPhotoErrorMessage(arr);
+                                  }
+                                  if (photoErrorMessage[i].length === 0) {
+                                    const reader = new FileReader();
+                                    reader.readAsDataURL(file);
+                                    reader.onload = () => {
+                                      formik.setFieldValue(
+                                        `images[${i}]`,
+                                        reader.result
+                                      );
+                                    };
+                                  }
+                                }}
+                              />
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                    {formik.errors.images ? (
+                      <div className="error">{formik.errors.images}</div>
+                    ) : null}
+                  </div>
                 </div>
-                {formik.errors.images ? (
-                  <div className="error">{formik.errors.images}</div>
-                ) : null}
-              </div>
+
+                <AddDescription
+                  value={formik.values.description}
+                  error={formik.errors.description}
+                  onChange={formik.handleChange}
+                />
+
+                <AddContactInfo
+                  locationValue={formik.values.location}
+                  locationError={formik.errors.location}
+                  phoneValue={formik.values.phone}
+                  phoneError={formik.errors.phone}
+                  onChange={formik.handleChange}
+                />
+
+                <div className="add-page__bottom-btns">
+                  <CustomButton
+                    variant="outlined"
+                    sx={defaultBtn}
+                    onClick={() => {
+                      setIsPreview(true);
+                    }}
+                    type="submit"
+                  >
+                    Preview
+                  </CustomButton>
+
+                  <CustomButton
+                    variant="text"
+                    sx={primaryBtn}
+                    type="submit"
+                    onClick={() => {
+                      setIsPreview(false);
+                    }}
+                  >
+                    Publish
+                  </CustomButton>
+                </div>
+              </form>
+
+              <style jsx>{AddPageStyle}</style>
             </div>
-
-            <AddDescription
-              value={formik.values.description}
-              error={formik.errors.description}
-              onChange={formik.handleChange}
-            />
-
-            <AddContactInfo
-              locationValue={formik.values.location}
-              locationError={formik.errors.location}
-              phoneValue={formik.values.phone}
-              phoneError={formik.errors.phone}
-              onChange={formik.handleChange}
-            />
-
-            <div className="add-page__bottom-btns">
-              <CustomButton
-                variant="outlined"
-                sx={defaultBtn}
-                onClick={() => {
-                  setIsPreview(true);
-                }}
-                type="submit"
-              >
-                Preview
-              </CustomButton>
-
-              <CustomButton
-                variant="text"
-                sx={primaryBtn}
-                type="submit"
-                onClick={() => {
-                  setIsPreview(false);
-                }}
-              >
-                Publish
-              </CustomButton>
-            </div>
-          </form>
-
-          <style jsx>{AddPageStyle}</style>
-        </div>
+          )}
+        </>
       )}
     </>
   );
