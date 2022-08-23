@@ -21,34 +21,27 @@ import { fetchFavoritesData, singleListingData } from "services/listingsFetch";
 import CardRowUser from "components/common/card/CardRowUser";
 
 const FavoritesPage = () => {
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
   const isGridView = useSelector((state) => state.gridView.isGridView);
   const [listings, setListings] = useState([]);
   const [fetchData, setFetchData] = useState([]);
   const [cardData, setCardData] = useState({});
 
+  const user = JSON.parse(localStorage.getItem("userId"));
+
   const [cards, setCards] = useState(listings);
 
   useEffect(() => {
-    let result = [];
     // fetchListingsData returns a promise - we use ".then" to get the data from the promise
     fetchFavoritesData().then((data) => {
       setFetchData(data);
-      data.map((item) => {
-        const singleItem = async () => {
-          const card = await singleListingData(item.listingId);
-          setCardData(card);
-          result.push(card);
-          return card;
-        };
-        singleItem();
-        return cardData;
-      });
+      localStorage.setItem("favorites", JSON.stringify(data));
     });
   }, []);
 
-  let { currentPageData, pageCount, handlePageChange } = usePagination(cards);
+  let { currentPageData, pageCount, handlePageChange } =
+    usePagination(fetchData);
 
   return (
     <div className="main">
@@ -75,7 +68,7 @@ const FavoritesPage = () => {
                 <Grid item xs={2} sm={3} md={3} key={index}>
                   <Card
                     id={card.id}
-                    isFavorite={card.isFavorite}
+                    isFavorite={true}
                     last={false}
                     title={card.title}
                     location={card.location}
@@ -93,22 +86,10 @@ const FavoritesPage = () => {
             {currentPageData.map((card, index) => {
               return (
                 <Grid item xs={3} sm={6} md={12} key={index}>
-                  {!isLoggedIn && (
+                  {isLoggedIn && (
                     <CardRow
                       id={card.id}
-                      isFavorite={card.isFavorite}
-                      last={false}
-                      title={card.title}
-                      location={card.location}
-                      price={card.price}
-                      description={card.shortDescription}
-                      images={card.images}
-                    />
-                  )}
-                  {isLoggedIn && (
-                    <CardRowUser
-                      id={card.id}
-                      isFavorite={card.isFavorite}
+                      isFavorite={true}
                       last={false}
                       title={card.title}
                       location={card.location}
@@ -122,7 +103,7 @@ const FavoritesPage = () => {
             })}
           </Grid>
         )}
-        {cards.length > 0 && (
+        {fetchData.length > 0 && (
           <PaginationSquared
             pageCount={pageCount}
             handlePageChange={handlePageChange}

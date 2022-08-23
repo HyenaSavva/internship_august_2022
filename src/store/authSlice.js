@@ -16,6 +16,7 @@ const authSlice = createSlice({
     loginSuccess: (state) => {
       state.isLoading = false;
       state.isLoggedIn = true;
+      localStorage.setItem("isLoggedIn", true);
       state.error = "";
     },
     loginFail: (state, action) => {

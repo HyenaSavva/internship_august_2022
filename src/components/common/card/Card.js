@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 
 import CardElement from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -12,10 +11,11 @@ import CardStyle from "./CardStyle";
 
 import FavoriteBtn from "./favoriteButton/FavoriteBtn";
 import { useNavigate } from "react-router-dom";
+import { addToFavorites, removeFromFavorites } from "services/listingsFetch";
 
 export default function Card(props) {
-  let { isFavorite, last, title, location, price, images } = props;
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  let { id, isFavorite, last, title, location, price, images } = props;
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
   const navigate = useNavigate();
 
@@ -38,6 +38,8 @@ export default function Card(props) {
 
   const toggleFav = (event) => {
     setFavorite(!favorite);
+    addToFavorites(id);
+    // removeFromFavorites(id);
     event.preventDefault();
   };
 
@@ -54,7 +56,7 @@ export default function Card(props) {
                 width="262.5px"
                 component="img"
                 height="162"
-                src={`${images[1]}`}
+                src={`${images[0]}`}
                 alt="green iguana"
               />
 
