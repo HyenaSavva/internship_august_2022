@@ -12,7 +12,7 @@ const DateOfBirth = ({ saveAllHandler, setValue, date }) => {
   try {
     newDate = newDate?.toISOString().split("T")[0];
   } catch (e) {}
-  newDate = newDate?.toString()
+  newDate = newDate?.toString();
 
   const saveHandler = () => {
     if (!date) {
@@ -21,11 +21,9 @@ const DateOfBirth = ({ saveAllHandler, setValue, date }) => {
         message: "Not found date.",
       });
     } else {
-      setError({
-        inputError: false,
-      });
+      setError({ inputError: false });
       setValue(newDate);
-      saveAllHandler();
+      saveAllHandler({ DateOfBirth: newDate });
     }
   };
   return (

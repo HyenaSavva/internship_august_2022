@@ -5,8 +5,7 @@ import { CustomButton } from "UI/button/CustomButton";
 import { button } from "../../Option/OptionStyle";
 import css from "./AddressStyle";
 
-const Address = () => {
-  const [address, setAddress] = useState("");
+const Address = ({ saveAllHandler, setValue, address }) => {
   const [error, setError] = useState("");
 
   const saveHandler = () => {
@@ -15,15 +14,15 @@ const Address = () => {
         inputError: true,
         message: "No address found.",
       });
-    } else if (address.length > 20) {
+    } else if (address.length > 30) {
       setError({
         inputError: true,
         message: "Too much characters.",
       });
     } else {
-      setError({
-        inputError: false,
-      });
+      setError({ inputError: false });
+      setValue(address);
+      saveAllHandler({ Address: address });
     }
   };
 
@@ -35,7 +34,8 @@ const Address = () => {
           topLabel="Address"
           placeholder={"Address"}
           bottomLabel="Introduce address."
-          setEnteredValue={setAddress}
+          setEnteredValue={setValue}
+          inputProps={{ value: address }}
         />
       </div>
       <CustomButton sx={button} onClick={saveHandler}>

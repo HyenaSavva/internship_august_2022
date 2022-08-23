@@ -27,6 +27,12 @@ const ProfileOptions = ({ allData }) => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
 
+  let newDate = new Date(dateOfBirth?.slice(0, 10));
+  try {
+    newDate = newDate?.toISOString().split("T")[0];
+  } catch (e) {}
+  newDate = newDate?.toString();
+
   const genderList = ["female", "male", "none"];
   for (let i = 0; i < 3; i++) {
     if (allData.gender === i) {
@@ -44,21 +50,19 @@ const ProfileOptions = ({ allData }) => {
       setDateOfBirth(allData.dateOfBirth);
       setEmail(allData.mail);
       setPhone(allData.phone);
+      setAddress(allData.address);
     } catch (e) {}
-  }, [allData]);
+  }, [allData, firstName, seccondName]);
 
   const saveAllHandler = (field) => {
-    // const body = {
-    //   // ...oldValues,
-    //   // ...newValues,
-    //   photo: null,
-    //   fullName: name + " " + lastName,
-    //   gender: gender,
-    //   dateOfBirth: dateOfBirth,
-    //   mail: email,
-    //   phone: phone,
-    // };
-    // console.log(body);
+    let genderCount;
+    if (field.Gender) {
+      if (gender === "female") genderCount = 0;
+      if (gender === "male") genderCount = 1;
+      if (gender === "none") genderCount = 2;
+      field.Gender = genderCount;
+    }
+
     console.log(field);
     patchUserProfile(field);
   };
@@ -96,7 +100,7 @@ const ProfileOptions = ({ allData }) => {
       />
       <Option
         optionName={"Date of birth"}
-        subTitle={dateOfBirth}
+        subTitle={newDate}
         disabled={isOpened}
         clickHandler={clickHandler}
         inputHandler={""}
@@ -140,12 +144,16 @@ const ProfileOptions = ({ allData }) => {
 
       <Option
         optionName={"Address"}
-        subTitle={address}
+        subTitle={allData.address}
         disabled={isOpened}
         clickHandler={clickHandler}
         inputHandler={""}
         children={
-          <Address saveAllHandler={saveAllHandler} setValue={setAddress} />
+          <Address
+            saveAllHandler={saveAllHandler}
+            setValue={setAddress}
+            address={address}
+          />
         }
       />
       <style jsx>{ProfileOptionsStyle}</style>

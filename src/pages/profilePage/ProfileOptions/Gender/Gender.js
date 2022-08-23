@@ -22,9 +22,7 @@ const Gender = ({ saveAllHandler, setValue, gender }) => {
     } else {
       setError({ inputError: false });
     }
-    console.log(gender);
-    if (gender === "female")  setValue(gender);
-    // saveAllHandler({ Gender: gender });
+    saveAllHandler({ Gender: gender });
   };
 
   return (

@@ -27,7 +27,7 @@ const PhoneNumber = ({ saveAllHandler, setValue, number }) => {
     } else {
       setError({ inputError: false });
       setValue(number);
-      saveAllHandler();
+      saveAllHandler({ Phone: number });
     }
   };
 

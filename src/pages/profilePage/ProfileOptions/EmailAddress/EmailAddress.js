@@ -25,11 +25,9 @@ const EmailAddress = ({ saveAllHandler, setValue, email }) => {
         message: "Mail don't includes domain.",
       });
     } else {
-      setError({
-        inputError: false,
-      });
-      saveAllHandler();
+      setError({ inputError: false });
       setValue(email);
+      saveAllHandler({ Email: email });
     }
   };
 
