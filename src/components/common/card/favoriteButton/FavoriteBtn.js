@@ -11,8 +11,8 @@ const FavoriteBtn = ({ isFavorite }) => {
   return (
     <div className="circle-fav">
       <Avatar sx={favBtn}>
-        {isFavorite && <FavoriteBorderIcon />}
-        {!isFavorite && <FavoriteIcon sx={activeBtn} />}
+        {!isFavorite && <FavoriteBorderIcon />}
+        {isFavorite && <FavoriteIcon sx={activeBtn} />}
       </Avatar>
       <style jsx>{FavBtnStyles}</style>
     </div>

@@ -19,7 +19,9 @@ export const loginUser = async (email, password) => {
         password,
       }
     )
-    .then((data) => data)
+    .then((data) => {
+      return data;
+    })
     .catch((error) => error);
 };
 
