@@ -15,19 +15,6 @@ export default css`
     flex-direction: column;
     margin-top: 28px;
   }
-
-  /* small */
-  @media screen and (max-width: 480px) {
-  }
-
-  /* medium */
-
-  @media (min-width: 481px) and (max-width: 1024px) {
-  }
-
-  /* large */
-  @media (min-width: 1025px) {
-  }
 `;
 
 export const sellerName = {
