@@ -5,15 +5,6 @@ import ImageListItem from "@mui/material/ImageListItem";
 import useWindowSize from "hooks/useWindowSize";
 import { appTheme } from "themes/themes";
 
-const getSrcSet = (image, size, rows = 1, cols = 1) => {
-  return {
-    src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${size * cols}&h=${
-      size * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
-  };
-};
-
 export const CustomImageList = ({ sx, images, isModal, from }) => {
   const size = useWindowSize();
   const [imageListSettings, setImageListSettings] = useState({
@@ -87,12 +78,7 @@ export const CustomImageList = ({ sx, images, isModal, from }) => {
                   cols={item.cols || 1}
                   rows={item.rows || 1}
                 >
-                  <img
-                    // {...getSrcSet(item.img, item.rows, item.cols)}
-                    src={item.img}
-                    alt={item.title}
-                    loading="lazy"
-                  />
+                  <img src={item.img} alt={item.title} loading="lazy" />
                 </ImageListItem>
               ))}
         </ImageList>

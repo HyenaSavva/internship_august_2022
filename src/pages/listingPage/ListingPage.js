@@ -10,7 +10,6 @@ import { Seller } from "components/seller/Seller";
 import { Location } from "components/location/Location";
 import { ListingMessage } from "components/listingMessage/ListingMessage";
 import { ShareButton } from "UI/button/ShareButton";
-import { itemData } from "mockData/photoGalleryData";
 
 import ListingPageStyle, {
   shareBtn,
