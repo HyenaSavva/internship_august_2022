@@ -8,14 +8,18 @@ import LogoutIcon from "@mui/icons-material/Logout";
 
 import HeaderStyles from "./HeaderStyles";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
-const MyProfileDropdown = () => {
+const MyProfileDropdown = ({ toggleDropdown }) => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
   const logout = () => {
     navigate("/login");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("userId");
+    localStorage.setItem("isLoggedIn", false);
+    toggleDropdown();
   };
 
   return (

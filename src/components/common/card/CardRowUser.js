@@ -5,11 +5,9 @@ import CardMedia from "@mui/material/CardMedia";
 
 import CardStyle from "./CardStyle";
 import FavoriteBtn from "./favoriteButton/FavoriteBtn";
-import { useDispatch, useSelector } from "react-redux";
-import { favoriteActions } from "store/favoriteSlice";
 import FooterButtonsCard from "./FooterButtonsCard";
 import { Link } from "react-router-dom";
-import { deleteListing } from "services/listingsFetch";
+import { addToFavorites, deleteListing } from "services/listingsFetch";
 
 export default function CardRowUser({
   approve,
@@ -37,6 +35,7 @@ export default function CardRowUser({
 
   const toggleFav = (event) => {
     setFavorite(!favorite);
+    addToFavorites(id);
     event.preventDefault();
   };
   const handleDelete = (event) => {
@@ -61,7 +60,7 @@ export default function CardRowUser({
                     borderRadius: "12px",
                     marginLeft: "10px",
                   }}
-                  src={`${images[0]}, ${images[1]}`}
+                  src={images[0]}
                   alt="Live from space album cover"
                 />
               </div>
@@ -89,6 +88,7 @@ export default function CardRowUser({
             <div className="footer-border">
               <div className="footer right">
                 <FooterButtonsCard
+                  listingId={id}
                   handleDelete={handleDelete}
                   approve={approve}
                 />

@@ -22,8 +22,9 @@ import { profileDropdownActions } from "store/profileDropdownSlice";
 const Header = () => {
   const dispatch = useDispatch();
   const dropdownOpen = useSelector((state) => state.profileDropdown.isOpen);
-  const { isLoggedIn } = useSelector((state) => state.auth);
-  const { user } = useSelector((state) => state.user);
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const user = JSON.parse(localStorage.getItem("userId"));
+  const userData = JSON.parse(localStorage.getItem("user"));
 
   const ref = useRef();
 
@@ -90,9 +91,11 @@ const Header = () => {
                   )}
                   {isLoggedIn && (
                     <div className="flex profile-name">
-                      <Avatar sx={{ marginRight: "7px" }} />
-                      {/* //FIXME: take the name of the user */}
-                      {user.Email.slice(0, 5)}
+                      <Avatar
+                        src={userData.photo}
+                        sx={{ marginRight: "7px" }}
+                      />
+                      {userData.fullName}
                     </div>
                   )}
                   {!dropdownOpen && <KeyboardArrowDownIcon />}
@@ -101,7 +104,9 @@ const Header = () => {
               </ul>
             </div>
             <div className="dropdown-profile">
-              {dropdownOpen && <MyProfileDropdown />}
+              {dropdownOpen && (
+                <MyProfileDropdown toggleDropdown={toggleDropdown} />
+              )}
             </div>
           </div>
         </li>

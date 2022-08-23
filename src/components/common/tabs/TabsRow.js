@@ -18,7 +18,7 @@ const TabsRow = ({ filterLocation, filterPrice, orderBy }) => {
   const isGridView = useSelector((state) => state.gridView.isGridView);
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.user);
+  const user = JSON.parse(localStorage.getItem("userId"));
 
   const toggleGridView = () => {
     dispatch(gridViewActions.toggleGridView());

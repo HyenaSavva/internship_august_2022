@@ -46,7 +46,7 @@ export default function CardRow({
 
   return (
     <div className="content-wrapper-row">
-      <Link to="/listing-page" style={{ textDecoration: "none" }}>
+      <Link to={`/listing-page/${id}`} style={{ textDecoration: "none" }}>
         <Card sx={customStyles}>
           <div style={{ width: "251px", height: "126px" }}>
             <CardMedia
@@ -57,7 +57,7 @@ export default function CardRow({
                 borderRadius: "12px",
                 marginLeft: "10px",
               }}
-              src={`${images[0]}, ${images[1]}`}
+              src={images[0]}
               alt="Live from space album cover"
             />
           </div>

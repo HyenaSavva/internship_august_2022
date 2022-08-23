@@ -16,6 +16,7 @@ import {
   handleFilterLocation,
   handleFilterPrice,
   handleOrderBy,
+  verifyFavorite,
 } from "services/utils";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -68,7 +69,7 @@ const CategoryPage = (props) => {
                 <Grid item xs={2} sm={3} md={3} key={index}>
                   <Card
                     id={card.id}
-                    isFavorite={card.isFavorite}
+                    isFavorite={verifyFavorite(card)}
                     last={false}
                     title={card.title}
                     location={card.location}
@@ -88,7 +89,7 @@ const CategoryPage = (props) => {
                 <Grid item xs={2} sm={3} md={12} key={index}>
                   <CardRow
                     id={card.id}
-                    isFavorite={card.isFavorite}
+                    isFavorite={verifyFavorite(card)}
                     last={false}
                     title={card.title}
                     location={card.location}
