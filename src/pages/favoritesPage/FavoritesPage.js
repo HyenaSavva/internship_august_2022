@@ -17,8 +17,7 @@ import {
   handleFilterPrice,
   handleOrderBy,
 } from "services/utils";
-import { fetchFavoritesData, singleListingData } from "services/listingsFetch";
-import CardRowUser from "components/common/card/CardRowUser";
+import { fetchFavoritesData } from "services/listingsFetch";
 
 const FavoritesPage = () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -26,7 +25,6 @@ const FavoritesPage = () => {
   const isGridView = useSelector((state) => state.gridView.isGridView);
   const [listings, setListings] = useState([]);
   const [fetchData, setFetchData] = useState([]);
-  const [cardData, setCardData] = useState({});
 
   const user = JSON.parse(localStorage.getItem("userId"));
 

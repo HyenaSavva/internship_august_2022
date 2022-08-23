@@ -17,7 +17,7 @@ import TabsUserListings from "components/common/tabs/TabsUserListings";
 import TabsAdminListings from "components/common/tabs/TabsAdminListings";
 import TabsRow from "components/common/tabs/TabsRow";
 import jwtDecode from "jwt-decode";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userActions } from "store/userSlice";
 import CardRowUser from "components/common/card/CardRowUser";
 import { Grid } from "@mui/material";
@@ -32,12 +32,12 @@ import usePagination from "@mui/material/usePagination/usePagination";
 import PaginationSquared from "components/pagination/Pagination";
 import { useNavigate } from "react-router-dom";
 
-// const categories = {
-//   BIG_HOUSES: "Big Houses",
-//   SMALL_HOUSES: "Small Houses",
-//   OFFICES: "Offices",
-//   APARTMENTS: "Apartments",
-// };
+const categories = {
+  BIG_HOUSES: "Big Houses",
+  SMALL_HOUSES: "Small Houses",
+  OFFICES: "Offices",
+  APARTMENTS: "Apartments",
+};
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -45,14 +45,13 @@ function HomePage() {
   const user = JSON.parse(localStorage.getItem("userId"));
   const userData = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
-  const favorites = JSON.parse(localStorage.getItem("favorites"));
+  let favorites = JSON.parse(localStorage.getItem("favorites"));
 
   const [tabAllListings, setTabAllListings] = useState(true);
 
   const [allListings, setAllListings] = useState([]);
   const [myListings, setMyListings] = useState([]);
   const [cards, setCards] = useState(allListings);
-  const [categories, setCategories] = useState({});
   let token = "";
 
   if (isLoggedIn) {
@@ -130,7 +129,6 @@ function HomePage() {
     });
 
     fetchMyListingsData().then((data) => {
-      console.log(data);
       setMyListings(data);
     });
 

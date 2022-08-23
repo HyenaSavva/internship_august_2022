@@ -38,8 +38,11 @@ export default function Card(props) {
 
   const toggleFav = (event) => {
     setFavorite(!favorite);
-    addToFavorites(id);
-    // removeFromFavorites(id);
+    if (!favorite) {
+      addToFavorites(id);
+    } else {
+      removeFromFavorites(id);
+    }
     event.preventDefault();
   };
 

@@ -138,6 +138,5 @@ export const verifyFavorite = (card) => {
       }
     })
     .includes(true);
-  console.log(flag);
   return flag;
 };
