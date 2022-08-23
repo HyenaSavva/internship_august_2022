@@ -15,13 +15,14 @@ import {
   handleFilterLocation,
   handleFilterPrice,
   handleOrderBy,
+  verifyFavorite,
 } from "services/utils";
 import { useState } from "react";
 import CardRowUser from "components/common/card/CardRowUser";
 
 const SearchPage = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
-  const { user } = useSelector((state) => state.user);
+  const user = JSON.parse(localStorage.getItem("userId"));
 
   const searchInput = useSelector((state) => state.search.searchInput);
   const isGridView = useSelector((state) => state.gridView.isGridView);
@@ -29,8 +30,7 @@ const SearchPage = () => {
 
   const [cards, setCards] = useState(searchData);
 
-  let { currentPageData, pageCount, handlePageChange } =
-    usePagination(searchData);
+  let { currentPageData, pageCount, handlePageChange } = usePagination(cards);
 
   return (
     <div className="main">
@@ -59,7 +59,7 @@ const SearchPage = () => {
                 <Grid item xs={2} sm={3} md={3} key={index}>
                   <Card
                     id={card.id}
-                    isFavorite={card.isFavorite}
+                    isFavorite={verifyFavorite(card)}
                     last={false}
                     title={card.title}
                     location={card.location}
@@ -80,7 +80,7 @@ const SearchPage = () => {
                   {!isLoggedIn && (
                     <CardRow
                       id={card.id}
-                      isFavorite={card.isFavorite}
+                      isFavorite={verifyFavorite(card)}
                       title={card.title}
                       location={card.location}
                       price={card.price}
@@ -91,7 +91,7 @@ const SearchPage = () => {
                   {isLoggedIn && (
                     <CardRowUser
                       id={card.id}
-                      isFavorite={card.isFavorite}
+                      isFavorite={verifyFavorite(card)}
                       title={card.title}
                       location={card.location}
                       price={card.price}
@@ -104,7 +104,7 @@ const SearchPage = () => {
             })}
           </Grid>
         )}
-        {cards.length > 0 && (
+        {searchData.length > 0 && (
           <PaginationSquared
             pageCount={pageCount}
             handlePageChange={handlePageChange}

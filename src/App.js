@@ -39,7 +39,7 @@ function App() {
             <Route path="/listing-page/:id" element={<ListingPage />} />
             <Route path="/add-new" element={<AddPage />} />
             <Route path="/preview" element={<PreviewPage />} />
-            <Route path="/edit" element={<EditPage />} />
+            <Route path="/edit/:id" element={<EditPage />} />
             <Route path="/*" element={<Navigate replace to="/" />} />
           </Routes>
         </BrowserRouter>

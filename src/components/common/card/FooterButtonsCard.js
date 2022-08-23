@@ -3,11 +3,16 @@ import React from "react";
 import Button from "@mui/material/Button";
 
 import CardStyle from "./CardStyle";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const FooterButtonsCard = ({ handleDelete, approve }) => {
-  const { isLoggedIn } = useSelector((state) => state.auth);
-  const { user } = useSelector((state) => state.user);
+const FooterButtonsCard = ({ listingId, handleDelete, approve }) => {
+  const user = JSON.parse(localStorage.getItem("userId"));
+  const navigate = useNavigate();
+
+  const handleEdit = (event) => {
+    navigate(`/edit/${listingId}`);
+    event.preventDefault();
+  };
 
   return (
     <div className="flex buttons">
@@ -52,6 +57,7 @@ const FooterButtonsCard = ({ handleDelete, approve }) => {
         Delete
       </Button>
       <Button
+        onClick={handleEdit}
         variant="contained"
         sx={{
           "&: hover": {

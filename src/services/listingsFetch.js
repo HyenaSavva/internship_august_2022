@@ -1,11 +1,26 @@
 import axios from "axios";
 import jwt from "jwt-decode";
 
-const user = jwt(`${localStorage.getItem("token")}`);
+let user = {};
+if (localStorage.getItem("token")) {
+  user = jwt(`${localStorage.getItem("token")}`);
+} else {
+  user = {
+    id: "",
+  };
+}
 
 export const fetchListingsData = async () => {
   return await axios
     .get(`${process.env.REACT_APP_LISTING_API_URL}listing`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => console.error(`Error: ${error}`));
+};
+export const fetchMyListingsData = async () => {
+  return await axios
+    .get(`${process.env.REACT_APP_MY_LISTINGS_API_URL}${user.Id}`)
     .then((response) => {
       return response.data;
     })
@@ -42,11 +57,13 @@ export const addToFavorites = async (listingId) => {
     .post(
       `${process.env.REACT_APP_FAVORITE_API_URL}${user.Id}?listingId=${listingId}`
     )
-    .then((response) => {})
+    .then((response) => {
+      console.log(response);
+    })
     .catch((error) => console.error(`Error: ${error}`));
 };
 
-export const removeToFavorites = async (listingId) => {
+export const removeFromFavorites = async (listingId) => {
   return await axios
     .delete(
       `${process.env.REACT_APP_FAVORITE_API_URL}delete?userId=${user.Id}&listingId=${listingId}`
@@ -60,7 +77,7 @@ export const removeToFavorites = async (listingId) => {
 export const fetchUser = async () => {
   let config = {
     headers: {
-      Authorization: "Bearer " + `${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   };
 
@@ -68,6 +85,7 @@ export const fetchUser = async () => {
     .get(`${process.env.REACT_APP_USER_API_URL}${user.Id}`, config)
     .then((response) => {
       localStorage.setItem("user", JSON.stringify(response.data));
+      localStorage.setItem("userId", JSON.stringify(user));
       return response.data;
     })
     .catch((error) => console.error(`Error: ${error}`));

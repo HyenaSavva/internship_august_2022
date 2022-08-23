@@ -14,6 +14,7 @@ import Card from "components/common/card/Card";
 
 import CarouselStyles from "./CarouselStyles";
 import { customArrowLeft, customArrowRight } from "./CarouselStyles";
+import { verifyFavorite } from "services/utils";
 
 const Carousel = ({ category, data }) => {
   const slidesToShow = 4;
@@ -127,7 +128,7 @@ const Carousel = ({ category, data }) => {
               >
                 <Card
                   id={card.id}
-                  isFavorite={card.isFavorite}
+                  isFavorite={verifyFavorite(card)}
                   last={false}
                   title={card.title}
                   location={card.location}
