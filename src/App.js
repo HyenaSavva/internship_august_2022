@@ -11,8 +11,10 @@ import SearchPage from "pages/searchPage/SearchPage";
 import CreateAccount from "pages/authentification/CreateAccount/CreateAccount";
 import ForgotPassword from "pages/authentification/ForgotPassword/ForgotPassword";
 import ResetPassword from "pages/authentification/ResetPassword/ResetPassword";
-
+import { AddPage } from "pages/addPage/AddPage";
+import { PreviewPage } from "pages/previewPage/PreviewPage";
 import { appTheme } from "themes/themes";
+import { EditPage } from "pages/editPage/EditPage";
 
 const _JSXStyle = require("styled-jsx/style").default;
 if (typeof global !== "undefined") {
@@ -34,7 +36,10 @@ function App() {
             <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="/search-page" element={<SearchPage />} />
             <Route path="/" element={<HomePage />} />
-            <Route path="/listing-page" element={<ListingPage />} />
+            <Route path="/listing-page/:id" element={<ListingPage />} />
+            <Route path="/add-new" element={<AddPage />} />
+            <Route path="/preview" element={<PreviewPage />} />
+            <Route path="/edit" element={<EditPage />} />
             <Route path="/*" element={<Navigate replace to="/" />} />
           </Routes>
         </BrowserRouter>

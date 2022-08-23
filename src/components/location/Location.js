@@ -8,9 +8,9 @@ import LocationStyle, {
   locationSubtitle,
 } from "./LocationStyle";
 
-export const Location = () => {
+export const Location = ({ className, children }) => {
   return (
-    <div className="location">
+    <div className={`location ${className}`}>
       <Text variant="body2" sx={locationTitle}>
         Location
       </Text>
@@ -20,7 +20,7 @@ export const Location = () => {
         color={appTheme.palette.secondary.light}
         sx={locationSubtitle}
       >
-        City, County
+        {children}
       </Text>
 
       <img className="location__image" src={location} alt="Location" />

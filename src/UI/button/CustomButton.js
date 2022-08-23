@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 
-import { btnStyles } from "./CustomButtonStyles";
+import { btnStyle } from "./CustomButtonStyle";
 
 export const CustomButton = ({
   variant,
@@ -10,15 +10,17 @@ export const CustomButton = ({
   onClick,
   component,
   disabled,
+  type,
 }) => {
   return (
     <Button
       variant={variant}
       startIcon={startIcon}
-      sx={{ ...btnStyles, ...sx }}
+      sx={{ ...btnStyle, ...sx }}
       onClick={onClick}
       component={component}
       disabled={disabled}
+      type={type}
     >
       {children}
     </Button>
