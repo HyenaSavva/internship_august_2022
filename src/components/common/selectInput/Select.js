@@ -17,11 +17,11 @@ export const Select = ({ label, name, value, onChange, error }) => {
 
           <option value="big houses">Big Houses</option>
 
-          <option value="2">Small Houses</option>
+          <option value="small houses">Small Houses</option>
 
-          <option value="3">Offices</option>
+          <option value="offices">Offices</option>
 
-          <option value="4">Apartments</option>
+          <option value="apartments">Apartments</option>
         </select>
 
         {error ? <div className="error">{error}</div> : null}

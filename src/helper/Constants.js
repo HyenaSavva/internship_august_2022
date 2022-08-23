@@ -24,6 +24,7 @@ export const addNewListing = async (body) => {
   );
 };
 
-export const getListinById = async (id) => {
+export const getListingById = async (id) => {
+  console.log("id", id);
   return await axios.get(`${process.env.REACT_APP_API_URL}Listing/${id}`);
 };
