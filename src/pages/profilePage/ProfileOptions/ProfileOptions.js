@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Option from "../Option/Option";
 import ProfileOptionsStyle from "./ProfileOptionsStyle";
@@ -8,11 +8,59 @@ import DateOfBirth from "./DateOfBirth/DateOfBirth";
 import EmailAddress from "./EmailAddress/EmailAddress";
 import PhoneNumber from "./PhoneNumber/PhoneNumber";
 import Address from "./Address/Address";
+import { putUserProfile, patchUserProfile } from "services/userProfile";
 
 const ProfileOptions = ({ allData }) => {
   const [isOpened, setIsOpened] = useState(false);
-  const clickHandler = (e) => {
+  const clickHandler = () => {
     setIsOpened((last) => !last);
+  };
+
+  const fullOne = allData.fullName ? allData.fullName : " ";
+  const [firstName, seccondName] = fullOne.split(" ");
+
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [gender, setGender] = useState("none");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+
+  const genderList = ["female", "male", "none"];
+  for (let i = 0; i < 3; i++) {
+    if (allData.gender === i) {
+      allData.gender = genderList[i];
+    }
+  }
+
+  useEffect(() => {
+    if (!Object.keys(allData).length) return;
+
+    try {
+      setName(firstName);
+      setLastName(seccondName);
+      setGender(allData.gender);
+      setDateOfBirth(allData.dateOfBirth);
+      setEmail(allData.mail);
+      setPhone(allData.phone);
+    } catch (e) {}
+  }, [allData]);
+
+  const saveAllHandler = (field) => {
+    // const body = {
+    //   // ...oldValues,
+    //   // ...newValues,
+    //   photo: null,
+    //   fullName: name + " " + lastName,
+    //   gender: gender,
+    //   dateOfBirth: dateOfBirth,
+    //   mail: email,
+    //   phone: phone,
+    // };
+    // console.log(body);
+    console.log(field);
+    patchUserProfile(field);
   };
 
   return (
@@ -23,22 +71,42 @@ const ProfileOptions = ({ allData }) => {
         subTitle={allData.fullName}
         disabled={isOpened}
         clickHandler={clickHandler}
-        children={<FullName />}
+        children={
+          <FullName
+            saveAllHandler={saveAllHandler}
+            setValue={setName}
+            setSecValue={setLastName}
+            name={name}
+            lastName={lastName}
+          />
+        }
       />
       <Option
         optionName={"Gender"}
         subTitle={allData.gender}
         disabled={isOpened}
         clickHandler={clickHandler}
-        children={<Gender />}
+        children={
+          <Gender
+            saveAllHandler={saveAllHandler}
+            setValue={setGender}
+            gender={gender}
+          />
+        }
       />
       <Option
         optionName={"Date of birth"}
-        subTitle={allData.dateOfBirth}
+        subTitle={dateOfBirth}
         disabled={isOpened}
         clickHandler={clickHandler}
         inputHandler={""}
-        children={<DateOfBirth />}
+        children={
+          <DateOfBirth
+            saveAllHandler={saveAllHandler}
+            setValue={setDateOfBirth}
+            date={dateOfBirth}
+          />
+        }
       />
       <Option
         optionName={"Email address"}
@@ -46,7 +114,13 @@ const ProfileOptions = ({ allData }) => {
         disabled={isOpened}
         clickHandler={clickHandler}
         inputHandler={""}
-        children={<EmailAddress />}
+        children={
+          <EmailAddress
+            saveAllHandler={saveAllHandler}
+            setValue={setEmail}
+            email={email}
+          />
+        }
       />
 
       <Option
@@ -55,16 +129,24 @@ const ProfileOptions = ({ allData }) => {
         disabled={isOpened}
         clickHandler={clickHandler}
         inputHandler={""}
-        children={<PhoneNumber />}
+        children={
+          <PhoneNumber
+            saveAllHandler={saveAllHandler}
+            setValue={setPhone}
+            number={phone}
+          />
+        }
       />
 
       <Option
         optionName={"Address"}
-        subTitle={allData.address}
+        subTitle={address}
         disabled={isOpened}
         clickHandler={clickHandler}
         inputHandler={""}
-        children={<Address />}
+        children={
+          <Address saveAllHandler={saveAllHandler} setValue={setAddress} />
+        }
       />
       <style jsx>{ProfileOptionsStyle}</style>
     </>

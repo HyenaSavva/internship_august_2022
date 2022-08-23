@@ -5,8 +5,7 @@ import { CustomButton } from "UI/button/CustomButton";
 import { button } from "../../Option/OptionStyle";
 import css from "./GenderStyle";
 
-const Gender = () => {
-  const [gender, setGender] = useState("");
+const Gender = ({ saveAllHandler, setValue, gender }) => {
   const [error, setError] = useState("");
 
   const saveHandler = () => {
@@ -15,7 +14,7 @@ const Gender = () => {
         inputError: true,
         message: "Gender was not found.",
       });
-    } else if (gender !== "male" && gender !== "female") {
+    } else if (gender !== "male" && gender !== "female" && gender !== "none") {
       setError({
         inputError: true,
         message: "Gender does not exist.",
@@ -23,6 +22,9 @@ const Gender = () => {
     } else {
       setError({ inputError: false });
     }
+    console.log(gender);
+    if (gender === "female")  setValue(gender);
+    // saveAllHandler({ Gender: gender });
   };
 
   return (
@@ -32,12 +34,13 @@ const Gender = () => {
           error={error}
           topLabel="Gender"
           bottomLabel="Introduce your gender."
-          setEnteredValue={setGender}
-          inputProps={{ list: "list" }}
+          setEnteredValue={setValue}
+          inputProps={{ list: "list", value: gender }}
           items={
             <datalist id="list">
               <option value="male" />
               <option value="female" />
+              <option value="none" />
             </datalist>
           }
         />

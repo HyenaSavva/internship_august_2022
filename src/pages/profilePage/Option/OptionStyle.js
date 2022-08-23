@@ -37,6 +37,7 @@ export const optionStyle = {
 
 export const button = {
   margin: "0",
+  width: "117px",
   color: "#fff",
   backgroundColor: appTheme.palette.primary.main,
   "&:hover": {

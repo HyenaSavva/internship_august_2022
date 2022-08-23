@@ -5,22 +5,21 @@ import { CustomButton } from "UI/button/CustomButton";
 import { button } from "../../Option/OptionStyle";
 import css from "./EmailAddressStyle";
 
-const EmailAddress = () => {
-  const [mail, setMail] = useState("");
+const EmailAddress = ({ saveAllHandler, setValue, email }) => {
   const [error, setError] = useState("");
 
   const saveHandler = () => {
-    if (!mail) {
+    if (!email) {
       setError({
         inputError: true,
         message: "Mail don't exist.",
       });
-    } else if (!mail.includes("@")) {
+    } else if (!email.includes("@")) {
       setError({
         inputError: true,
         message: "Mail don't inculdes '@'.",
       });
-    } else if (!mail.includes(".com")) {
+    } else if (!email.includes(".com")) {
       setError({
         inputError: true,
         message: "Mail don't includes domain.",
@@ -29,6 +28,8 @@ const EmailAddress = () => {
       setError({
         inputError: false,
       });
+      saveAllHandler();
+      setValue(email);
     }
   };
 
@@ -40,7 +41,8 @@ const EmailAddress = () => {
           topLabel="Email"
           placeholder={"Email"}
           bottomLabel="Introduce your email."
-          setEnteredValue={setMail}
+          setEnteredValue={setValue}
+          inputProps={{ value: email }}
         />
       </div>
       <CustomButton sx={button} onClick={saveHandler}>

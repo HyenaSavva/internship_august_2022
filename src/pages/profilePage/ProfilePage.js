@@ -18,9 +18,7 @@ import { getUserProfile } from "services/userProfile";
 const Profile = () => {
   const { isActive, switchHandler } = useSwitch();
   const [imagePath, setImagePath] = useState();
-  const [allData, setAllData] = useState({
-    
-  });
+  const [allData, setAllData] = useState({});
 
   useEffect(() => {
     const getUser = async () => {

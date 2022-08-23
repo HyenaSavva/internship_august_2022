@@ -5,9 +5,13 @@ import { CustomButton } from "UI/button/CustomButton";
 import { button } from "../../Option/OptionStyle";
 import css from "./FullNameStyle";
 
-const FullName = () => {
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
+const FullName = ({
+  saveAllHandler,
+  setValue,
+  setSecValue,
+  name,
+  lastName,
+}) => {
   const [nameError, setNameError] = useState({ inputError: false });
   const [surNameError, setSurNameError] = useState({ inputError: false });
 
@@ -52,6 +56,7 @@ const FullName = () => {
       setSurNameError({
         inputError: false,
       });
+      saveAllHandler({ FullName: name + " " + lastName });
     }
   };
 
@@ -64,7 +69,8 @@ const FullName = () => {
             topLabel="First Name"
             placeholder={"Name"}
             bottomLabel="Introduce your name and surname."
-            setEnteredValue={setName}
+            setEnteredValue={setValue}
+            inputProps={{ value: name }}
           />
         </div>
         <div id="secondInput">
@@ -73,7 +79,8 @@ const FullName = () => {
             topLabel="Last Name"
             placeholder={"Surname"}
             bottomLabel=""
-            setEnteredValue={setLastName}
+            setEnteredValue={setSecValue}
+            inputProps={{ value: lastName }}
           />
         </div>
       </section>

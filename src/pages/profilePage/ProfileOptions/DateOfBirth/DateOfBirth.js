@@ -5,9 +5,14 @@ import { CustomButton } from "UI/button/CustomButton";
 import { button } from "../../Option/OptionStyle";
 import css from "./DateOfBirthStyle";
 
-const DateOfBirth = () => {
-  const [date, setDate] = useState("");
+const DateOfBirth = ({ saveAllHandler, setValue, date }) => {
   const [error, setError] = useState("");
+
+  let newDate = new Date(date?.slice(0, 10));
+  try {
+    newDate = newDate?.toISOString().split("T")[0];
+  } catch (e) {}
+  newDate = newDate?.toString()
 
   const saveHandler = () => {
     if (!date) {
@@ -19,6 +24,8 @@ const DateOfBirth = () => {
       setError({
         inputError: false,
       });
+      setValue(newDate);
+      saveAllHandler();
     }
   };
   return (
@@ -28,7 +35,8 @@ const DateOfBirth = () => {
           error={error}
           topLabel="Date"
           bottomLabel="Introduce your date of birth."
-          setEnteredValue={setDate}
+          setEnteredValue={setValue}
+          inputProps={{ value: newDate }}
           type={"date"}
         />
       </div>

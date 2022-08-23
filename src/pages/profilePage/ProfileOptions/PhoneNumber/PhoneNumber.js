@@ -5,8 +5,7 @@ import { CustomButton } from "UI/button/CustomButton";
 import { button } from "../../Option/OptionStyle";
 import css from "./PhoneNumberStyle";
 
-const PhoneNumber = () => {
-  const [number, setNumber] = useState("");
+const PhoneNumber = ({ saveAllHandler, setValue, number }) => {
   const [error, setError] = useState("");
 
   const saveHandler = () => {
@@ -27,6 +26,8 @@ const PhoneNumber = () => {
       });
     } else {
       setError({ inputError: false });
+      setValue(number);
+      saveAllHandler();
     }
   };
 
@@ -38,7 +39,8 @@ const PhoneNumber = () => {
           topLabel="Phone number"
           placeholder={"0000-000-000"}
           bottomLabel="Introduce phone number."
-          setEnteredValue={setNumber}
+          setEnteredValue={setValue}
+          inputProps={{ value: number }}
           type={"tel"}
         />
       </div>
