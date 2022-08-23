@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import CardStyle from "./CardStyle";
 import { useSelector } from "react-redux";
 
-const FooterButtonsCard = ({ approve }) => {
+const FooterButtonsCard = ({ handleDelete, approve }) => {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.user);
 
@@ -35,6 +35,7 @@ const FooterButtonsCard = ({ approve }) => {
       )}
       <Button
         variant="outlined"
+        onClick={handleDelete}
         sx={{
           background: user.Role === "Admin" ? "none" : "#EF2028",
           textTransform: "none",

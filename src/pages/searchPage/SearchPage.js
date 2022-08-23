@@ -29,7 +29,8 @@ const SearchPage = () => {
 
   const [cards, setCards] = useState(searchData);
 
-  let { currentPageData, pageCount, handlePageChange } = usePagination(cards);
+  let { currentPageData, pageCount, handlePageChange } =
+    usePagination(searchData);
 
   return (
     <div className="main">

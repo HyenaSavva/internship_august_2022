@@ -4,14 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Dropdown from "../../../UI/dropdown/Dropdown";
 import SearchBar from "../../../UI/searchBar/SearchBar";
-import MyProfileDropdownLogged from "./MyProfileDropdownLogged";
-import MyProfileDropdownUnlogged from "./MyProfileDropdownUnlogged";
+import MyProfileDropdown from "./MyProfileDropdown";
 
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Avatar from "@mui/material/Avatar";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 import logo from "../../../assets/images/logo-assist-tagline.png";
 import HeaderStyles from "./HeaderStyles";
@@ -64,44 +65,55 @@ const Header = () => {
           </div>
         </div>
       </section>
-      <section className="header--right">
-        <div>
-          <NavLink
-            to={isLoggedIn ? "/favorites" : "/login"}
-            className="header--icon"
-          >
-            <FavoriteBorderIcon />
-            <p> Favourites </p>
-          </NavLink>
-        </div>
-        <div className="profile" ref={ref}>
+      <ul className="header--right">
+        <li>
           <div>
-            <ul>
-              <li onClick={toggleDropdown} className="flex profile-icon">
-                {!isLoggedIn && (
-                  <div className="flex profile-name">
-                    <PersonOutlineIcon sx={{ marginRight: "7px" }} />
-                    My account
-                  </div>
-                )}
-                {isLoggedIn && (
-                  <div className="flex profile-name">
-                    <Avatar sx={{ marginRight: "7px" }} />
-                    {/* //FIXME: take the name of the user */}
-                    {user.Email.slice(0, 5)}
-                  </div>
-                )}
-                {!dropdownOpen && <KeyboardArrowDownIcon />}
-                {dropdownOpen && <KeyboardArrowUpIcon />}
-              </li>
-            </ul>
+            <NavLink
+              to={isLoggedIn ? "/favorites" : "/login"}
+              className="header--icon"
+            >
+              <FavoriteBorderIcon />
+              <p> Favourites </p>
+            </NavLink>
           </div>
-          <div className="dropdown-profile">
-            {!isLoggedIn && dropdownOpen && <MyProfileDropdownUnlogged />}
-            {isLoggedIn && dropdownOpen && <MyProfileDropdownLogged />}
+        </li>
+        <li>
+          <div className="profile" ref={ref}>
+            <div>
+              <ul>
+                <li onClick={toggleDropdown} className="flex profile-icon">
+                  {!isLoggedIn && (
+                    <div className="flex profile-name">
+                      <PersonOutlineIcon sx={{ marginRight: "7px" }} />
+                      My account
+                    </div>
+                  )}
+                  {isLoggedIn && (
+                    <div className="flex profile-name">
+                      <Avatar sx={{ marginRight: "7px" }} />
+                      {/* //FIXME: take the name of the user */}
+                      {user.Email.slice(0, 5)}
+                    </div>
+                  )}
+                  {!dropdownOpen && <KeyboardArrowDownIcon />}
+                  {dropdownOpen && <KeyboardArrowUpIcon />}
+                </li>
+              </ul>
+            </div>
+            <div className="dropdown-profile">
+              {dropdownOpen && <MyProfileDropdown />}
+            </div>
           </div>
+        </li>
+      </ul>
+      <div>
+        <div className="menu--icon">
+          <MenuIcon />
         </div>
-      </section>
+        <div className="menu--close">
+          <CloseIcon />
+        </div>
+      </div>
       <style jsx global>
         {HeaderStyles}
       </style>

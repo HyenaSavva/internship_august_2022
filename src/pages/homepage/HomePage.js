@@ -5,7 +5,11 @@ import Button from "@mui/material/Button";
 import Carousel from "components/carousel/Carousel";
 
 import HomePageStyles from "./HomePageStyles";
-import { fetchListingsData, fetchUser } from "services/listingsFetch";
+import {
+  fetchListingsData,
+  fetchUser,
+  deleteListing,
+} from "services/listingsFetch";
 import { useEffect, useState } from "react";
 
 import TabsUserListings from "components/common/tabs/TabsUserListings";
@@ -25,12 +29,12 @@ import {
 import usePagination from "@mui/material/usePagination/usePagination";
 import PaginationSquared from "components/pagination/Pagination";
 
-const categories = {
-  BIG_HOUSES: "Big Houses",
-  SMALL_HOUSES: "Small Houses",
-  OFFICES: "Offices",
-  APARTMENTS: "Apartments",
-};
+// const categories = {
+//   BIG_HOUSES: "Big Houses",
+//   SMALL_HOUSES: "Small Houses",
+//   OFFICES: "Offices",
+//   APARTMENTS: "Apartments",
+// };
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -42,6 +46,7 @@ function HomePage() {
   const [listings, setListings] = useState([]);
   const [cards, setCards] = useState(listings);
   const [userData, setUserData] = useState();
+  const [categories, setCategories] = useState({});
 
   const token = localStorage.getItem("token");
 
@@ -88,7 +93,7 @@ function HomePage() {
 
     if (token) {
       dispatch(userActions.getUserSuccess(jwtDecode(token)));
-      setUserData(fetchUser());
+      fetchUser();
     }
   }, []);
 

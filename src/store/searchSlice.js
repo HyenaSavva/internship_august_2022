@@ -7,7 +7,7 @@ const searchSlice = createSlice({
     search(state, action) {
       const resultData = action.payload.data.filter((card) =>
         action.payload.keys.some((key) =>
-          card[key].toLowerCase().includes(action.payload.query.toLowerCase())
+          card[key]?.toLowerCase().includes(action.payload.query.toLowerCase())
         )
       );
       state.searchInput = action.payload.query;

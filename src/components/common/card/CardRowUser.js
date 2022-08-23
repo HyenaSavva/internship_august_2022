@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { favoriteActions } from "store/favoriteSlice";
 import FooterButtonsCard from "./FooterButtonsCard";
 import { Link } from "react-router-dom";
+import { deleteListing } from "services/listingsFetch";
 
 export default function CardRowUser({
   approve,
@@ -36,6 +37,10 @@ export default function CardRowUser({
 
   const toggleFav = (event) => {
     setFavorite(!favorite);
+    event.preventDefault();
+  };
+  const handleDelete = (event) => {
+    deleteListing(id);
     event.preventDefault();
   };
 
@@ -83,7 +88,10 @@ export default function CardRowUser({
             </div>
             <div className="footer-border">
               <div className="footer right">
-                <FooterButtonsCard approve={approve} />
+                <FooterButtonsCard
+                  handleDelete={handleDelete}
+                  approve={approve}
+                />
               </div>
             </div>
           </div>

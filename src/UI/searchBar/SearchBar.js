@@ -27,7 +27,7 @@ const SearchBar = ({ placeholder }) => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const keys = ["title", "location", "shortDescription"];
+  const keys = ["title", "location", "description"];
 
   const search = () => {
     dispatch(

@@ -1,12 +1,21 @@
 import axios from "axios";
 import jwt from "jwt-decode";
 
+const user = jwt(`${localStorage.getItem("token")}`);
+
 export const fetchListingsData = async () => {
   return await axios
     .get(`${process.env.REACT_APP_LISTING_API_URL}listing`)
     .then((response) => {
       return response.data;
     })
+    .catch((error) => console.error(`Error: ${error}`));
+};
+
+export const deleteListing = async (listingId) => {
+  return await axios
+    .delete(`${process.env.REACT_APP_LISTING_API_URL}${listingId}`)
+    .then((response) => {})
     .catch((error) => console.error(`Error: ${error}`));
 };
 
@@ -20,8 +29,6 @@ export const singleListingData = async (listingID) => {
 };
 
 export const fetchFavoritesData = async () => {
-  const user = jwt(`${localStorage.getItem("token")}`);
-
   return await axios
     .get(`${process.env.REACT_APP_FAVORITE_API_URL}${user.Id}`)
     .then((response) => {
@@ -33,9 +40,20 @@ export const fetchFavoritesData = async () => {
 export const addToFavorites = async (listingId) => {
   return await axios
     .post(
-      `https://assist-august-2022-be1.azurewebsites.net/Favorite/api/3a52e3b7-bee6-4521-fd0a-08da81f0659e?listingId=a75d80f0-4c32-4550-bf3e-08da84146fcc`
+      `${process.env.REACT_APP_FAVORITE_API_URL}${user.Id}?listingId=${listingId}`
     )
     .then((response) => {})
+    .catch((error) => console.error(`Error: ${error}`));
+};
+
+export const removeToFavorites = async (listingId) => {
+  return await axios
+    .delete(
+      `${process.env.REACT_APP_FAVORITE_API_URL}delete?userId=${user.Id}&listingId=${listingId}`
+    )
+    .then((response) => {
+      console.log(response);
+    })
     .catch((error) => console.error(`Error: ${error}`));
 };
 
@@ -45,14 +63,11 @@ export const fetchUser = async () => {
       Authorization: "Bearer " + `${localStorage.getItem("token")}`,
     },
   };
-  const user = jwt(`${localStorage.getItem("token")}`);
 
   return await axios
-    .get(
-      `https://assist-august-2022-be1.azurewebsites.net/api/user/${user.Id}`,
-      config
-    )
+    .get(`${process.env.REACT_APP_USER_API_URL}${user.Id}`, config)
     .then((response) => {
+      localStorage.setItem("user", JSON.stringify(response.data));
       return response.data;
     })
     .catch((error) => console.error(`Error: ${error}`));

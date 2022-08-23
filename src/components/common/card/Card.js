@@ -54,11 +54,7 @@ export default function Card(props) {
                 width="262.5px"
                 component="img"
                 height="162"
-                src={
-                  images.length > 1
-                    ? `${images[0]}, ${images[1]}`
-                    : `${images[0]}`
-                }
+                src={`${images[1]}`}
                 alt="green iguana"
               />
 

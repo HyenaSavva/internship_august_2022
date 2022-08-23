@@ -8,9 +8,11 @@ import LogoutIcon from "@mui/icons-material/Logout";
 
 import HeaderStyles from "./HeaderStyles";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const MyProfileDropdownLogged = () => {
+const MyProfileDropdown = () => {
   const navigate = useNavigate();
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   const logout = () => {
     navigate("/login");
@@ -25,7 +27,10 @@ const MyProfileDropdownLogged = () => {
               <p>Hello!</p>
             </li>
             <li>
-              <Link to="/" style={{ textDecoration: "none" }}>
+              <Link
+                to={isLoggedIn ? "/" : "/login"}
+                style={{ textDecoration: "none" }}
+              >
                 <div className="li-dropdown">
                   <PersonIcon sx={{ color: "#0356e8" }} />
                   <div className="li-text">Profile</div>
@@ -56,13 +61,17 @@ const MyProfileDropdownLogged = () => {
                 </div>
               </Link>
             </li>
-            <hr />
-            <li>
-              <div className="li-dropdown" onClick={logout}>
-                <LogoutIcon sx={{ color: "#596274" }} />
-                <div className="li-text">Logout</div>
-              </div>
-            </li>
+            {isLoggedIn && (
+              <>
+                <hr />
+                <li>
+                  <div className="li-dropdown" onClick={logout}>
+                    <LogoutIcon sx={{ color: "#596274" }} />
+                    <div className="li-text">Logout</div>
+                  </div>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
@@ -71,4 +80,4 @@ const MyProfileDropdownLogged = () => {
   );
 };
 
-export default MyProfileDropdownLogged;
+export default MyProfileDropdown;
