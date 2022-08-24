@@ -45,7 +45,6 @@ function HomePage() {
   const user = JSON.parse(localStorage.getItem("userId"));
   const userData = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
-  // let favorites = JSON.parse(localStorage.getItem("favorites"));
 
   const [tabAllListings, setTabAllListings] = useState(true);
 
