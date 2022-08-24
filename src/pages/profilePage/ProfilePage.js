@@ -31,8 +31,8 @@ const Profile = () => {
 
     setTimeout(() => {
       setImageSrc(allData.photo);
-    }, 100);
-  }, []);
+    }, 1000);
+  }, [allData.photo]);
 
   return (
     <div className="page">
