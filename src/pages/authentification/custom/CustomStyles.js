@@ -48,6 +48,7 @@ export const GoogleButtonStyle = {
 };
 
 export const InputStyleError = {
+  width: "100%",
   border: "1px solid #d32f2f;",
   borderRadius: "8px",
   margin: "4px 0",

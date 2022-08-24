@@ -42,7 +42,7 @@ const CreateAccount = () => {
             setEmail={setEmail}
             topLabel="Email"
             placeholder="Email"
-            type="email"
+            type=""
           />
           <PasswordInput
             error={error}

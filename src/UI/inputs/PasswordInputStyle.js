@@ -23,6 +23,7 @@ export const InputStyle = {
   },
   ".MuiButtonBase-root": {
     margin: "0px",
+    width: "40px",
   },
 };
 
@@ -48,5 +49,6 @@ export const InputStyleError = {
   },
   ".MuiButtonBase-root": {
     margin: "0px",
+    width: "40px",
   },
 };

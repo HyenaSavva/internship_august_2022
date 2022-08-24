@@ -6,33 +6,40 @@ import {
   BottomLabelStyle,
   InputStyle,
   InputStyleError,
-} from "./CustomStyles";
+} from "./CustomInputStyle";
+
 
 const CustomInput = ({
   topLabel,
   bottomLabel,
   placeholder,
   type,
-  setEmail,
+  setEnteredValue,
   error,
-  sx,
+  styles,
+  items,
+  inputProps,
 }) => {
   return (
     <>
       <InputLabel sx={LabelStyle}>{topLabel}</InputLabel>
       <InputBase
-        onChange={setEmail}
+        inputProps={inputProps}
+        onChange={(e) => {
+          setEnteredValue(e.target.value);
+        }}
         sx={
-          error.emailError
-            ? { ...InputStyleError, ...sx }
-            : { ...InputStyle, ...sx }
+          error.inputError
+            ? { ...InputStyleError }
+            : { ...InputStyle, ...styles }
         }
         label={topLabel}
         placeholder={placeholder}
         type={type}
       />
-      <InputLabel sx={BottomLabelStyle} error={error.emailError}>
-        {error.emailError ? error.message : bottomLabel}
+      {items}
+      <InputLabel sx={BottomLabelStyle} error={error.inputError}>
+        {error.inputError ? error.message : bottomLabel}
       </InputLabel>
     </>
   );

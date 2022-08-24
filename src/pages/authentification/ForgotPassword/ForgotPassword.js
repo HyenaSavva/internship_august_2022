@@ -33,7 +33,7 @@ const ForgotPassword = () => {
             topLabel="Email"
             id="Email"
             placeholder="Email"
-            type="email"
+            type=""
           />
           <div className="logIn">
             <CustomButton
