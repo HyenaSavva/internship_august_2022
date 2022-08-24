@@ -13,7 +13,7 @@ export const Select = ({ label, name, value, onChange, error }) => {
           onChange={onChange}
           name={name}
         >
-          <option value="default">Select a category</option>
+          <option value="Default">Select a category</option>
 
           <option value="Big">Big Houses</option>
 

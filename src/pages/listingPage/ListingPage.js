@@ -40,8 +40,6 @@ export const ListingPage = () => {
     }
   }, []);
 
-  console.log("listingInfo", listingInfo);
-
   return (
     <>
       <div className="listing-page">
