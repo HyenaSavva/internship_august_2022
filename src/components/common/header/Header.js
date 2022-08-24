@@ -92,10 +92,10 @@ const Header = () => {
                   {isLoggedIn && (
                     <div className="flex profile-name">
                       <Avatar
-                        src={userData.photo}
+                        src={userData?.photo}
                         sx={{ marginRight: "7px" }}
                       />
-                      {userData.fullName}
+                      {userData?.fullName}
                     </div>
                   )}
                   {!dropdownOpen && <KeyboardArrowDownIcon />}

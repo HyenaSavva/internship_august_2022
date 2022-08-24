@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import IconButton from "@mui/material/IconButton";
+import { useParams } from "react-router-dom";
 
 import { Description } from "components/description/Description";
 import PhotoGalery from "components/photoGallery/PhotoGallery";
@@ -10,6 +11,7 @@ import { Seller } from "components/seller/Seller";
 import { Location } from "components/location/Location";
 import { ListingMessage } from "components/listingMessage/ListingMessage";
 import { ShareButton } from "UI/button/ShareButton";
+import { getListingById } from "helper/Constants";
 
 import ListingPageStyle, {
   shareBtn,
@@ -19,8 +21,6 @@ import ListingPageStyle, {
   favoriteBtn,
 } from "./ListingPageStyle";
 import { primaryBtn } from "UI/button/CustomButtonStyle";
-import { useParams } from "react-router-dom";
-import { getListinById } from "helper/Constants";
 
 export const ListingPage = () => {
   const params = useParams();
@@ -30,7 +30,7 @@ export const ListingPage = () => {
   useEffect(() => {
     if (params.id) {
       const fetchData = async () => {
-        const response = await getListinById(params.id);
+        const response = await getListingById(params.id);
         if (response) {
           setListingInfo(response.data);
         }

@@ -74,12 +74,12 @@ export const AddPage = () => {
           images: imagesToSend,
         });
         if (response) {
+          setOpenSuccessModal(true);
+          formik.resetForm();
         }
       } catch (error) {
         setRequestError(error.message);
       }
-      setOpenSuccessModal(true);
-      formik.resetForm();
     },
   });
 

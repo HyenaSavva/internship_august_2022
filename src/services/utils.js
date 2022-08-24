@@ -1,5 +1,3 @@
-const favorites = JSON.parse(localStorage.getItem("favorites"));
-
 // FILTER LOCATION
 export const filterLocation = (locations, cardListings) => {
   let filteredArray = [];
@@ -128,15 +126,4 @@ export const handleFilterPrice = (price, cards, listings) => {
 // ORDER BY
 export const handleOrderBy = (sortOption, listings) => {
   return orderBy(sortOption, listings);
-};
-
-export const verifyFavorite = (card) => {
-  const flag = favorites
-    .map((item) => {
-      if (item.id === card.id) {
-        return true;
-      }
-    })
-    .includes(true);
-  return flag;
 };

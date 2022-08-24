@@ -13,15 +13,15 @@ export const Select = ({ label, name, value, onChange, error }) => {
           onChange={onChange}
           name={name}
         >
-          <option value="default">Select a category</option>
+          <option value="Default">Select a category</option>
 
-          <option value="big houses">Big Houses</option>
+          <option value="Big">Big Houses</option>
 
-          <option value="2">Small Houses</option>
+          <option value="Small">Small Houses</option>
 
-          <option value="3">Offices</option>
+          <option value="Offices">Offices</option>
 
-          <option value="4">Apartments</option>
+          <option value="Apartments">Apartments</option>
         </select>
 
         {error ? <div className="error">{error}</div> : null}

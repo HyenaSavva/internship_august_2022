@@ -5,12 +5,12 @@ import Button from "@mui/material/Button";
 import CardStyle from "./CardStyle";
 import { useNavigate } from "react-router-dom";
 
-const FooterButtonsCard = ({ listingId, handleDelete, approve }) => {
-  const user = JSON.parse(localStorage.getItem("userId"));
+const FooterButtonsCard = ({ listingId, handleDelete, approve, listing }) => {
+  const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
 
   const handleEdit = (event) => {
-    navigate(`/edit/${listingId}`);
+    navigate(`/edit/${listingId}`, { state: listing });
     event.preventDefault();
   };
 

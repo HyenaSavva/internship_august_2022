@@ -3,7 +3,7 @@ import React from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 
 import { ListingPage } from "pages/listingPage/ListingPage";
-import HomePage from "./pages/homePage/HomePage";
+import HomePage from "./pages/homepage/HomePage";
 import FavoritesPage from "pages/favoritesPage/FavoritesPage";
 import Login from "pages/authentification/Login/Login";
 import CategoryPage from "pages/categoryPage/CategoryPage";

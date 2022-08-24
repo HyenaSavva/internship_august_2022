@@ -32,6 +32,8 @@ export const PreviewPage = () => {
   const navigate = useNavigate();
   const { state } = location;
 
+  console.log("state", state.id);
+
   const [listingReceived, setListingReceived] = useState({
     title: "",
     category: "",
@@ -52,8 +54,15 @@ export const PreviewPage = () => {
 
   const images = listingReceived.images?.filter((image) => image);
 
-  const redirectToEditPage = () => {
-    navigate("/add-new", { state: { listingFromPreview: listingReceived } });
+  const redirectToAddOrEditPage = () => {
+    if (state.from === "edit") {
+      navigate(`/edit/${state.id}`, {
+        state: listingReceived,
+        from: "preview",
+      });
+    } else {
+      navigate("/add-new", { state: { listingFromPreview: listingReceived } });
+    }
   };
 
   const sendToBack = async () => {
@@ -130,7 +139,7 @@ export const PreviewPage = () => {
           </div>
           <div className="preview-page__footer">
             <PreviewFooter
-              redirectToEdit={redirectToEditPage}
+              redirectToEdit={redirectToAddOrEditPage}
               sendToBack={sendToBack}
             />
           </div>

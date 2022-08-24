@@ -33,7 +33,11 @@ export const SuccessModal = ({ closeModal }) => {
         sx={modal}
       >
         <Box sx={style}>
-          <img src={welcome} style={{ marginBottom: "48px" }} />
+          <img
+            src={welcome}
+            style={{ marginBottom: "48px" }}
+            alt="Successfully add"
+          />
 
           <Text id="modal-modal-title" variant="h6" component="h2">
             Awesome! Your listing has been sent for approval.
