@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const PER_PAGE = 4;
+const PER_PAGE = 12;
 
 const usePagination = (favoriteListings) => {
   const [currentPage, setCurrentPage] = useState(0);

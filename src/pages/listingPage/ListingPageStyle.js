@@ -146,12 +146,6 @@ export const shareBtn = {
 };
 
 export const purchaseBtn = {
-  color: "#fff",
-  backgroundColor: appTheme.palette.primary.main,
-  "&:hover": {
-    backgroundColor: appTheme.palette.primary.main,
-  },
-
   [appTheme.breakpoints.only("mobile")]: {
     width: "144px",
     height: "38px",

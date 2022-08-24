@@ -1,68 +1,76 @@
+const favorites = JSON.parse(localStorage.getItem("favorites"));
+
 // FILTER LOCATION
 export const filterLocation = (locations, cardListings) => {
   let filteredArray = [];
-  locations.map((location) => {
-    const newListings = cardListings.filter((card) => {
-      return card.location.includes(location) ? card : undefined;
+  if (locations.length) {
+    locations.map((location) => {
+      const newListings = cardListings.filter((card) => {
+        return card.location.includes(location) ? card : undefined;
+      });
+      filteredArray = [...filteredArray, ...newListings];
     });
-    filteredArray = [...filteredArray, ...newListings];
-  });
-  filteredArray = [...new Set(filteredArray)];
+    filteredArray = [...new Set(filteredArray)];
+  } else {
+    filteredArray = cardListings;
+  }
   return filteredArray;
 };
 
 // FILTER PRICE
-export const filterPrice = (price, cards, cardListings) => {
+export const filterPrice = (price, cards, prevCards) => {
   let filteredArray = [...cards];
+
   switch (price) {
     case "all":
-      filteredArray = [...cardListings];
+      filteredArray = [...prevCards];
 
       break;
     case "price1":
-      filteredArray = cardListings.filter((card) => {
+      filteredArray = cards.filter((card) => {
         return parseInt(card.price) >= 0 && parseInt(card.price) <= 10000
           ? card
           : undefined;
       });
       break;
     case "price2":
-      filteredArray = cardListings.filter((card) => {
+      filteredArray = cards.filter((card) => {
         return parseInt(card.price) > 10000 && parseInt(card.price) <= 50000
           ? card
           : undefined;
       });
       break;
     case "price3":
-      filteredArray = cardListings.filter((card) => {
+      filteredArray = cards.filter((card) => {
         return parseInt(card.price) > 50000 && parseInt(card.price) <= 100000
           ? card
           : undefined;
       });
       break;
     case "price4":
-      filteredArray = cardListings.filter((card) => {
+      filteredArray = cards.filter((card) => {
         return parseInt(card.price) > 100000 && parseInt(card.price) <= 300000
           ? card
           : undefined;
       });
       break;
     case "price5":
-      filteredArray = cardListings.filter((card) => {
+      filteredArray = cards.filter((card) => {
         return parseInt(card.price) > 300000 && parseInt(card.price) <= 700000
           ? card
           : undefined;
       });
       break;
     case "price6":
-      filteredArray = cardListings.filter((card) => {
+      filteredArray = cards.filter((card) => {
         return parseInt(card.price) > 700000 && parseInt(card.price) <= 1000000
           ? card
           : undefined;
       });
       break;
     default:
-      filteredArray = [...cardListings];
+      filteredArray = [...cards];
+      break;
   }
   return filteredArray;
 };
@@ -120,4 +128,15 @@ export const handleFilterPrice = (price, cards, listings) => {
 // ORDER BY
 export const handleOrderBy = (sortOption, listings) => {
   return orderBy(sortOption, listings);
+};
+
+export const verifyFavorite = (card) => {
+  const flag = favorites
+    .map((item) => {
+      if (item.id === card.id) {
+        return true;
+      }
+    })
+    .includes(true);
+  return flag;
 };

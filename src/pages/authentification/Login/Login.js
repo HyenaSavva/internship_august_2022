@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
+import Alert from "@mui/material/Alert";
 
 import CustomInput from "../custom/CustomInput";
 import PasswordInput from "../../../UI/inputs/PasswordInput";
@@ -8,9 +10,17 @@ import logo from "../../../assets/logo-assist-tagline.svg";
 import { CustomButtonStyle } from "../custom/CustomStyles";
 import LoginStyle from "./LoginStyle";
 import useInputValidation from "hooks/useInputValidation";
-import { loginUser } from "../../../services/auth";
+import { loginUser } from "services/auth";
+
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "store/authSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { isLoading } = useSelector((state) => state.auth);
+
   const { email, password, setEmail, setPassword, error, setError, isValid } =
     useInputValidation();
 
@@ -22,6 +32,22 @@ const Login = () => {
       const data = await loginUser(email, password);
       localStorage.setItem("token", data.data);
     }
+
+    // from PETRU
+    dispatch(authActions.loginPending());
+
+    try {
+      const isAuth = await loginUser(email, password);
+
+      if (isAuth.name === "AxiosError") {
+        return dispatch(authActions.loginFail(isAuth.message));
+      }
+
+      dispatch(authActions.loginSuccess());
+      navigate("/");
+    } catch (error) {
+      dispatch(authActions.loginFail(error.message));
+    }
   };
 
   return (
@@ -31,6 +57,7 @@ const Login = () => {
           <img src={logo} alt="desc" />
           <h1>Login</h1>
           <p>Enter your account details below.</p>
+          {error.message && <Alert severity="error">{error.message}</Alert>}
           <CustomInput
             error={error}
             setEmail={setEmail}
@@ -66,6 +93,7 @@ const Login = () => {
             >
               Log in
             </CustomButton>
+            {isLoading && <CircularProgress />}
           </div>
           <div className="googleBtn">
             <GoogleButton>Log in with Google</GoogleButton>

@@ -40,12 +40,6 @@ export default css`
 
 export const showBtn = {
   position: "absolute",
-  backgroundColor: "#fff",
-  border: "solid 1px #1976d2",
-  "&:hover": {
-    backgroundColor: "#fff",
-  },
-
   [appTheme.breakpoints.only("mobile")]: {
     top: "92%",
     right: "1%",
@@ -64,8 +58,8 @@ export const showBtn = {
   [appTheme.breakpoints.only("desktop")]: {
     height: "36px",
     width: "auto",
-    top: "93%",
-    right: "1%",
+    top: "90%",
+    right: "0.5%",
   },
 };
 
@@ -73,18 +67,13 @@ export const imageListStyles = {
   borderRadius: "12px",
   margin: "auto",
   position: "relative",
+  width: "100%",
   [appTheme.breakpoints.only("mobile")]: {
-    width: "100vw",
     paading: "0px",
   },
-  [appTheme.breakpoints.only("tablet")]: {
-    width: "100%",
-  },
-  [appTheme.breakpoints.only("laptop")]: {
-    width: "100%",
-  },
+  [appTheme.breakpoints.only("tablet")]: {},
+  [appTheme.breakpoints.only("laptop")]: {},
   [appTheme.breakpoints.only("desktop")]: {
-    width: "100%",
     height: "48%",
   },
 };

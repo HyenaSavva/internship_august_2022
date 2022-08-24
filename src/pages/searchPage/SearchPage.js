@@ -15,10 +15,15 @@ import {
   handleFilterLocation,
   handleFilterPrice,
   handleOrderBy,
+  verifyFavorite,
 } from "services/utils";
 import { useState } from "react";
+import CardRowUser from "components/common/card/CardRowUser";
 
 const SearchPage = () => {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const user = JSON.parse(localStorage.getItem("userId"));
+
   const searchInput = useSelector((state) => state.search.searchInput);
   const isGridView = useSelector((state) => state.gridView.isGridView);
   const searchData = useSelector((state) => state.search.searchData);
@@ -54,13 +59,13 @@ const SearchPage = () => {
                 <Grid item xs={2} sm={3} md={3} key={index}>
                   <Card
                     id={card.id}
-                    isFavorite={card.isFavorite}
+                    isFavorite={verifyFavorite(card)}
                     last={false}
                     title={card.title}
                     location={card.location}
                     price={card.price}
                     description={card.description}
-                    image={card.image}
+                    images={card.images}
                   />
                 </Grid>
               );
@@ -72,16 +77,28 @@ const SearchPage = () => {
             {currentPageData.map((card, index) => {
               return (
                 <Grid item xs={3} sm={6} md={12} key={index}>
-                  <CardRow
-                    id={card.id}
-                    isFavorite={card.isFavorite}
-                    last={false}
-                    title={card.title}
-                    location={card.location}
-                    price={card.price}
-                    description={card.description}
-                    image={card.image}
-                  />
+                  {!isLoggedIn && (
+                    <CardRow
+                      id={card.id}
+                      isFavorite={verifyFavorite(card)}
+                      title={card.title}
+                      location={card.location}
+                      price={card.price}
+                      description={card.shortDescription}
+                      images={card.images}
+                    />
+                  )}
+                  {isLoggedIn && (
+                    <CardRowUser
+                      id={card.id}
+                      isFavorite={verifyFavorite(card)}
+                      title={card.title}
+                      location={card.location}
+                      price={card.price}
+                      description={card.shortDescription}
+                      images={card.images}
+                    />
+                  )}
                 </Grid>
               );
             })}

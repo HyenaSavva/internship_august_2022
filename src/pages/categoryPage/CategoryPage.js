@@ -16,6 +16,7 @@ import {
   handleFilterLocation,
   handleFilterPrice,
   handleOrderBy,
+  verifyFavorite,
 } from "services/utils";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -28,6 +29,7 @@ const CategoryPage = (props) => {
   let params = useParams();
   const [listings, setListings] = useState([]);
   const [cards, setCards] = useState([]);
+  const [prevCards, setPrevCards] = useState([]);
 
   useEffect(() => {
     // fetchListingsData returns a promise - we use ".then" to get the data from the promise
@@ -37,8 +39,7 @@ const CategoryPage = (props) => {
     });
   }, []);
 
-  const CardsData = useSelector((state) => state.favorite.listings);
-  const categData = filterByCategory(params.name, CardsData);
+  const categData = filterByCategory(params.name, listings);
 
   const { currentPageData, pageCount, handlePageChange } = usePagination(cards);
 
@@ -50,13 +51,15 @@ const CategoryPage = (props) => {
 
       <Container sx={{ maxWidth: "lg" }}>
         <TabsRow
-          filterLocation={(sort) =>
-            setCards(handleFilterLocation(sort, listings))
-          }
-          filterPrice={(sort) => {
-            setCards(handleFilterPrice(sort, cards, listings));
+          filterLocation={(sort) => {
+            setPrevCards(cards);
+            setCards(handleFilterLocation(sort, listings, prevCards));
           }}
-          orderBy={(sort) => setCards(handleOrderBy(sort, listings))}
+          filterPrice={(sort) => {
+            setPrevCards(cards);
+            setCards(handleFilterPrice(sort, cards, prevCards));
+          }}
+          orderBy={(sort) => setCards(handleOrderBy(sort, cards))}
         />
 
         {isGridView && (
@@ -66,7 +69,7 @@ const CategoryPage = (props) => {
                 <Grid item xs={2} sm={3} md={3} key={index}>
                   <Card
                     id={card.id}
-                    isFavorite={card.isFavorite}
+                    isFavorite={verifyFavorite(card)}
                     last={false}
                     title={card.title}
                     location={card.location}
@@ -86,7 +89,7 @@ const CategoryPage = (props) => {
                 <Grid item xs={2} sm={3} md={12} key={index}>
                   <CardRow
                     id={card.id}
-                    isFavorite={card.isFavorite}
+                    isFavorite={verifyFavorite(card)}
                     last={false}
                     title={card.title}
                     location={card.location}
@@ -99,7 +102,7 @@ const CategoryPage = (props) => {
             })}
           </Grid>
         )}
-        {categData.length > 0 && (
+        {cards.length > 0 && (
           <PaginationSquared
             pageCount={pageCount}
             handlePageChange={handlePageChange}

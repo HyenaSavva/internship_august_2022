@@ -54,15 +54,11 @@ export const textareaErrorStyle = {
   borderColor: "#DD1018",
 };
 
-export const sendBtn = {
-  width: { lg: "165px" },
-  height: { lg: "44px" },
-  fontSize: "14px",
-  lineHeight: "22px",
-  "&:hover": {
-    backgroundColor: "#fff",
-  },
+export const errorMessage = {
+  color: "#DD1018",
+};
 
+export const sendBtn = {
   [appTheme.breakpoints.only("mobile")]: {
     marginTop: "12px",
     marginBottom: "68px",

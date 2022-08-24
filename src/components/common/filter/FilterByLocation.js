@@ -20,11 +20,12 @@ const MenuProps = {
 
 const names = [
   "Botosani",
+  "string",
   "Botoșani",
   "Timisoara",
   "Suceava",
   "Sydney",
-  "Romania",
+  "Bucuresti",
 ];
 
 export default function FilterByLocation({ filterLocation }) {
@@ -50,7 +51,7 @@ export default function FilterByLocation({ filterLocation }) {
           displayEmpty
           value={locationName}
           onChange={handleChange}
-          InputLabelProps={{ shrink: false }}
+          inputlabelprops={{ shrink: false }}
           renderValue={(selected) => {
             if (selected.length === 0) {
               return <strong>Location</strong>;
