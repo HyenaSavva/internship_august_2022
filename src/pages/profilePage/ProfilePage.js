@@ -14,10 +14,12 @@ import ProfileOptions from "./ProfileOptions/ProfileOptions";
 import useSwitch from "./useSwitch";
 import LoginAndSecurity from "./LoginAndSecurity/LoginAndSecurity";
 import { getUserProfile } from "services/userProfile";
+import { patchUserProfile } from "services/userProfile";
 
 const Profile = () => {
   const { isActive, switchHandler } = useSwitch();
   const [imagePath, setImagePath] = useState();
+  const [imageSrc, setImageSrc] = useState();
   const [allData, setAllData] = useState({});
 
   useEffect(() => {
@@ -26,6 +28,10 @@ const Profile = () => {
       setAllData(user.response.data);
     };
     getUser();
+
+    setTimeout(() => {
+      setImageSrc(allData.photo);
+    }, 100);
   }, []);
 
   return (
@@ -47,12 +53,13 @@ const Profile = () => {
                     reader.readAsDataURL(e.target.files[0]);
                     reader.onload = () => {
                       setImagePath(reader.result);
+                      patchUserProfile({ Photo: reader.result });
                     };
                   }}
                 />
                 <EditOutlinedIcon sx={EditIcon} />
               </div>
-              <Avatar src={imagePath} sx={AvatarIcon} />
+              <Avatar src={imagePath ? imagePath : imageSrc} sx={AvatarIcon} />
             </div>
 
             <ul className="sideButtons" onClick={switchHandler}>
