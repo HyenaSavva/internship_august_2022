@@ -84,7 +84,7 @@ const SearchPage = () => {
                       title={card.title}
                       location={card.location}
                       price={card.price}
-                      description={card.shortDescription}
+                      description={card.description}
                       images={card.images}
                     />
                   )}
@@ -95,7 +95,7 @@ const SearchPage = () => {
                       title={card.title}
                       location={card.location}
                       price={card.price}
-                      description={card.shortDescription}
+                      description={card.description}
                       images={card.images}
                     />
                   )}

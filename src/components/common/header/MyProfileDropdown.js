@@ -14,12 +14,13 @@ const MyProfileDropdown = ({ toggleDropdown }) => {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
 
   const logout = () => {
-    navigate("/login");
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("userId");
+    localStorage.removeItem("favorites");
     localStorage.setItem("isLoggedIn", false);
     toggleDropdown();
+    navigate("/login");
   };
 
   return (
@@ -32,7 +33,7 @@ const MyProfileDropdown = ({ toggleDropdown }) => {
             </li>
             <li>
               <Link
-                to={isLoggedIn ? "/" : "/login"}
+                to={isLoggedIn === "true" ? "/" : "/login"}
                 style={{ textDecoration: "none" }}
               >
                 <div className="li-dropdown">
@@ -65,7 +66,7 @@ const MyProfileDropdown = ({ toggleDropdown }) => {
                 </div>
               </Link>
             </li>
-            {isLoggedIn && (
+            {isLoggedIn === "true" && (
               <>
                 <hr />
                 <li>

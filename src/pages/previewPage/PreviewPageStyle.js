@@ -2,6 +2,7 @@ import css from "styled-jsx/css";
 
 export default css.global`
   .preview-page {
+    padding-top: 100px;
     margin: auto;
     display: flex;
     flex-direction: column;

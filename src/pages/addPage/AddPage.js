@@ -84,7 +84,7 @@ export const AddPage = () => {
   });
 
   return (
-    <>
+    <div style={{ paddingTop: "100px" }}>
       {requestError ? (
         <Dialog
           sx={dialog}
@@ -246,6 +246,6 @@ export const AddPage = () => {
           )}
         </>
       )}
-    </>
+    </div>
   );
 };

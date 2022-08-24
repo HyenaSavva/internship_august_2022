@@ -101,7 +101,7 @@ export const EditPage = () => {
   });
 
   return (
-    <>
+    <div style={{ paddingTop: "100px" }}>
       {requestError ? (
         <Dialog
           sx={dialog}
@@ -263,6 +263,6 @@ export const EditPage = () => {
           )}
         </>
       )}
-    </>
+    </div>
   );
 };

@@ -127,3 +127,19 @@ export const handleFilterPrice = (price, cards, listings) => {
 export const handleOrderBy = (sortOption, listings) => {
   return orderBy(sortOption, listings);
 };
+
+export const verifyFavorite = (card) => {
+  let favorites =
+    localStorage.getItem("favorites") !== "undefined"
+      ? JSON.parse(localStorage.getItem("favorites"))
+      : [{}];
+  let flag = favorites
+    ?.map((item) => {
+      if (item.id === card.id) {
+        return true;
+      }
+    })
+    .includes(true);
+
+  return flag;
+};

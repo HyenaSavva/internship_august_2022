@@ -5,8 +5,8 @@ import CardMedia from "@mui/material/CardMedia";
 
 import CardStyle from "./CardStyle";
 import FavoriteBtn from "./favoriteButton/FavoriteBtn";
-import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { addToFavorites, removeFromFavorites } from "services/listingsFetch";
 
 export default function CardRow({
   id,
@@ -20,7 +20,7 @@ export default function CardRow({
 }) {
   const [favorite, setFavorite] = useState(isFavorite);
 
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
   const navigate = useNavigate();
 
@@ -41,6 +41,11 @@ export default function CardRow({
 
   const toggleFav = (event) => {
     setFavorite(!favorite);
+    if (!favorite) {
+      addToFavorites(id);
+    } else {
+      removeFromFavorites(id);
+    }
     event.preventDefault();
   };
 

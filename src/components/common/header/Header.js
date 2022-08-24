@@ -45,12 +45,11 @@ const Header = () => {
   }, [dropdownOpen]);
 
   const categories = [
-    { label: "Category" },
-    { label: "Big Houses" },
-    { label: "Small Houses" },
-    { label: "Offices" },
-    { label: "Apartments" },
-    { label: "Category" },
+    { label: "Big Houses", value: "Big" },
+    { label: "Small Houses", value: "Small" },
+    { label: "Offices", value: "Offices" },
+    { label: "Apartments", value: "Apartments" },
+    { label: "Category", value: "/" },
   ];
 
   return (
@@ -70,7 +69,7 @@ const Header = () => {
         <li>
           <div>
             <NavLink
-              to={isLoggedIn ? "/favorites" : "/login"}
+              to={isLoggedIn === "true" ? "/favorites" : "/login"}
               className="header--icon"
             >
               <FavoriteBorderIcon />
@@ -83,13 +82,13 @@ const Header = () => {
             <div>
               <ul>
                 <li onClick={toggleDropdown} className="flex profile-icon">
-                  {!isLoggedIn && (
+                  {isLoggedIn === "false" && (
                     <div className="flex profile-name">
                       <PersonOutlineIcon sx={{ marginRight: "7px" }} />
                       My account
                     </div>
                   )}
-                  {isLoggedIn && (
+                  {isLoggedIn === "true" && (
                     <div className="flex profile-name">
                       <Avatar
                         src={userData?.photo}

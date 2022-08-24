@@ -2,13 +2,15 @@ import axios from "axios";
 import jwt from "jwt-decode";
 
 let user = {};
-if (localStorage.getItem("token")) {
-  user = jwt(`${localStorage.getItem("token")}`);
-} else {
-  user = {
-    id: "",
-  };
-}
+export const refreshUser = () => {
+  if (localStorage.getItem("token")) {
+    user = jwt(`${localStorage.getItem("token")}`);
+  } else {
+    user = {
+      id: "",
+    };
+  }
+};
 
 export const fetchListingsData = async () => {
   return await axios
@@ -22,6 +24,7 @@ export const fetchMyListingsData = async () => {
   return await axios
     .get(`${process.env.REACT_APP_MY_LISTINGS_API_URL}${user.Id}`)
     .then((response) => {
+      console.log(response.data);
       return response.data;
     })
     .catch((error) => console.error(`Error: ${error}`));
@@ -30,7 +33,9 @@ export const fetchMyListingsData = async () => {
 export const deleteListing = async (listingId) => {
   return await axios
     .delete(`${process.env.REACT_APP_LISTING_API_URL}${listingId}`)
-    .then((response) => {})
+    .then((response) => {
+      console.log(response);
+    })
     .catch((error) => console.error(`Error: ${error}`));
 };
 
@@ -44,6 +49,7 @@ export const singleListingData = async (listingID) => {
 };
 
 export const fetchFavoritesData = async () => {
+  let user = jwt(`${localStorage.getItem("token")}`);
   return await axios
     .get(`${process.env.REACT_APP_FAVORITE_API_URL}${user.Id}`)
     .then((response) => {
@@ -53,6 +59,7 @@ export const fetchFavoritesData = async () => {
 };
 
 export const addToFavorites = async (listingId) => {
+  let user = jwt(`${localStorage.getItem("token")}`);
   return await axios
     .post(
       `${process.env.REACT_APP_FAVORITE_API_URL}${user.Id}?listingId=${listingId}`
@@ -64,6 +71,7 @@ export const addToFavorites = async (listingId) => {
 };
 
 export const removeFromFavorites = async (listingId) => {
+  let user = jwt(`${localStorage.getItem("token")}`);
   return await axios
     .delete(
       `${process.env.REACT_APP_FAVORITE_API_URL}delete?userId=${user.Id}&listingId=${listingId}`

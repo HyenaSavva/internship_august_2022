@@ -1,4 +1,3 @@
-import Header from "../../components/common/header/Header";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 
@@ -8,8 +7,8 @@ import HomePageStyles from "./HomePageStyles";
 import {
   fetchListingsData,
   fetchUser,
-  deleteListing,
   fetchMyListingsData,
+  deleteListing,
 } from "services/listingsFetch";
 import { useEffect, useState } from "react";
 
@@ -31,10 +30,17 @@ import {
 import usePagination from "@mui/material/usePagination/usePagination";
 import PaginationSquared from "components/pagination/Pagination";
 import { useNavigate } from "react-router-dom";
+import AlertDialog from "components/common/card/Dialog";
 
 const categories = {
   BIG_HOUSES: "Big Houses",
   SMALL_HOUSES: "Small Houses",
+  OFFICES: "Offices",
+  APARTMENTS: "Apartments",
+};
+const categoriesValues = {
+  BIG_HOUSES: "Big",
+  SMALL_HOUSES: "Small",
   OFFICES: "Offices",
   APARTMENTS: "Apartments",
 };
@@ -70,6 +76,9 @@ function HomePage() {
     navigate("/add-new");
     event.preventDefault();
   };
+  const handleDelete = (id) => {
+    deleteListing(id);
+  };
 
   const cardsMap = (
     <Grid container spacing={3} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -79,6 +88,7 @@ function HomePage() {
             {isLoggedIn && (
               <>
                 <CardRowUser
+                  handleDelete={() => handleDelete(card.id)}
                   approve={tabAllListings}
                   id={card.id}
                   isFavorite={verifyFavorite(card)}
@@ -138,25 +148,21 @@ function HomePage() {
   }, []);
 
   const filterByCategory = (category, cardData) => {
-    return cardData.filter((card) => {
+    const categ = cardData.filter((card) => {
       return card.category === category ? card : undefined;
     });
+    return categ;
   };
 
-  const sortedDate = [...allListings].sort(
-    (objA, objB) => Number(new Date(objB.date)) - Number(new Date(objA.date))
-  );
+  const sortedDate = [...allListings].reverse();
 
   let { currentPageData, pageCount, handlePageChange } = usePagination(cards);
 
   return (
     <div>
-      <Container maxWidth="lg">
-        <Header />
-      </Container>
       <div className="container">
         <Container sx={{ maxWidth: "lg" }}>
-          {isLoggedIn && (
+          {isLoggedIn === "true" && (
             <div className="main">
               <div className="flex welcome">
                 <p>Welcome back, {userData?.fullName}</p>
@@ -180,22 +186,45 @@ function HomePage() {
               </div>
             </div>
           )}
-          {!isLoggedIn && <h1 className="main">What are you interested in?</h1>}
-          {isLoggedIn && user?.Role === "User" && (
+          {isLoggedIn === "false" && (
+            <h1 className="main">What are you interested in?</h1>
+          )}
+          {isLoggedIn === "false" && (
+            <div>
+              <Carousel category={"Latest"} data={sortedDate} />
+              <Carousel
+                category={categories.BIG_HOUSES}
+                data={filterByCategory(0, allListings)}
+              />
+              <Carousel
+                category={categories.SMALL_HOUSES}
+                data={filterByCategory(1, allListings)}
+              />
+              <Carousel
+                category={categories.OFFICES}
+                data={filterByCategory(2, allListings)}
+              />
+              <Carousel
+                category={categories.APARTMENTS}
+                data={filterByCategory(3, allListings)}
+              />
+            </div>
+          )}
+          {isLoggedIn === "true" && user?.Role === "User" && (
             <TabsUserListings
               tabAllListings={tabAllListings}
               handleAllListings={handleAllListings}
               handleMyListings={handleMyListings}
             />
           )}
-          {isLoggedIn && user?.Role === "Admin" && (
+          {isLoggedIn === "true" && user?.Role === "Admin" && (
             <TabsAdminListings
               tabAllListings={tabAllListings}
               handleAllListings={handleAllListings}
               handlePendingListings={handlePendingListings}
             />
           )}
-          {isLoggedIn && user?.Role === "Admin" && (
+          {isLoggedIn === "true" && user?.Role === "Admin" && (
             <TabsRow
               filterLocation={(sort) =>
                 setCards(handleFilterLocation(sort, allListings))
@@ -206,7 +235,7 @@ function HomePage() {
               orderBy={(sort) => setCards(handleOrderBy(sort, allListings))}
             />
           )}
-          {isLoggedIn && user?.Role === "User" && !tabAllListings && (
+          {isLoggedIn === "true" && user?.Role === "User" && !tabAllListings && (
             <TabsRow
               filterLocation={(sort) =>
                 setCards(handleFilterLocation(sort, allListings))
@@ -222,28 +251,46 @@ function HomePage() {
             <>
               {((user?.Role === "User" && isLoggedIn) || !isLoggedIn) && (
                 <div>
-                  <Carousel category={"Latest"} data={sortedDate} />
+                  <Carousel
+                    category={"Latest"}
+                    categoryValue={categoriesValues.BIG_HOUSES}
+                    data={sortedDate}
+                  />
                   <Carousel
                     category={categories.BIG_HOUSES}
-                    data={filterByCategory(categories.BIG_HOUSES, allListings)}
+                    categoryValue={categoriesValues.BIG_HOUSES}
+                    data={filterByCategory(
+                      categoriesValues.BIG_HOUSES,
+                      allListings
+                    )}
                   />
                   <Carousel
                     category={categories.SMALL_HOUSES}
+                    categoryValue={categoriesValues.SMALL_HOUSES}
                     data={filterByCategory(
-                      categories.SMALL_HOUSES,
+                      categoriesValues.SMALL_HOUSES,
                       allListings
                     )}
                   />
                   <Carousel
                     category={categories.OFFICES}
-                    data={filterByCategory(categories.OFFICES, allListings)}
+                    categoryValue={categoriesValues.OFFICES}
+                    data={filterByCategory(
+                      categoriesValues.OFFICES,
+                      allListings
+                    )}
                   />
                   <Carousel
                     category={categories.APARTMENTS}
-                    data={filterByCategory(categories.APARTMENTS, allListings)}
+                    categoryValue={categoriesValues.APARTMENTS}
+                    data={filterByCategory(
+                      categoriesValues.APARTMENTS,
+                      allListings
+                    )}
                   />
                 </div>
               )}
+
               {user?.Role === "Admin" && cardsMap}
             </>
           )}

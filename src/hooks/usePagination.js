@@ -6,9 +6,9 @@ const usePagination = (favoriteListings) => {
   const [currentPage, setCurrentPage] = useState(0);
   const offset = currentPage * PER_PAGE;
 
-  const currentPageData = favoriteListings.slice(offset, offset + PER_PAGE);
+  const currentPageData = favoriteListings?.slice(offset, offset + PER_PAGE);
 
-  const pageCount = Math.ceil(favoriteListings.length / PER_PAGE);
+  const pageCount = Math.ceil(favoriteListings?.length / PER_PAGE);
 
   function handlePageChange(event, page) {
     setCurrentPage(page - 1);

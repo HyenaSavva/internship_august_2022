@@ -7,9 +7,14 @@ import CardStyle from "./CardStyle";
 import FavoriteBtn from "./favoriteButton/FavoriteBtn";
 import FooterButtonsCard from "./FooterButtonsCard";
 import { Link } from "react-router-dom";
-import { addToFavorites, deleteListing } from "services/listingsFetch";
+import {
+  addToFavorites,
+  deleteListing,
+  removeFromFavorites,
+} from "services/listingsFetch";
 
 export default function CardRowUser({
+  handleDelete,
   approve,
   id,
   isFavorite,
@@ -48,11 +53,11 @@ export default function CardRowUser({
 
   const toggleFav = (event) => {
     setFavorite(!favorite);
-    addToFavorites(id);
-    event.preventDefault();
-  };
-  const handleDelete = (event) => {
-    deleteListing(id);
+    if (!favorite) {
+      addToFavorites(id);
+    } else {
+      removeFromFavorites(id);
+    }
     event.preventDefault();
   };
 

@@ -26,7 +26,7 @@ const TabsRow = ({ filterLocation, filterPrice, orderBy }) => {
   const toggleRowView = () => {
     dispatch(gridViewActions.toggleRowView());
   };
-  console.log(user);
+
   return (
     <div className="flex tabs">
       <div className="tabs--left">

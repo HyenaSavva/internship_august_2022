@@ -16,7 +16,7 @@ import CarouselStyles from "./CarouselStyles";
 import { customArrowLeft, customArrowRight } from "./CarouselStyles";
 import { verifyFavorite } from "services/utils";
 
-const Carousel = ({ category, data }) => {
+const Carousel = ({ category, categoryValue, data }) => {
   const slidesToShow = 4;
 
   const PreviousBtn = (props) => {
@@ -100,7 +100,7 @@ const Carousel = ({ category, data }) => {
         <h2 className="categ-title"> {category} </h2>
         <div className="btn-everything">
           <Link
-            to={`/category/${category}`}
+            to={`/category/${categoryValue}`}
             style={{ textDecoration: "none", color: "0241ae" }}
           >
             <div className="flex">

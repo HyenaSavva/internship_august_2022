@@ -3,6 +3,7 @@ import { appTheme } from "themes/themes";
 
 export default css.global`
   .listing-page {
+    padding-top: 100px;
     margin: auto;
     display: flex;
     flex-direction: column;

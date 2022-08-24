@@ -14,6 +14,9 @@ import { loginUser } from "services/auth";
 
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "store/authSlice";
+import { fetchUser, refreshUser } from "services/listingsFetch";
+import { userActions } from "store/userSlice";
+import jwtDecode from "jwt-decode";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -30,7 +33,12 @@ const Login = () => {
     setError(hasError);
     if (!hasError.emailError && !hasError.passwordError) {
       const data = await loginUser(email, password);
+
       localStorage.setItem("token", data.data);
+
+      refreshUser();
+      dispatch(userActions.getUserSuccess(jwtDecode(data.data)));
+      fetchUser();
     }
 
     // from PETRU

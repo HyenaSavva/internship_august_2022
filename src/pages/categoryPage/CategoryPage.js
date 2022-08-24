@@ -1,4 +1,3 @@
-import Header from "../../components/common/header/Header";
 import TabsRow from "components/common/tabs/TabsRow";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -30,37 +29,33 @@ const CategoryPage = (props) => {
   let params = useParams();
   const [listings, setListings] = useState([]);
   const [cards, setCards] = useState([]);
-  const [prevCards, setPrevCards] = useState([]);
+  const [categData, setCategData] = useState([]);
 
   useEffect(() => {
     // fetchListingsData returns a promise - we use ".then" to get the data from the promise
     fetchListingsData().then((data) => {
       setListings(data);
-      setCards(data);
     });
   }, []);
 
-  const categData = filterByCategory(params.name, listings);
+  useEffect(() => {
+    setCategData(filterByCategory(params.name, listings));
+    setCards(filterByCategory(params.name, listings));
+  }, [listings]);
 
   const { currentPageData, pageCount, handlePageChange } = usePagination(cards);
 
   return (
     <div className="main">
-      <Container maxWidth="lg">
-        <Header />
-      </Container>
-
       <Container sx={{ maxWidth: "lg" }}>
         <TabsRow
           filterLocation={(sort) => {
-            setPrevCards(cards);
-            setCards(handleFilterLocation(sort, listings, prevCards));
+            setCards(handleFilterLocation(sort, categData, categData));
           }}
           filterPrice={(sort) => {
-            setPrevCards(cards);
-            setCards(handleFilterPrice(sort, cards, prevCards));
+            setCards(handleFilterPrice(sort, cards, categData));
           }}
-          orderBy={(sort) => setCards(handleOrderBy(sort, cards))}
+          orderBy={(sort) => setCards(handleOrderBy(sort, categData))}
         />
 
         {isGridView && (

@@ -1,4 +1,3 @@
-import Header from "../../components/common/header/Header";
 import TabsRow from "components/common/tabs/TabsRow";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -26,14 +25,13 @@ const FavoritesPage = () => {
   const [listings, setListings] = useState([]);
   const [fetchData, setFetchData] = useState([]);
 
-  const user = JSON.parse(localStorage.getItem("userId"));
-
   const [cards, setCards] = useState(listings);
 
   useEffect(() => {
     // fetchListingsData returns a promise - we use ".then" to get the data from the promise
     fetchFavoritesData().then((data) => {
       setFetchData(data);
+      setListings(data);
       localStorage.setItem("favorites", JSON.stringify(data));
     });
   }, []);
@@ -43,10 +41,6 @@ const FavoritesPage = () => {
 
   return (
     <div className="main">
-      <Container maxWidth="lg">
-        <Header />
-      </Container>
-
       <Container sx={{ maxWidth: "lg" }}>
         <h1 className="main">Favourites</h1>
         <TabsRow
@@ -54,14 +48,14 @@ const FavoritesPage = () => {
             setCards(handleFilterLocation(sort, listings))
           }
           filterPrice={(sort) => {
-            setCards(handleFilterPrice(sort, cards, listings));
+            setCards(handleFilterPrice(sort, fetchData, listings));
           }}
           orderBy={(sort) => setCards(handleOrderBy(sort, listings))}
         />
 
         {isGridView && (
           <Grid container spacing={4} columns={{ xs: 4, sm: 8, md: 12 }}>
-            {currentPageData.map((card, index) => {
+            {currentPageData?.map((card, index) => {
               return (
                 <Grid item xs={2} sm={3} md={3} key={index}>
                   <Card
@@ -71,7 +65,7 @@ const FavoritesPage = () => {
                     title={card.title}
                     location={card.location}
                     price={card.price}
-                    description={card.shortDescription}
+                    description={card.description}
                     images={card.images}
                   />
                 </Grid>
@@ -81,7 +75,7 @@ const FavoritesPage = () => {
         )}
         {!isGridView && (
           <Grid container spacing={3} columns={{ xs: 4, sm: 8, md: 12 }}>
-            {currentPageData.map((card, index) => {
+            {currentPageData?.map((card, index) => {
               return (
                 <Grid item xs={3} sm={6} md={12} key={index}>
                   {isLoggedIn && (
@@ -92,7 +86,7 @@ const FavoritesPage = () => {
                       title={card.title}
                       location={card.location}
                       price={card.price}
-                      description={card.shortDescription}
+                      description={card.description}
                       images={card.images}
                     />
                   )}
