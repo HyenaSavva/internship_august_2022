@@ -28,7 +28,7 @@ export const loginUser = async (email, password) => {
 export const resetPassword = async (email) => {
   return await axios
     .post(
-      "https://assist-august-2022-be1.azurewebsites.net/api/user/reset-password",
+      `https://assist-august-2022-be1.azurewebsites.net/api/user/reset-password?email=${email}`,
       { email }
     )
     .then((data) => data)

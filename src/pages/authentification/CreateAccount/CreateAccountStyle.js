@@ -92,4 +92,16 @@ export default css`
     cursor: pointer;
     color: #0356e8;
   }
+
+  @media only screen and (max-width: 1030px) {
+    .imageBlock {
+      width: 0vw;
+    }
+    .logBlock {
+      width: 100vw;
+    }
+    .log {
+      width: 70vw;
+    }
+  }
 `;
