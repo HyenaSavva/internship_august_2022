@@ -19,8 +19,21 @@ export default function CardRowUser({
   description,
   price,
   images,
+  phone,
+  category,
 }) {
   const [favorite, setFavorite] = useState(isFavorite);
+
+  const listingDetails = {
+    id: id,
+    title: title,
+    category: category,
+    price: price,
+    images: images,
+    description: description,
+    location: location,
+    phone: phone,
+  };
 
   const customStyles = {
     display: "flex",
@@ -91,6 +104,7 @@ export default function CardRowUser({
                   listingId={id}
                   handleDelete={handleDelete}
                   approve={approve}
+                  listing={listingDetails}
                 />
               </div>
             </div>

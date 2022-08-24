@@ -22,6 +22,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { filterByCategory } from "services/utils";
+import CardRowUser from "components/common/card/CardRowUser";
 
 const CategoryPage = (props) => {
   const isGridView = useSelector((state) => state.gridView.isGridView);
@@ -74,7 +75,7 @@ const CategoryPage = (props) => {
                     title={card.title}
                     location={card.location}
                     price={card.price}
-                    description={card.shortDescription}
+                    description={card.description}
                     images={card.images}
                   />
                 </Grid>
@@ -87,15 +88,17 @@ const CategoryPage = (props) => {
             {currentPageData.map((card, index) => {
               return (
                 <Grid item xs={2} sm={3} md={12} key={index}>
-                  <CardRow
+                  <CardRowUser
                     id={card.id}
                     isFavorite={verifyFavorite(card)}
                     last={false}
                     title={card.title}
                     location={card.location}
                     price={card.price}
-                    description={card.shortDescription}
+                    description={card.description}
                     images={card.images}
+                    phone={card.phone}
+                    category={card.category}
                   />
                 </Grid>
               );

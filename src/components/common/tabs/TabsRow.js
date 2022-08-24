@@ -18,7 +18,7 @@ const TabsRow = ({ filterLocation, filterPrice, orderBy }) => {
   const isGridView = useSelector((state) => state.gridView.isGridView);
   const dispatch = useDispatch();
 
-  const user = JSON.parse(localStorage.getItem("userId"));
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const toggleGridView = () => {
     dispatch(gridViewActions.toggleGridView());
@@ -26,7 +26,7 @@ const TabsRow = ({ filterLocation, filterPrice, orderBy }) => {
   const toggleRowView = () => {
     dispatch(gridViewActions.toggleRowView());
   };
-
+  console.log(user);
   return (
     <div className="flex tabs">
       <div className="tabs--left">

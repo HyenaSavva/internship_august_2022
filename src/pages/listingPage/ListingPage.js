@@ -25,15 +25,12 @@ import { primaryBtn } from "UI/button/CustomButtonStyle";
 export const ListingPage = () => {
   const params = useParams();
 
-  console.log("params", params);
-
   const [listingInfo, setListingInfo] = useState({});
 
   useEffect(() => {
     if (params.id) {
       const fetchData = async () => {
         const response = await getListingById(params.id);
-        console.log("response", response);
         if (response) {
           setListingInfo(response.data);
         }

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import {
   Dialog,
@@ -20,8 +20,7 @@ import { CustomButton } from "UI/button/CustomButton";
 import { Text } from "UI/text/Text";
 import { ValidationSchema } from "pages/addPage/validationAddPage";
 import {
-  addNewListing,
-  getListingById,
+  editListing,
   sizeImageValidation,
   typeImageValidation,
 } from "helper/Constants";
@@ -39,13 +38,13 @@ export const EditPage = () => {
 
   const [requestError, setRequestError] = useState("");
   const [open, setOpen] = useState(true);
-  const [getError, setGetError] = useState("");
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
 
   const navigate = useNavigate();
-  const params = useParams();
+  const location = useLocation();
+  const { state } = location;
 
-  const [values, setValues] = useState({
+  let values = {
     title: "",
     category: "",
     price: "",
@@ -53,23 +52,26 @@ export const EditPage = () => {
     description: "",
     location: "",
     phone: "",
-  });
+  };
 
-  useEffect(() => {
-    const fetchListingInfos = async () => {
-      const response = await getListingById(params.id);
-      if (response) {
-        setValues(response.data);
-      } else {
-        setGetError(response.error);
-        //verifica daca e corect
-      }
-    };
-    fetchListingInfos();
-  }, []);
+  const setImages = (arrImages) => {
+    const images = [...arrImages];
+    for (let i = 0; i < 9 - arrImages.length; i++) {
+      images.push(undefined);
+    }
+    return images;
+  };
+
+  values = { ...state, images: setImages(state.images) };
 
   const handlePreviewMode = () => {
-    navigate("/preview", { state: { listing: formik.values } });
+    navigate("/preview", {
+      state: {
+        listing: formik.values,
+        from: "edit",
+        id: state.id,
+      },
+    });
   };
 
   const formik = useFormik({
@@ -83,17 +85,18 @@ export const EditPage = () => {
       }
       const imagesToSend = formik.values.images.filter((images) => !!images);
       try {
-        const response = await addNewListing({
+        const response = await editListing(state.id, {
           ...formik.values,
           images: imagesToSend,
         });
         if (response) {
+          console.log("response", response);
+          setOpenSuccessModal(true);
+          formik.resetForm();
         }
       } catch (error) {
         setRequestError(error.message);
       }
-      setOpenSuccessModal(true);
-      formik.resetForm();
     },
   });
 
@@ -135,7 +138,7 @@ export const EditPage = () => {
           ) : (
             <div className="add-page">
               <Text variant="h5" sx={addTitle}>
-                Add new
+                Edit
               </Text>
 
               <form onSubmit={formik.handleSubmit}>
@@ -250,7 +253,7 @@ export const EditPage = () => {
                       setIsPreview(false);
                     }}
                   >
-                    Publish
+                    Save Changes
                   </CustomButton>
                 </div>
               </form>

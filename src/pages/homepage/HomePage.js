@@ -45,7 +45,7 @@ function HomePage() {
   const user = JSON.parse(localStorage.getItem("userId"));
   const userData = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
-  let favorites = JSON.parse(localStorage.getItem("favorites"));
+  // let favorites = JSON.parse(localStorage.getItem("favorites"));
 
   const [tabAllListings, setTabAllListings] = useState(true);
 
@@ -87,7 +87,7 @@ function HomePage() {
                   title={card.title}
                   location={card.location}
                   price={card.price}
-                  description={card.shortDescription}
+                  description={card.description}
                   images={card.images}
                 />
               </>
@@ -111,7 +111,7 @@ function HomePage() {
                 title={card.title}
                 location={card.location}
                 price={card.price}
-                description={card.shortDescription}
+                description={card.description}
                 images={card.images}
               />
             )}
@@ -160,7 +160,7 @@ function HomePage() {
           {isLoggedIn && (
             <div className="main">
               <div className="flex welcome">
-                <p>Welcome back, {userData.fullName}</p>
+                <p>Welcome back, {userData?.fullName}</p>
                 {user?.Role === "User" && (
                   <Button
                     onClick={handleAdd}
